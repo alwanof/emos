@@ -114,10 +114,10 @@
                     <div class="card border-dark mt-2">
                         <div class="card-body p-1 m-0">
 
-                            <table class="table table-striped my-2" v-show="total()>0">
+                            <table class="table table-striped my-2" >
                                 <tr v-for="(item,index) in pasket" :key="item.id">
                                     <td width="70%">{{item.title}}</td>
-                                    <td><input type="number" v-model="pasket[index].amount" class="form-control"  placeholder="1"></td>
+                                    <td><input type="number" @keypress="onlyNumberKey($event)" min="1" v-model="pasket[index].amount" class="form-control"  value="1"></td>
                                 </tr>
 
                             </table>
@@ -449,6 +449,15 @@
                         break;
                 }
                 return result;
+            },
+            onlyNumberKey(evt) {
+                evt = (evt) ? evt : window.event;
+                var charCode = (evt.which) ? evt.which : evt.keyCode;
+                if ((charCode > 31 && (charCode < 48 || charCode > 57)) && charCode !== 46) {
+                    evt.preventDefault();;
+                } else {
+                    return true;
+                }
             }
 
         }
