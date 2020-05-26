@@ -21,12 +21,12 @@
   <component name="ChangeListManager">
     <list default="true" id="9a9985b9-c697-4ece-b1fd-b7fff16943e7" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/MenuComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/MenuComponent.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/components/OrderComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/OrderComponent.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/info/OrdersCardComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/info/OrdersCardComponent.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/master.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/master.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/info/RelevanceComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/info/RelevanceComponent.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/info/TablesPieComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/info/TablesPieComponent.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -165,7 +165,7 @@
       <workItem from="1590400235382" duration="2686000" />
       <workItem from="1590416150270" duration="5509000" />
       <workItem from="1590497438638" duration="5593000" />
-      <workItem from="1590505263274" duration="1043000" />
+      <workItem from="1590505263274" duration="5548000" />
     </task>
     <servers />
   </component>

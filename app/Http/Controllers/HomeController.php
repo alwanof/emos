@@ -47,9 +47,11 @@ class HomeController extends Controller
             'all'=>Category::where('user_id',auth()->user()->id)->get()->count()
 
         ];
+        $itemQuery=Item::where('user_id',auth()->user()->id);
         $items=[
-            'all'=>Item::where('user_id',auth()->user()->id)->get()->count(),
-            'data'=>Item::where('user_id',auth()->user()->id)->orderBy('view','desc')->take(10)->get()
+            'all'=>$itemQuery->get()->count(),
+            'data'=>$itemQuery->orderBy('view','desc')->take(10)->get(),
+            'max'=>$itemQuery->get()->max('view')
         ];
 
 

@@ -22,7 +22,7 @@
                         </div>
                         <div class="product-info">
                             <span class="product-title text-danger" >{{element.title}}
-                                <span class="badge badge-warning float-right">{{element.view}}</span>
+                                <i :class="getRlevance(element.view,items.max)+' fa-2x float-right'"></i>
                             </span>
                             <span class="product-description">
                                 {{element.description.substr(0,25)}}..
@@ -57,7 +57,22 @@
 
         },
 
-        methods: {}
+        methods: {
+            getRlevance(value,max){
+                console.log(max);
+                console.log(value);
+                let result=value/max;
+                if(result >0.7){
+                    return 'fas fa-chart-line text-danger'
+                }
+
+                if(result >0.4){
+                    return 'fas fa-heart text-danger'
+                }
+                return 'far fa-thumbs-up text-info'
+
+            }
+        }
     };
 </script>
 

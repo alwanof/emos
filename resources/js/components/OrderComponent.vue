@@ -7,7 +7,7 @@
         <div class="row">
             <div class="card-columns" >
 
-                <div class="card card-widget" v-for="(order,index) in orders" :key="order.orderID" >
+                <div class="card card-widget" v-for="(order,index) in orders" :key="index" >
                     <!-- Add the bg color to the header using any of the bg-* classes -->
                     <div :class="'widget-user-header p-3 bg-'+colorOrder(order.status.value)">
 
@@ -16,7 +16,6 @@
                             <span class="badge badge-dark float-left m-1">#{{order.orderID.substring(0, 4)}}</span>
                             <span class="badge badge-dark m-1 float-right"> {{order.total+' ₺'}}</span>
 
-                             -{{local[lang+".orders"]["masa"]}}({{order.table.id}})
                         </h4>
                         <h5 v-show="acl.isAdmin" class="widget-user-desc">{{order.user.name}}</h5>
                         <h5 class="widget-user-desc">{{order.table.name}}</h5>
@@ -71,7 +70,7 @@
                 }else{
                     query=CONFIG.DB.collection('orders').where('user.email','==',this.auth.email);
                 }
-                query.where('status.value','<',2)
+                query.where('status.value','<=',2)
                     .orderBy('status.value')
                     .orderBy('status.timestamp',"desc")
                     .limit(50)
