@@ -230,33 +230,6 @@
         created() {
             this.getResults();
             this.getOrders();
-            /*CONFIG.DB.collection('orders')
-                .where('user.email','==',this.rest.email)
-                .where('status.value','in',[0,1])
-                .where('table.slug','==',this.tbl.slug)
-                .get()
-            .then(snap=>{
-                let valid=false;
-                if(snap.size==0){
-                    valid=true;
-                }else{
-                    snap.forEach(item=>{
-                        if(this.sess==item.data().session){
-                            valid=true;
-                        }
-                    });
-                }
-                if (!valid) {
-                    window.location.replace(this.path+'/busy');
-                }else{
-                    this.getResults();
-                    this.getOrders();
-                }
-            })
-            .catch(e=>{
-                console.log(e);
-            });*/
-
 
         },
         methods: {

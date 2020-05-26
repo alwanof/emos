@@ -30,11 +30,16 @@
         },
         created() {
             this.loading = true;
-            const today = new Date();
-            //const today = new Date(1555653600000);
 
-            CONFIG.DB.collection('orders').where('user.email','==',this.auth.email).where('timestamp','>=',today).onSnapshot(snapshot => {
+            const today= new Date();
+            today.setDate(today.getDate() - 1);
+            //const today = new Date(1555653600000);*/
+
+            CONFIG.DB.collection('orders')
+                .where('user.email','==',this.auth.email)
+                .where('timestamp','>',today).onSnapshot(snapshot => {
                 //snapshot.forEach(doc=>{});
+
                 this.ordersSize=snapshot.size;
                 this.loading = false;
             });

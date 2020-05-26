@@ -6,7 +6,8 @@
         </div>
         <div class="row">
             <div class="card-columns" >
-                <div class="card card-widget" v-for="(order,index) in orders" :key="order.orderID" v-show="order.status.value<2">
+
+                <div class="card card-widget" v-for="(order,index) in orders" :key="order.orderID" >
                     <!-- Add the bg color to the header using any of the bg-* classes -->
                     <div :class="'widget-user-header p-3 bg-'+colorOrder(order.status.value)">
 
@@ -37,6 +38,7 @@
                         </span>
                     </div>
                 </div>
+
             </div>
         </div>
 
@@ -67,10 +69,14 @@
                 if(this.acl.isAdmin){
                     query=CONFIG.DB.collection('orders');
                 }else{
-                    query=CONFIG.DB.collection('orders').where('user.id','==',this.auth.id);
+                    query=CONFIG.DB.collection('orders').where('user.email','==',this.auth.email);
                 }
-                query.limit(10)
+                query.where('status.value','<',2)
+                    .orderBy('status.value')
+                    .orderBy('status.timestamp',"desc")
+                    .limit(50)
                     .onSnapshot(snap=> {
+
 
                         if (snap.size == 0) {
                             this.loading = false;
@@ -100,7 +106,8 @@
                 CONFIG.DB.collection('orders')
                     .doc(orderID)
                     .update({
-                        'status.value':1
+                        'status.value':1,
+                        'status.timestamp':new Date()
                     })
                     .then(() => {
                         this.loading = false;
@@ -116,7 +123,8 @@
                 CONFIG.DB.collection('orders')
                     .doc(orderID)
                     .update({
-                        'status.value':2
+                        'status.value':2,
+                        'status.timestamp':new Date()
                     })
                     .then(() => {
                         this.loading = false;
@@ -159,6 +167,9 @@
                         break;
                     case 1:
                         result="success";
+                        break;
+                    case 2:
+                        result="secondary";
                         break;
                     default:
                         result="";
