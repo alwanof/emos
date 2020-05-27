@@ -127,7 +127,7 @@
                                 Sepet boş!
                             </div>
                             <button type="button" class="btn btn-dark btn-lg btn-block" @click="sendOrder" v-show="pasket.length>0">
-                                <i class="fas fa-paper-plane"></i> | Sent to kitchen
+                                <i class="fas fa-paper-plane"></i> SEND!
                             </button>
 
 
@@ -335,6 +335,10 @@
                 return total;
             },
             sendOrder(){
+                if(this.total()==0){
+                    alert('Error!!');
+                    return false;
+                }
                 this.loading=true;
                 let order={}
                 let items=[];

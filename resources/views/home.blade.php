@@ -33,11 +33,12 @@
 
                     </div>
                     <div class="col-lg-12">
-                        -
-                        <tables-pie :tables="{{json_encode($tables)}}" :lang={{ json_encode(app()->getLocale()) }} :auth="{{ json_encode(Auth::user()) }}"></tables-pie>
-
-
+                        <orders-details  :lang={{ json_encode(app()->getLocale()) }} :auth="{{ json_encode(Auth::user()) }}"></orders-details >
                     </div>
+                    <div class="col-lg-12">
+                        <tables-pie :tables="{{json_encode($tables)}}" :lang={{ json_encode(app()->getLocale()) }} :auth="{{ json_encode(Auth::user()) }}"></tables-pie>
+                    </div>
+
                 </div>
             </div>
             <div class="col-lg-6">

@@ -8,7 +8,13 @@ return [
     'relevence'=>'Top Relevance Products',
     'table_status'=>'Tables Status',
     'waiting'=>'New',
-    'seen'=>'Seen'
+    'seen'=>'Seen',
+    'orders_spotlight'=>'Orders Spotlight',
+    'yesterday'=>'Yesterday',
+    'lastweak'=>'Lastweak',
+    'lastmonth'=>'Lastmonth',
+    'lastyear'=>'Lastyear',
+
 
 
 

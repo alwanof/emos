@@ -59,8 +59,6 @@
 
         methods: {
             getRlevance(value,max){
-                console.log(max);
-                console.log(value);
                 let result=value/max;
                 if(result >0.7){
                     return 'fas fa-chart-line text-danger'

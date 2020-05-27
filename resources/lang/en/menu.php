@@ -5,7 +5,7 @@ return [
     'title' => 'Menu Manager',
     'tables'=>'Tables',
     'categories'=>'Categories',
-    'items'=>'Items',
+    'send'=>'Send',
     'name'=>'Name',
     'item_title'=>'Title',
     'description'=>'Description',
