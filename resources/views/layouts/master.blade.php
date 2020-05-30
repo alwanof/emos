@@ -86,11 +86,11 @@
                                     <i class="flag-icon flag-icon-us"></i>
                             </span>
                         </a>
-                        <div class="dropdown-d   ivider"></div>
-                        <a href="{{ route('lang','ar') }}" class="dropdown-item">
-                                Arabic
+                        <div class="dropdown-divider"></div>
+                        <a href="{{ route('lang','tr') }}" class="dropdown-item">
+                            Türkiye
                                <span class="float-right text-muted text-sm">
-                                       <i class="flag-icon flag-icon-sa"></i>
+                                       <i class="flag-icon flag-icon-tr"></i>
                                </span>
                            </a>
                     </div>
@@ -154,6 +154,14 @@
                                 <p>{{ __('master.users') }}</p>
                             </a>
                         </li>
+                        @endcan
+                        @can('access_accounts')
+                            <li class="nav-item ">
+                                <a href="{{ route('members.index') }}" class="nav-link ">
+                                    <i class="fa fa-users nav-icon"></i>
+                                    <p>{{ __('members.title') }}</p>
+                                </a>
+                            </li>
                         @endcan
                         @can('access-configs')
                         <li class="nav-item">

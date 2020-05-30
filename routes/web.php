@@ -41,6 +41,8 @@ Route::prefix('admin')->group(function () {
     Route::get('/items', 'ItemController@index')->name('item.index');
     Route::get('/item/profile/{item}', 'ItemController@profile')->name('item.profile');
     Route::get('/print/qrcode/{board}', 'BoardController@print_qrcode')->name('boards.qrcode');
+    Route::resource('/members', 'MemberController');
+
 
 });
 

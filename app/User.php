@@ -27,7 +27,7 @@ class User extends Authenticatable
     protected $fillable = [
         'name', 'email', 'password','slug'
     ];
-    protected $appends = ['avatar', 'getroles'];
+    protected $appends = ['avatar', 'getroles','parent'];
 
     /**
      * The attributes that should be hidden for arrays.
@@ -54,6 +54,19 @@ class User extends Authenticatable
         $path = Storage::exists('/public/users/' . $this->id . '.jpg');
         $avatar = ($path) ? asset('storage/users/' . $this->id . '.jpg') : asset('storage/users/0.jpg');
         return $avatar;
+    }
+    /* 0 root , 2 sup , 2 grand , 3 rest , 4 agent */
+
+
+    public function getParentAttribute()
+    {
+
+        if($this->level>0){
+            return User::findOrFail($this->ref);
+        }
+
+        return false;
+
     }
     public function getLogoAttribute()
     {

@@ -78,6 +78,7 @@
                     <a href="#" onclick="doGTranslate('tr|fa');return false;"><i class="flag-icon flag-icon-ir m-1"></i></i></a>
                     <a href="#" onclick="doGTranslate('tr|am');return false;"><i class="flag-icon flag-icon-et m-1"></i></i></a>
                     <a href="#" onclick="doGTranslate('tr|zh-CN');return false;"><i class="flag-icon flag-icon-cn m-1"></i></i></a>
+                    <a href="#" onclick="doGTranslate('tr|ur');return false;"><i class="pb-2"><img src="{{asset('assets/dist/img/ur.png')}}" height="28"></i></a>
 
                 </div>
                 <div class="progress my-2">
