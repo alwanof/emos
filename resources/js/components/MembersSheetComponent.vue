@@ -28,6 +28,8 @@
                         <tr>
                             <th>{{ local[lang+".members"]["name"] }}</th>
                             <th>{{ local[lang+".members"]["email"] }}</th>
+                            <th>{{ local[lang+".members"]["level"] }}</th>
+                            <th>{{ local[lang+".members"]["parent"] }}</th>
                             <th>
                                 <span class="badge badge-info">{{members.total}}</span>
                             </th>
@@ -40,6 +42,11 @@
                                 {{ member.name }}
                             </td>
                             <td>{{member.email}}</td>
+                            <td>{{level(member.level)}}</td>
+                            <td>
+                                <img :src="member.parent.avatar+'?r='+Math.random()" class="rounded-circle mx-1" width="24px"/>
+                                {{member.parent.name}} <span class="badge badge-info">{{level(member.parent.level)}}</span>
+                            </td>
                             <td>
 
                                 <button type="button" class="btn btn-sm btn-danger" @click="removeMember(member)">
@@ -163,6 +170,28 @@
                             }
                         });
                 }
+
+            },
+            level(value){
+                switch (value) {
+                    case 0:
+                        return 'root';
+                        break;
+                    case 1:
+                        return 'supervisor';
+                        break;
+                    case 2:
+                        return 'grand';
+                        break;
+                    case 3:
+                        return 'rest';
+                        break;
+                    case 4:
+                        return 'agent';
+                        break;
+
+                }
+                return false;
 
             },
             clearFields() {

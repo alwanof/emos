@@ -20,18 +20,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9a9985b9-c697-4ece-b1fd-b7fff16943e7" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/resources/js/components/MembersSheetComponent.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/lang/en/members.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/members/create.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/members/index.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/laravel-plugin.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/layouts/menu/default.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/menu/all.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/menu/default.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/BoardController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/BoardController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/MenuController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/MenuController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/MembersSheetComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/MembersSheetComponent.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/lang/en/members.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/lang/en/members.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/lang/vue-translations.json" beforeDir="false" afterPath="$PROJECT_DIR$/resources/lang/vue-translations.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/master.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/master.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/menu.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/menu.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/members/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/members/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -150,8 +153,9 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="editing.templates" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.General" />
   </component>
   <component name="RunManager">
     <configuration name="phpunit.xml" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
@@ -176,7 +180,8 @@
       <workItem from="1590678628760" duration="152000" />
       <workItem from="1590757288893" duration="1297000" />
       <workItem from="1590779583121" duration="1076000" />
-      <workItem from="1590826340107" duration="10970000" />
+      <workItem from="1590826340107" duration="16179000" />
+      <workItem from="1591097138325" duration="3826000" />
     </task>
     <servers />
   </component>
@@ -196,10 +201,14 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="1478" y="57" key="#Live_Templates" timestamp="1590841348714">
+    <state x="1478" y="57" key="#Live_Templates" timestamp="1590860116598">
       <screen x="1366" y="0" width="1920" height="1040" />
     </state>
-    <state x="1478" y="57" key="#Live_Templates/0.0.1366.728/1366.0.1920.1040@1366.0.1920.1040" timestamp="1590841348714" />
+    <state x="1478" y="57" key="#Live_Templates/0.0.1366.728/1366.0.1920.1040@1366.0.1920.1040" timestamp="1590860116598" />
+    <state x="1974" y="305" key="#com.intellij.codeInsight.template.impl.EditVariableDialog" timestamp="1590859431909">
+      <screen x="1366" y="0" width="1920" height="1040" />
+    </state>
+    <state x="1974" y="305" key="#com.intellij.codeInsight.template.impl.EditVariableDialog/0.0.1366.728/1366.0.1920.1040@1366.0.1920.1040" timestamp="1590859431909" />
     <state x="2049" y="303" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1590836845749">
       <screen x="1366" y="0" width="1920" height="1040" />
     </state>
@@ -208,17 +217,17 @@
       <screen x="1366" y="0" width="1920" height="1040" />
     </state>
     <state x="2053" y="216" key="FileChooserDialogImpl/0.0.1366.728/1366.0.1920.1040@1366.0.1920.1040" timestamp="1590416145683" />
-    <state x="1717" y="78" key="SettingsEditor" timestamp="1590841266718">
+    <state x="1717" y="78" key="SettingsEditor" timestamp="1590859323273">
       <screen x="1366" y="0" width="1920" height="1040" />
     </state>
-    <state x="1717" y="78" key="SettingsEditor/0.0.1366.728/1366.0.1920.1040@1366.0.1920.1040" timestamp="1590841266718" />
+    <state x="1717" y="78" key="SettingsEditor/0.0.1366.728/1366.0.1920.1040@1366.0.1920.1040" timestamp="1590859323273" />
     <state x="1898" y="237" key="run.anything.popup" timestamp="1590520360957">
       <screen x="1366" y="0" width="1920" height="1040" />
     </state>
     <state x="1898" y="237" key="run.anything.popup/0.0.1366.728/1366.0.1920.1040@1366.0.1920.1040" timestamp="1590520360957" />
-    <state x="1905" y="5" width="840" height="1034" key="search.everywhere.popup" timestamp="1590841246585">
+    <state x="1905" y="5" width="840" height="1034" key="search.everywhere.popup" timestamp="1590859316795">
       <screen x="1366" y="0" width="1920" height="1040" />
     </state>
-    <state x="1905" y="5" width="840" height="1034" key="search.everywhere.popup/0.0.1366.728/1366.0.1920.1040@1366.0.1920.1040" timestamp="1590841246585" />
+    <state x="1905" y="5" width="840" height="1034" key="search.everywhere.popup/0.0.1366.728/1366.0.1920.1040@1366.0.1920.1040" timestamp="1590859316795" />
   </component>
 </project>

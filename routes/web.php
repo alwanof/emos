@@ -18,8 +18,8 @@ Route::get('/', function (){
 })->name('route_start');
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 Route::get('/menu/{rest}/{table}', 'MenuController@index')->name('menu.index');
-
-Route::post('/send/email', 'ContactController@send_message')->name('send_email');
+Route::get('/menu/{rest}/{table}', 'MenuController@index')->name('menu.index');
+Route::get('/print/all/{user}', 'MenuController@print_all')->name('print.all');
 
 Route::get('/language/{language}','LanguageController@index')->name('switcher')->where('language','[A-Za-z]+');
 Auth::routes();

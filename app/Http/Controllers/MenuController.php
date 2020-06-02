@@ -21,5 +21,11 @@ class MenuController extends Controller
 
     }
 
+    public function print_all(User $user){
+        $tables=Board::where('user_id',$user->id)->get();
+
+        return view('menu.all',compact(['tables']));
+    }
+
 
 }

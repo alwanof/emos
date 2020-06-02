@@ -27,4 +27,5 @@ class BoardController extends Controller
 
         return view('menu.qrcode',compact(['board']));
     }
+
 }

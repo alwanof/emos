@@ -39,6 +39,8 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::get('search/categories', 'API\CategoryController@search');
     Route::apiResource('items', 'API\ItemController', ['except' => ['create', 'edit', 'show']]);
     Route::get('search/items', 'API\ItemController@search');
+    Route::apiResource('members', 'API\MemberController', ['except' => ['create', 'edit','update', 'show']]);
+    Route::get('search/members', 'API\MemberController@search');
 
 
 
