@@ -7,31 +7,31 @@
         </div>
         <div id="myLang" class="sidebar">
             <a onclick="doGTranslate('tr|tr');openLang();return false;" href="#">
-                <i class="flag-icon flag-icon-tr m-1"></i>
+                <i class="flag-icon flag-icon-tr m-1"></i> Türkiye
             </a>
             <a onclick="doGTranslate('tr|en');openLang();return false;" href="#">
-                <i class="flag-icon flag-icon-us m-1"></i>
+                <i class="flag-icon flag-icon-us m-1"></i> English
             </a>
             <a onclick="doGTranslate('tr|ar');openLang();return false;" href="#">
-                <i class="flag-icon flag-icon-sa m-1"></i>
+                <i class="flag-icon flag-icon-sa m-1"></i> عربي
             </a>
             <a onclick="doGTranslate('tr|fr');openLang();return false;" href="#">
-                <i class="flag-icon flag-icon-fr m-1"></i>
+                <i class="flag-icon flag-icon-fr m-1"></i> FRANÇAIS
             </a>
             <a onclick="doGTranslate('tr|ru');openLang();return false;" href="#">
-                <i class="flag-icon flag-icon-ru m-1"></i>
+                <i class="flag-icon flag-icon-ru m-1"></i> русский
             </a>
             <a onclick="doGTranslate('tr|sv');openLang();return false;" href="#">
-                <i class="flag-icon flag-icon-se m-1"></i>
+                <i class="flag-icon flag-icon-se m-1"></i> svenska
             </a>
             <a onclick="doGTranslate('tr|fa');openLang();return false;" href="#">
-                <i class="flag-icon flag-icon-ir m-1"></i>
+                <i class="flag-icon flag-icon-ir m-1"></i> فارسی
             </a>
             <a onclick="doGTranslate('tr|am');openLang();return false;" href="#">
-                <i class="flag-icon flag-icon-et m-1"></i>
+                <i class="flag-icon flag-icon-et m-1"></i> አማርኛ
             </a>
             <a onclick="doGTranslate('tr|zh-CN');openLang();return false;" href="#">
-                <i class="flag-icon flag-icon-en m-1"></i>
+                <i class="flag-icon flag-icon-cn m-1"></i> 中文
             </a>
 
         </div>
@@ -132,7 +132,7 @@
                                         </p>
                                     </div>
                                     <div class="col-12 h6 text-center">
-                                        <span style="font-size: 70%">33.9 ₺</span>
+                                        <span style="font-size: 70%"> {{item.price}} <i class="fas fa-lira-sign"></i></span>
                                         <span class="float-right">
                                         <button type="button" :disabled="basketAmount(item.id)==0" class="btn btn-sm btn-xs btn-danger" @click="offFromPasket(index1,index2)">
 
@@ -346,7 +346,10 @@
             },
             getOrders(){
                 this.loading = true;
-                CONFIG.DB.collection('orders').where('session','==',this.sess).limit(10)
+                CONFIG.DB.collection('orders')
+                    .where('user.email','==',this.rest.email)
+                    .where('session','==',this.sess)
+                    .limit(10)
                     .onSnapshot(snap=> {
 
                         if (snap.size == 0) {
