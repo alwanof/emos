@@ -1,5 +1,5 @@
 body{
-	padding: 90px 5px 120px; 
+	padding: 90px 5px 120px;
 }
 .navbar-brand {
     position: absolute;
@@ -21,16 +21,18 @@ body{
   background-color: #111;
   overflow-x: hidden;
   transition: 0.5s;
-  padding-top: 60px;
+  padding-top: 75px;
 }
 
 .sidebar a {
-  padding: 8px 8px 8px 32px;
+  padding: 8px 8px 8px 8px;
   text-decoration: none;
-  font-size: 25px;
+  font-size: 18px;
   color: #818181;
   display: block;
   transition: 0.3s;
+    line-height: 1;
+    border-bottom: 1px solid #6E6E6E;
 }
 
 .sidebar a:hover {
@@ -73,5 +75,32 @@ body{
   background-clip: content-box;
   /*min-height: 130px;
   margin-bottom: 15px;*/
+}
+.imgx {
+    position: relative;
+}
+
+.imgx i {
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+}
+.bounce-enter-active {
+    animation: bounce-in .5s;
+}
+.bounce-leave-active {
+    animation: bounce-in .5s reverse;
+}
+@keyframes bounce-in {
+    0% {
+        transform: scale(0);
+    }
+    50% {
+        transform: scale(1.5);
+    }
+    100% {
+        transform: scale(1);
+    }
 }
 

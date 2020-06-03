@@ -45,6 +45,7 @@ Vue.component('relevance-sheet', require('./components/info/RelevanceComponent')
 Vue.component('tables-pie', require('./components/info/TablesPieComponent').default);
 Vue.component('orders-details', require('./components/info/OrdersDetailsComponent').default);
 Vue.component('members-sheet', require('./components/MembersSheetComponent').default);
+Vue.component('theme-default', require('./components/themes/DefaultThemeComponent').default);
 
 
 function coolNumber(num){

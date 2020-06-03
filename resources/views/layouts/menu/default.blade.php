@@ -21,7 +21,7 @@
 <body>
 
  @yield('content')
-</div>
+
 <!-- jQuery library -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
@@ -34,9 +34,9 @@
 <script src="http://vjs.zencdn.net/6.6.3/video.js"></script>
 
 <script src="{{asset('templates/default/scripts/flat-ui.js')}}"></script>
+ <script src="{{ asset('js/app.js') }}" ></script>
 <script>
     function openNav() {
-        console.log(document.getElementById("mySidebar").style.width);
         if(document.getElementById("mySidebar").style.width == '0px' || document.getElementById("mySidebar").style.width == 0  ){
             document.getElementById("mySidebar").style.width = "250px";
             document.getElementById("main").style.marginLeft = "250px";
@@ -44,8 +44,16 @@
             document.getElementById("mySidebar").style.width = "0";
             document.getElementById("main").style.marginLeft= "0";
         }
-        console.log(document.getElementById("mySidebar").style.width);
+    }
 
+    function openLang() {
+        if(document.getElementById("myLang").style.width == '0px' || document.getElementById("myLang").style.width == 0  ){
+            document.getElementById("myLang").style.width = "250px";
+            document.getElementById("main").style.marginLeft = "250px";
+        }else{
+            document.getElementById("myLang").style.width = "0";
+            document.getElementById("main").style.marginLeft= "0";
+        }
     }
 
     function closeNav() {

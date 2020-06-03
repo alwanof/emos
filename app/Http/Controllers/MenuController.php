@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Board;
+use App\Category;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -15,9 +16,11 @@ class MenuController extends Controller
         $restaurant=User::where('slug',$restaurant)->first();
         $table=Board::where('slug',$table)->first();
         $session = Session::getId();
+        $cats=Category::where('user_id',$restaurant->id)->get();
 
 
-        return view('menu.index',compact(['restaurant','table','session']));
+
+        return view('menu.default',compact(['restaurant','table','session','cats']));
 
     }
 
