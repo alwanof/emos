@@ -40,12 +40,12 @@ Vue.component('item', require('./components/ItemComponent.vue').default);
 Vue.component('info-tables', require('./components/info/TableComponent.vue').default);
 Vue.component('info-cats', require('./components/info/CatsComponent.vue').default);
 Vue.component('info-items', require('./components/info/SubitemsComponent.vue').default);
-Vue.component('orders-card', require('./components/info/OrdersCardComponent').default);
-Vue.component('relevance-sheet', require('./components/info/RelevanceComponent').default);
-Vue.component('tables-pie', require('./components/info/TablesPieComponent').default);
-Vue.component('orders-details', require('./components/info/OrdersDetailsComponent').default);
-Vue.component('members-sheet', require('./components/MembersSheetComponent').default);
-Vue.component('theme-default', require('./components/themes/DefaultThemeComponent').default);
+Vue.component('orders-card', require('./components/info/OrdersCardComponent.vue').default);
+Vue.component('relevance-sheet', require('./components/info/RelevanceComponent.vue').default);
+Vue.component('tables-pie', require('./components/info/TablesPieComponent.vue').default);
+Vue.component('orders-details', require('./components/info/OrdersDetailsComponent.vue').default);
+Vue.component('members-sheet', require('./components/MembersSheetComponent.vue').default);
+Vue.component('theme-default', require('./components/themes/DefaultThemeComponent.vue').default);
 
 
 function coolNumber(num){
