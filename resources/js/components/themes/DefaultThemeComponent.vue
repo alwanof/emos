@@ -388,7 +388,7 @@
                 this.pasket.forEach(item=>{
                     total=total+item.price*item.amount;
                 });
-                return total;
+                return total.toFixed(2);
             },
             sendOrder(){
                 if(this.total()==0){
