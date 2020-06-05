@@ -56,9 +56,10 @@
         }
     }
 
-    function closeNav() {
-
-    }
+    /*window.addEventListener("hashchange", function () {
+            console.log(window.scrollY-50);
+            window.scrollTo(window.scrollX, window.scrollY-50);
+    });*/
 </script>
 </body>
 </html>

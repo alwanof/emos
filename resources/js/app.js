@@ -19,6 +19,8 @@ const dbAuth=firebase.auth();
 
 window.Vue = require('vue');
 Vue.use(require('vue-moment'));
+var VueScrollTo = require('vue-scrollto');
+Vue.use(VueScrollTo);
 
 import translations from '../lang/vue-translations.json'
 //php artisan lang:js resources/lang/vue-translations.json --json

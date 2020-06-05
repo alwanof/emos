@@ -21,8 +21,14 @@
   <component name="ChangeListManager">
     <list default="true" id="9a9985b9-c697-4ece-b1fd-b7fff16943e7" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/templates/default/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/templates/default/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/components/themes/DefaultThemeComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/themes/DefaultThemeComponent.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/menu/default.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/menu/default.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -142,6 +148,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.General" />
   </component>
   <component name="RunManager">
@@ -170,7 +177,8 @@
       <workItem from="1590826340107" duration="16179000" />
       <workItem from="1591097138325" duration="24639000" />
       <workItem from="1591176788666" duration="3910000" />
-      <workItem from="1591262106604" duration="1324000" />
+      <workItem from="1591262106604" duration="2062000" />
+      <workItem from="1591268960419" duration="12065000" />
     </task>
     <servers />
   </component>

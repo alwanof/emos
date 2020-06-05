@@ -1,7 +1,7 @@
 <template>
     <div>
         <div id="mySidebar" class="sidebar">
-            <a :href="'#cat-'+cat.id" v-for="(cat,index) in cats" :key="cat.id" onclick="openNav()">
+            <a href="#" v-scroll-to="'#cat-'+cat.id" v-for="(cat,index) in cats" :key="cat.id" onclick="openNav();return false">
                 {{cat.name}}
             </a>
         </div>
@@ -48,8 +48,9 @@
                 <i class="fas fa-cog fa-spin fa-2x px-2 text-white" v-show="loading"></i>
                 <button :class="(pasket.length>0)?'btn btn-sm btn-danger':'btn btn-sm btn-secondary'" v-on:click.prevent="navigate(2)">
                     <span class="spinner-grow spinner-grow-sm" v-show="pasket.length>0"></span>
-                    <i class="fas fa-shopping-bag" v-show="pasket.length==0"> </i>
-                    <span class="badge badge-light">{{pasket.length}}</span>
+                    <i class="fas fa-shopping-cart" v-show="pasket.length==0"> </i>
+                    <span class="badge badge-light notranslate">{{pasket.length}}</span>
+                    Sepetim
 
                 </button>
             </nav>
@@ -87,7 +88,7 @@
                                         {{item.description}}
                                     </small>
                                 </p>
-                                <div class="h6">
+                                <div class="h6 notranslate">
                                     {{item.price}} <i class="fas fa-lira-sign"></i>
                                     <span class="float-right">
                                         <button type="button" :disabled="basketAmount(item.id)==0" class="btn btn-sm btn-xs btn-danger" @click="offFromPasket(index1,index2)">
@@ -131,7 +132,7 @@
                                             {{item.description}}
                                         </p>
                                     </div>
-                                    <div class="col-12 h6 text-center">
+                                    <div class="col-12 h6 text-center notranslate">
                                         <span style="font-size: 70%"> {{item.price}} <i class="fas fa-lira-sign"></i></span>
                                         <span class="float-right">
                                         <button type="button" :disabled="basketAmount(item.id)==0" class="btn btn-sm btn-xs btn-danger" @click="offFromPasket(index1,index2)">
@@ -519,6 +520,12 @@
                 } else {
                     return true;
                 }
+            },
+            scrollMeTo(refName) {
+                var element = this.$refs[refName];
+                var top = element.offsetTop;
+
+                window.scrollTo(20, top);
             }
 
         }

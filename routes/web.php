@@ -16,6 +16,16 @@ use App\User;
 Route::get('/', function (){
     echo "hello world";
 })->name('route_start');
+Route::get('/testo', function (){
+    $img = imagecreate(500, 100);
+    //$textbgcolor = imagecolorallocate($img, 0, 0, 0);
+    $textcolor = imagecolorallocate($img, 0, 0, 0);
+    $txt = 'murad';
+    imagestring($img, 5, 5, 5, $txt, $textcolor);
+    ob_start();
+    imagepng($img);
+    printf('<img src="data:image/png;base64,%s"/ width="100">', base64_encode(ob_get_clean()));
+});
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 Route::get('/menu/{rest}/{table}', 'MenuController@index')->name('menu.index');
 Route::get('/menu/{rest}/{table}', 'MenuController@index')->name('menu.index');
