@@ -4,7 +4,7 @@
         <nav class="icon-bar fixed-bottom bg-warning">
             <a href="#" v-on:click.prevent="navigate(1)" :class="(page==1)?'select':''"><i class="fa fa-home"></i></a>
             <a href="#" v-on:click.prevent="navigate(2)" :class="(page==2)?'select':''">
-                <i class="fas fa-shopping-cart" v-show="pasket.length==0"></i></i>
+                <i class="fas fa-shopping-cart" v-show="pasket.length==0"></i>
                 <div class="spinner-grow text-danger" role="status" v-show="pasket.length>0">
                     <span style="font-size: 70%" class="badge badge-danger text-light">{{pasket.length}}</span>
                 </div>
@@ -212,7 +212,7 @@
     import CONFIG from "../app";
     export default {
         name: "MenuComponent",
-        props: ["rest","tbl",'sess'],
+        props: ["rest","tbl",'sess','telegram'],
         data() {
             return {
                 path: CONFIG.PATH,
@@ -251,8 +251,9 @@
                 }
                 this.bell=true;
 
-                const msg='Table('+this.tbl.id+') Poked You!';
-                axios.get('https://api.telegram.org/bot1035645137:AAHWzg_1YzGUYD_XMZrz28tsMyzZSqq0a9Y/sendMessage?chat_id=@emos_popone&text='+msg);
+                const msg=':bell: '+this.tbl.name+' :wave:';
+                console.log(msg);
+                axios.get('https://api.telegram.org/bot1035645137:AAHWzg_1YzGUYD_XMZrz28tsMyzZSqq0a9Y/sendMessage?chat_id=@'+this.telegram+'&text='+msg);
                 setTimeout(this.activate,60000);
 
             },

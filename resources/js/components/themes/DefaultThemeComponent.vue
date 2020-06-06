@@ -45,7 +45,7 @@
                 <button onclick="openNav()" class="btn mr-auto" type="button" :disabled="page!=1">
                     <i class="fas fa-align-justify fa-2x text-light" ></i>
                 </button>
-                <i class="fas fa-cog fa-spin fa-2x px-2 text-white" v-show="loading"></i>
+                <i class="fas fa-cog fa-spin px-2 text-white" v-show="loading"></i>
                 <button :class="(pasket.length>0)?'btn btn-sm btn-danger':'btn btn-sm btn-secondary'" v-on:click.prevent="navigate(2)">
                     <span class="spinner-grow spinner-grow-sm" v-show="pasket.length>0"></span>
                     <i class="fas fa-shopping-cart" v-show="pasket.length==0"> </i>
@@ -248,7 +248,7 @@
     import CONFIG from "../../app";
     export default {
         name: "DefaultThemeComponent",
-        props: ["rest","tbl",'sess','cats'],
+        props: ["rest","tbl",'sess','cats','telegram'],
         data() {
             return {
                 path: CONFIG.PATH,
@@ -288,8 +288,9 @@
                 }
                 this.bell=true;
 
-                const msg='Table('+this.tbl.id+') Poked You!';
-                axios.get('https://api.telegram.org/bot1035645137:AAHWzg_1YzGUYD_XMZrz28tsMyzZSqq0a9Y/sendMessage?chat_id=@emos_popone&text='+msg);
+                const msg='👋'+this.tbl.name+'🔔';
+                console.log(msg);
+                axios.get('https://api.telegram.org/bot1035645137:AAHWzg_1YzGUYD_XMZrz28tsMyzZSqq0a9Y/sendMessage?chat_id=@'+this.telegram+'&text='+msg);
                 setTimeout(this.activate,60000);
 
             },
