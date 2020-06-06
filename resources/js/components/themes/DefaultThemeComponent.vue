@@ -6,31 +6,31 @@
             </a>
         </div>
         <div id="myLang" class="sidebar">
-            <a onclick="doGTranslate('tr|tr');openLang();return false;" href="#">
+            <a @click="doGTranslate(rest.language+'|tr')" href="#" onclick="return false;" class="notranslate">
                 <i class="flag-icon flag-icon-tr m-1"></i> Türkiye
             </a>
-            <a onclick="doGTranslate('tr|en');openLang();return false;" href="#">
+            <a @click="doGTranslate(rest.language+'|en')" href="#" onclick="return false;" class="notranslate">
                 <i class="flag-icon flag-icon-us m-1"></i> English
             </a>
-            <a onclick="doGTranslate('tr|ar');openLang();return false;" href="#">
+            <a @click="doGTranslate(rest.language+'|ar')" href="#" onclick="return false;" class="notranslate">
                 <i class="flag-icon flag-icon-sa m-1"></i> عربي
             </a>
-            <a onclick="doGTranslate('tr|fr');openLang();return false;" href="#">
+            <a @click="doGTranslate(rest.language+'|fr')" href="#" onclick="return false;" class="notranslate">
                 <i class="flag-icon flag-icon-fr m-1"></i> FRANÇAIS
             </a>
-            <a onclick="doGTranslate('tr|ru');openLang();return false;" href="#">
+            <a @click="doGTranslate(rest.language+'|ru')" href="#" onclick="return false;" class="notranslate">
                 <i class="flag-icon flag-icon-ru m-1"></i> русский
             </a>
-            <a onclick="doGTranslate('tr|sv');openLang();return false;" href="#">
+            <a @click="doGTranslate(rest.language+'|sv')" href="#" onclick="return false;" class="notranslate">
                 <i class="flag-icon flag-icon-se m-1"></i> svenska
             </a>
-            <a onclick="doGTranslate('tr|fa');openLang();return false;" href="#">
+            <a @click="doGTranslate(rest.language+'|fa')" href="#" onclick="return false;" class="notranslate">
                 <i class="flag-icon flag-icon-ir m-1"></i> فارسی
             </a>
-            <a onclick="doGTranslate('tr|am');openLang();return false;" href="#">
+            <a @click="doGTranslate(rest.language+'|am')" href="#" onclick="return false;" class="notranslate">
                 <i class="flag-icon flag-icon-et m-1"></i> አማርኛ
             </a>
-            <a onclick="doGTranslate('tr|zh-CN');openLang();return false;" href="#">
+            <a @click="doGTranslate(rest.language+'|zh-CN')" href="#" onclick="return false;" class="notranslate">
                 <i class="flag-icon flag-icon-cn m-1"></i> 中文
             </a>
 
@@ -89,7 +89,7 @@
                                     </small>
                                 </p>
                                 <div class="h6 notranslate">
-                                    {{item.price}} <i class="fas fa-lira-sign"></i>
+                                    {{item.price}} {{rest.currency}}
                                     <span class="float-right">
                                         <button type="button" :disabled="basketAmount(item.id)==0" class="btn btn-sm btn-xs btn-danger" @click="offFromPasket(index1,index2)">
 
@@ -133,7 +133,7 @@
                                         </p>
                                     </div>
                                     <div class="col-12 h6 text-center notranslate">
-                                        <span style="font-size: 70%"> {{item.price}} <i class="fas fa-lira-sign"></i></span>
+                                        <span style="font-size: 70%"> {{item.price}} {{rest.currency}}</span>
                                         <span class="float-right">
                                         <button type="button" :disabled="basketAmount(item.id)==0" class="btn btn-sm btn-xs btn-danger" @click="offFromPasket(index1,index2)">
 
@@ -158,7 +158,7 @@
                     <div v-show="page==2">
                         <div class="row"  >
                             <div class="col-sm-12">
-                                <h4><span class="badge badge-pill badge-dark float-right">{{total()}} <i class="fas fa-lira-sign"></i></span></h4>
+                                <h4><span class="badge badge-pill badge-dark float-right">{{total()}} {{rest.currency}}</span></h4>
                             </div>
                             <div class="col-sm-12">
                                 <div class="card border-dark mt-2">
@@ -198,12 +198,12 @@
                                         <ul class="list-group">
                                             <li v-for="(item,innerIndex) in order.items" :key="item.id" class="list-group-item d-flex justify-content-between align-items-center">
                                                 {{item.title}}
-                                                <span class="badge badge-warning badge-pill">{{item.subTotal}} <i class="fas fa-lira-sign"></i></span>
+                                                <span class="badge badge-warning badge-pill">{{item.subTotal}} {{rest.currency}}</span>
                                             </li>
 
                                             <li class="list-group-item d-flex justify-content-between text-danger align-items-center list-group-item-secondary">
                                                 Toplam vergi ve hizmeti içermez, bu yüzden yaklaşık
-                                                <span class="badge badge-dark float-right">{{order.total}} <i class="fas fa-lira-sign"></i></span>
+                                                <span class="badge badge-dark float-right">{{order.total}} {{rest.currency}}</span>
 
                                             </li>
                                         </ul>
@@ -246,9 +246,11 @@
 </template>
 <script>
     import CONFIG from "../../app";
+
     export default {
+
         name: "DefaultThemeComponent",
-        props: ["rest","tbl",'sess','cats','telegram'],
+        props: ["rest","tbl",'sess','cats'],
         data() {
             return {
                 path: CONFIG.PATH,
@@ -269,6 +271,7 @@
             this.getResults();
             this.getOrders();
         },
+
         methods: {
             getResults() {
                 this.loading = true;
@@ -290,7 +293,7 @@
 
                 const msg='👋'+this.tbl.name+'🔔';
                 console.log(msg);
-                axios.get('https://api.telegram.org/bot1035645137:AAHWzg_1YzGUYD_XMZrz28tsMyzZSqq0a9Y/sendMessage?chat_id=@'+this.telegram+'&text='+msg);
+                axios.get('https://api.telegram.org/bot1035645137:AAHWzg_1YzGUYD_XMZrz28tsMyzZSqq0a9Y/sendMessage?chat_id=@'+this.rest.telegram+'&text='+msg);
                 setTimeout(this.activate,60000);
 
             },
@@ -527,6 +530,11 @@
                 var top = element.offsetTop;
 
                 window.scrollTo(20, top);
+            },
+            doGTranslate(param){
+                doGTranslate(param);
+                openLang();
+
             }
 
         }

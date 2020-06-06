@@ -18,9 +18,9 @@ class MenuController extends Controller
         $table=Board::where('slug',$table)->first();
         $session = Session::getId();
         $cats=Category::where('user_id',$restaurant->id)->get();
-        $telegram=$user->getSetting('telegram')->value;
 
-        return view('menu.default',compact(['restaurant','table','session','cats','telegram']));
+
+        return view('menu.default',compact(['restaurant','table','session','cats']));
 
     }
 

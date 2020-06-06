@@ -27,7 +27,7 @@ class User extends Authenticatable
     protected $fillable = [
         'name', 'email', 'password','slug','level','refType','ref'
     ];
-    protected $appends = ['avatar', 'getroles','parent'];
+    protected $appends = ['avatar', 'getroles','parent','telegram','currency','language'];
 
     /**
      * The attributes that should be hidden for arrays.
@@ -75,10 +75,24 @@ class User extends Authenticatable
         return $avatar;
     }
 
+    public function getTelegramAttribute()
+    {
+        return $this->getSetting('telegram')->value;
+    }
+    public function getCurrencyAttribute()
+    {
+        return $this->getSetting('currency')->value;
+    }
+    public function getLanguageAttribute()
+    {
+        return $this->getSetting('language')->value;
+    }
+
     public function getGetrolesAttribute()
     {
         return $this->roles;
     }
+
 
     public function getTokenAttribute()
     {
