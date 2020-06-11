@@ -164,10 +164,18 @@
                                 <div class="card border-dark mt-2">
                                     <div class="card-body p-1 m-0">
 
-                                        <table class="table table-striped my-2" >
+                                        <table class="table table-striped my-2" v-show="pasket.length>0">
                                             <tr v-for="(item,index) in pasket" :key="item.id">
                                                 <td width="70%">{{item.title}}</td>
                                                 <td><input type="number" @keypress="onlyNumberKey($event)" min="1" v-model="pasket[index].amount" class="form-control"  value="1"></td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2">
+                                                    <div class="form-group">
+                                                        <textarea v-model="note" class="form-control" rows="3" placeholder="Your Note .."></textarea>
+                                                    </div>
+
+                                                </td>
                                             </tr>
 
                                         </table>
@@ -262,12 +270,14 @@
                 bell:false,
                 selectedItem: null,
                 pasket:[],
+                note:null,
 
 
             };
         },
 
         created() {
+
             this.getResults();
             this.getOrders();
         },
@@ -305,14 +315,7 @@
 
             },
             addToPasket(cat,index){
-                /*axios.get(CONFIG.API_URL + "menu/love/" + this.feeds[cat].items[index].id)
-                        .then(res => {
-                            this.loading = false;
-                        })
-                        .catch(error => {
-                            console.log(error);
-                            this.loading = false;
-                        });*/
+
                 const isExist=this.pasket.findIndex(x=>x.id==this.feeds[cat].items[index].id);
                 if(isExist==-1){
                     let item={}
@@ -365,10 +368,10 @@
 
                             let isExist = this.orders.find(o => o.orderID === doc.data().orderID);
                             if(!isExist){
-                                //this.playSound('http://2urkey.com/sounds/bing');
+
                                 this.orders.push(doc.data());
                             }else{
-                                this.playSound('https://2urkey.com/sounds/bing');
+
                                 const index=this.orders.indexOf(isExist);
                                 this.orders.splice(index, 1);
                                 this.orders.push(doc.data());
@@ -387,7 +390,6 @@
 
                 this.pasket.splice(isExist,1);
             },
-
             total(){
                 let total=0;
                 this.pasket.forEach(item=>{
@@ -401,6 +403,7 @@
                     return false;
                 }
                 this.loading=true;
+
                 let order={}
                 let items=[];
                 this.pasket.forEach(item=>{
@@ -415,38 +418,88 @@
 
                     });
                 });
-                order.items=items;
-                order.session=this.sess;
-                order.orderID=this.makeid(28);
-                order.status={
-                    timestamp:new Date(),
-                    value:0
-                };
-                order.timestamp=new Date();
-                order.total=this.total();
-                order.table={
-                    id:this.tbl.id,
-                    name:this.tbl.name,
-                    slug:this.tbl.slug
-                }
-                order.user={
-                    id:this.rest.id,
-                    name:this.rest.name,
-                    email:this.rest.email
-                }
-
                 CONFIG.DB.collection('orders')
-                    .doc(order.orderID)
-                    .set(order)
-                    .then(()=>{
-                        this.loading = false;
-                        this.resetPasket();
+                    .where('status.value','==',0)
+                    .where('table.id','==',this.tbl.id)
+                    .get()
+                    .then((snap)=>{
+                        let data;
+
+                        let exist=(snap.size>0)?true:false;
+                        if(exist){
+                            snap.forEach(doc=>{
+                                data=doc.data();
+                            });
+                            console.log(data.orderID);
+                            let note=data.note;
+                            let allItems=data.items;
+                            this.pasket.forEach(item=>{
+                                allItems.push({
+                                    amount:item.amount,
+                                    catID:item.catID,
+                                    slug:item.slug,
+                                    id:item.id,
+                                    price:item.price,
+                                    subTotal:item.price*item.amount,
+                                    title:item.title
+
+                                });
+                            });
+                            CONFIG.DB.collection('orders').doc(data.orderID)
+                                .update({
+                                    items:allItems,
+                                    note:note+'-'+((this.note)?this.note:''),
+                                    hash:Math.random(),
+                                    total:parseFloat(data.total)+parseFloat(this.total()),
+                                    status:{
+                                        timestamp:new Date(),
+                                        value:0
+                                    }
+                                })
+                                .then(()=>{
+                                    this.loading = false;
+                                    this.resetPasket();
+                                });
+                        }else{
+                            order.items=items;
+                            order.note=(this.note)?this.note:'';
+                            order.session=this.sess;
+                            order.orderID=this.makeid(28);
+                            order.status={
+                                timestamp:new Date(),
+                                value:0
+                            };
+                            order.timestamp=new Date();
+                            order.total=this.total();
+                            order.table={
+                                id:this.tbl.id,
+                                name:this.tbl.name,
+                                slug:this.tbl.slug
+                            }
+                            order.user={
+                                id:this.rest.id,
+                                name:this.rest.name,
+                                email:this.rest.email
+                            }
+                            order.hash=Math.random();
+                            CONFIG.DB.collection('orders')
+                                .doc(order.orderID)
+                                .set(order)
+                                .then(()=>{
+                                    this.loading = false;
+                                    this.resetPasket();
+                                })
+                                .catch((error) => {
+                                    this.loading = false;
+                                    console.log(error);
+                                });
+                        }
+
                     })
                     .catch((error) => {
                         this.loading = false;
                         console.log(error);
                     });
-
 
             },
             findWithAttr(array, attr, value) {
@@ -465,12 +518,12 @@
                 $("#mediaModal").modal("show");
             },
 
-            playSound(filename){
+            /*playSound(filename){
                 var mp3Source = '<source src="' + filename + '.mp3" type="audio/mpeg">';
                 var oggSource = '<source src="' + filename + '.ogg" type="audio/ogg">';
                 var embedSource = '<embed hidden="true" autostart="true" loop="false" src="' + filename +'.mp3">';
                 document.getElementById("sound").innerHTML='<audio autoplay="autoplay">' + mp3Source + oggSource + embedSource + '</audio>';
-            },
+            },*/
             makeid(length) {
                 var result= '';
                 var characters='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';

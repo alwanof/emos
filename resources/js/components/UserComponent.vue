@@ -32,6 +32,7 @@
                         <tr>
                             <th>{{ local[lang+".users"]["name"] }}</th>
                             <th>{{ local[lang+".users"]["email"] }}</th>
+                            <th></th>
                             <th>
                                 <span class="badge badge-info">{{users.total}}</span>
                             </th>
@@ -44,6 +45,9 @@
                                 <a :href="path+'/admin/profile/'+user.id">{{ user.name }}</a>
                             </td>
                             <td>{{user.email}}</td>
+                            <td v-show="acl.give_permissions">
+                                <a :href="path+'/admin/reset/'+user.id">{{ local[lang+".users"]["reset"] }}</a>
+                            </td>
                             <td>
                                 <button
                                     type="button"

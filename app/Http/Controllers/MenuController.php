@@ -14,8 +14,14 @@ class MenuController extends Controller
     public function index($restaurant,$table){
 
         $user=User::where('slug',$restaurant)->first();
+        if(!$user){
+            return abort(404);
+        }
         $restaurant=$user;
         $table=Board::where('slug',$table)->first();
+        if(!$table){
+            return abort(404);
+        }
         $session = Session::getId();
         $cats=Category::where('user_id',$restaurant->id)->get();
 

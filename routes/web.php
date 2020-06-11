@@ -16,20 +16,11 @@ use App\User;
 Route::get('/', function (){
     echo "hello world";
 })->name('route_start');
-Route::get('/testo', function (){
-    $img = imagecreate(500, 100);
-    //$textbgcolor = imagecolorallocate($img, 0, 0, 0);
-    $textcolor = imagecolorallocate($img, 0, 0, 0);
-    $txt = 'murad';
-    imagestring($img, 5, 5, 5, $txt, $textcolor);
-    ob_start();
-    imagepng($img);
-    printf('<img src="data:image/png;base64,%s"/ width="100">', base64_encode(ob_get_clean()));
-});
+
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 Route::get('/menu/{rest}/{table}', 'MenuController@index')->name('menu.index');
-Route::get('/menu/{rest}/{table}', 'MenuController@index')->name('menu.index');
-Route::get('/print/all/{user}', 'MenuController@print_all')->name('print.all');
+
+//Route::get('/print/all/{user}', 'MenuController@print_all')->name('print.all');
 
 Route::get('/language/{language}','LanguageController@index')->name('switcher')->where('language','[A-Za-z]+');
 Auth::routes();
@@ -52,6 +43,7 @@ Route::prefix('admin')->group(function () {
     Route::get('/item/profile/{item}', 'ItemController@profile')->name('item.profile');
     Route::get('/print/qrcode/{board}', 'BoardController@print_qrcode')->name('boards.qrcode');
     Route::resource('/members', 'MemberController');
+    Route::get('/reset/{rest}', 'UserController@reset')->name('users.reset');
 
 
 });

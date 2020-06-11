@@ -21,28 +21,11 @@
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
   <!-- flahs -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.3.0/css/flag-icon.css" />
+    <link rel="stylesheet" href="{{ asset('assets/dist/css/style.css') }}">
     @yield('head-js')
    <!-- Styles -->
    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <style>
-        .bounce-enter-active {
-            animation: bounce-in .5s;
-        }
-        .bounce-leave-active {
-            animation: bounce-in .5s reverse;
-        }
-        @keyframes bounce-in {
-            0% {
-                transform: scale(0);
-            }
-            50% {
-                transform: scale(1.5);
-            }
-            100% {
-                transform: scale(1);
-            }
-        }
-    </style>
+
    @yield('css')
 </head>
 <body class="hold-transition sidebar-mini">

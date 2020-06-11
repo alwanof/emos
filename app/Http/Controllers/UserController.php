@@ -93,4 +93,16 @@ class UserController extends Controller
 
         //event(new UserHasRemoved($user));
     }
+    function reset($user)
+    {
+        $acl = [
+            'give_permissions' => (Gate::allows('give-permissions')) ? true : false,
+        ];
+        try {
+            $rest = User::findOrFail($user);
+            return view('users.reset', compact(['rest','acl']));
+        } catch (Exception $e) {
+            abort(403);
+        }
+    }
 }

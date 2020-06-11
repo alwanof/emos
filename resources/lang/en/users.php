@@ -6,6 +6,8 @@ return [
     'permissions' => 'Permissions',
     'name' => 'Name',
     'email' => 'Email',
+    'reset'=>'Reset',
+    'wifi_qr'=>'Wifi QR',
     'guard_name' => 'Guard Name',
     'search' => 'Search..',
     'create-user' => 'Create User',

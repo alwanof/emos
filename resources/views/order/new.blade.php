@@ -15,7 +15,7 @@
 @endsection
 @section('content')
     <!-- Default box -->
-    <new-order :acl="{{json_encode($acl)}}"  :lang={{ json_encode(app()->getLocale()) }} :auth="{{ json_encode(Auth::user()) }}" ></new-order>
+    <inner-orders :acl="{{json_encode($acl)}}"  :lang={{ json_encode(app()->getLocale()) }} :auth="{{ json_encode(Auth::user()) }}" ></inner-orders>
 
 @endsection
 
@@ -25,4 +25,7 @@
 
 @section('js')
     <script src="{{asset('assets/plugins/toastr/toastr.min.js')}}"></script>
+
+
+
 @endsection

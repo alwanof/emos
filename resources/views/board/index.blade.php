@@ -15,7 +15,7 @@
 @endsection
 @section('content')
     <!-- Default box -->
-<foo></foo>
+
     <my-table :acl="{{json_encode($acl)}}"  :lang={{ json_encode(app()->getLocale()) }} :auth="{{ json_encode(Auth::user()) }}"></my-table>
 
 @endsection

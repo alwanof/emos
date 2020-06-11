@@ -49,7 +49,26 @@
                                 </div>
                             </div>
                 </div>
-                <div class="col-lg-8">
+                <div class="col-lg-4">
+                    <div class="card">
+                        <div class="card-header">
+                            {{ __('users.wifi_qr') }}
+                        </div>
+                        <div class="card-body">
+                            @if(auth()->user()->getSetting('wifi_ssid')->value!='null')
+                                {!! QrCode::color(255,0,0)->size(250)->wiFi(['encryption' => auth()->user()->getSetting('wifi_encryp')->value,'ssid' => auth()->user()->getSetting('wifi_ssid')->value,'password' => auth()->user()->getSetting('wifi_password')->value]); !!}
+                            @else
+                                <h3>
+                                    <a href="{{route('config.settings')}}">
+                                        {{ __('users.wifi_qr') }}
+                                    </a>
+                                </h3>
+
+                                @endif
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
                         <div class="card">
                             <div class="card-header">
                                 {{ __('users.details') }}
