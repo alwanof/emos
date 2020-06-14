@@ -463,6 +463,7 @@
                         }else{
                             order.items=items;
                             order.note=(this.note)?this.note:'';
+                            order.remote=false;
                             order.session=this.sess;
                             order.orderID=this.makeid(28);
                             order.status={

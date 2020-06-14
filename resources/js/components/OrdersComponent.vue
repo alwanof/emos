@@ -234,6 +234,7 @@
             this.getWaitingOrders();
             this.getStabledOrders();
 
+
         },
         methods: {
             getNewOrders() {
@@ -241,6 +242,7 @@
                 CONFIG.DB.collection('orders')
                     .where('user.email','==',this.auth.email)
                     .where('status.value','==',0)
+                    .where('remote','==',false)
                     .orderBy('timestamp',"asc")
                     .onSnapshot(snap=> {
                         if (snap.size == 0) {
@@ -308,6 +310,7 @@
                 CONFIG.DB.collection('orders')
                     .where('user.email','==',this.auth.email)
                     .where('status.value','==',1)
+                    .where('remote','==',false)
                     .orderBy('timestamp',"asc")
                     .onSnapshot(snap=> {
                         if (snap.size == 0) {
@@ -346,6 +349,7 @@
                 CONFIG.DB.collection('orders')
                     .where('user.email','==',this.auth.email)
                     .where('status.value','==',3)
+                    .where('remote','==',false)
                     .orderBy('timestamp',"asc")
                     .onSnapshot(snap=> {
                         if (snap.size == 0) {
@@ -371,6 +375,28 @@
                     });
                 });
 
+            },
+            archiveStabled(){
+                this.loading = true;
+                CONFIG.DB.collection('orders')
+                    .where('user.email','==',this.auth.email)
+                    .where('status.value','==',3)
+                    .where('remote','==',false)
+                    .get()
+                    .then(snap=>{
+                        snap.forEach(doc=>{
+                            CONFIG.DB.collection('orders')
+                                .doc(doc.data().orderID)
+                                .update({
+                                    'status.value':2,
+                                    'hash':Math.random(),
+                                    'status.timestamp':new Date()
+                                })
+                                .then(() => {
+                                    this.loading = false;
+                                });
+                        });
+                    });
             },
             pickUp(orderID){
                 this.loading = true;

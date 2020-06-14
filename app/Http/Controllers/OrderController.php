@@ -24,4 +24,17 @@ class OrderController extends Controller
 
         return view('order.new', compact(['acl']));
     }
+    public function remote(){
+        $acl = [
+            'access_orders' => (Gate::allows('access_orders')) ? true : false,
+            'access_right_now' => (Gate::allows('access_right_now')) ? true : false,
+            'order_pickitup' => (Gate::allows('order_pickitup')) ? true : false,
+            'order_handover' => (Gate::allows('order_handover')) ? true : false,
+            'isAdmin' => (Gate::allows('isAdmin')) ? true : false,
+        ];
+
+
+
+        return view('order.remote', compact(['acl']));
+    }
 }

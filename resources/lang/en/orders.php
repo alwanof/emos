@@ -7,5 +7,7 @@ return [
     'pick_up'=>'PICK IT UP!',
     'hand_over'=>'HAND-OVER!',
     'masa'=>'MASA',
+    'remote_order'=>'Remote Orders',
+    'remote'=>'Remote'
 
 ];

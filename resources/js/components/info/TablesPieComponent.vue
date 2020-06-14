@@ -46,7 +46,10 @@
         created() {
             this.initTables();
             this.loading = true;
-            CONFIG.DB.collection('orders').where('user.email','==',this.auth.email).onSnapshot(snapshot => {
+            CONFIG.DB.collection('orders')
+                .where('user.email','==',this.auth.email)
+                .where('remote','==',false)
+                .onSnapshot(snapshot => {
                 this.initTables();
 
                 snapshot.forEach(doc=>{

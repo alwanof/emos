@@ -38,6 +38,7 @@ Vue.component('menu-feeds', require('./components/MenuComponent.vue').default);
 Vue.component('menu-categories', require('./components/CategoriesComponent.vue').default);
 Vue.component('new-order', require('./components/OrderComponent.vue').default);
 Vue.component('inner-orders', require('./components/OrdersComponent.vue').default);
+Vue.component('remote-orders', require('./components/RemoteComponent.vue').default);
 
 Vue.component('my-table', require('./components/TableComponent.vue').default);
 Vue.component('category', require('./components/CategoryComponent.vue').default);
@@ -51,6 +52,7 @@ Vue.component('tables-pie', require('./components/info/TablesPieComponent.vue').
 Vue.component('orders-details', require('./components/info/OrdersDetailsComponent.vue').default);
 Vue.component('members-sheet', require('./components/MembersSheetComponent.vue').default);
 Vue.component('theme-default', require('./components/themes/DefaultThemeComponent.vue').default);
+Vue.component('theme-remote', require('./components/themes/RemoteThemeComponent.vue').default);
 Vue.component('reset', require('./components/info/ResetComponent').default);
 
 

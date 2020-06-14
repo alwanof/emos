@@ -8,6 +8,7 @@ return [
     'email' => 'Email',
     'reset'=>'Reset',
     'wifi_qr'=>'Wifi QR',
+    'remote_order'=>'Remote Order QR',
     'guard_name' => 'Guard Name',
     'search' => 'Search..',
     'create-user' => 'Create User',

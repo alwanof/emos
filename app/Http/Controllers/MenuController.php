@@ -29,6 +29,21 @@ class MenuController extends Controller
         return view('menu.default',compact(['restaurant','table','session','cats']));
 
     }
+    public function remote($restaurant){
+
+        $user=User::where('slug',$restaurant)->first();
+        if(!$user){
+            return abort(404);
+        }
+        $restaurant=$user;
+
+        $session = Session::getId();
+        $cats=Category::where('user_id',$restaurant->id)->get();
+
+
+        return view('menu.remote.default',compact(['restaurant','session','cats']));
+
+    }
 
     public function print_all(User $user){
         $tables=Board::where('user_id',$user->id)->get();

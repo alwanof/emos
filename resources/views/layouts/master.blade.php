@@ -219,10 +219,19 @@
                                 <a href="{{route('order.new')}}" class="nav-link ">
                                     <i class="fas fa-retweet"></i>
                                     {{__('orders.new_order')}}
-                                    <span class="right badge badge-danger">{{ __('orders.new') }}</span>
                                 </a>
                             </li>
                             @endcan
+                                @can('access_remote_now')
+                                    <li class="nav-item">
+                                        <a href="{{route('order.remote')}}" class="nav-link ">
+                                            <i class="fas fa-retweet"></i>
+                                            {{__('orders.remote_order')}}
+                                            <span class="right badge badge-danger">{{ __('orders.remote') }}</span>
+
+                                        </a>
+                                    </li>
+                                @endcan
                         </ul>
                     </li>
                 @endcan

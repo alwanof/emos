@@ -19,6 +19,7 @@ Route::get('/', function (){
 
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 Route::get('/menu/{rest}/{table}', 'MenuController@index')->name('menu.index');
+Route::get('/menu/{rest}', 'MenuController@remote')->name('menu.remote');
 
 //Route::get('/print/all/{user}', 'MenuController@print_all')->name('print.all');
 
@@ -37,6 +38,7 @@ Route::prefix('admin')->group(function () {
     Route::get('/config', 'ConfigController@config')->name('config.index')->middleware('permission:access-configs');
     Route::get('/settings', 'ConfigController@settings')->name('config.settings');
     Route::get('/orders/new', 'OrderController@rightNow')->name('order.new');
+    Route::get('/orders/remote', 'OrderController@remote')->name('order.remote');
     Route::get('/boards', 'BoardController@index')->name('boards.index');
     Route::get('/categories', 'CategoryController@index')->name('category.index');
     Route::get('/items', 'ItemController@index')->name('item.index');

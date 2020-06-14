@@ -67,6 +67,23 @@
                                 @endif
                         </div>
                     </div>
+                    <div class="card">
+                        <div class="card-header">
+                            {{ __('users.remote_order') }}
+                        </div>
+                        <div class="card-body">
+                            @if(auth()->user()->getSetting('address')->value!='null')
+                                {!! QrCode::color(0,255,0)->size(250)->generate(route('menu.remote',auth()->user()->slug)); !!}
+                            @else
+                                <h3>
+                                    <a href="{{route('config.settings')}}">
+                                        {{ __('users.remote_order') }}
+                                    </a>
+                                </h3>
+
+                            @endif
+                        </div>
+                    </div>
                 </div>
                 <div class="col-lg-4">
                         <div class="card">
