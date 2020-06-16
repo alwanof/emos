@@ -200,6 +200,7 @@
                                 <div :class="'card border-'+colorOrder(order.status.value)">
                                     <div :class="'card-header text-white h3 bg-'+colorOrder(order.status.value)">
                                         <span class="badge badge-dark float-left">#{{order.orderID.substring(0, 4)}}</span>
+                                        <button class="btn btn-danger mx-2 float-right" v-show="order.status.value==0" @click="cancel(order.orderID)"><i class="far fa-window-close"></i></button>
                                         <span class="badge badge-light float-right">{{status(order.status.value)}}</span>
                                     </div>
                                     <div class="card-body">
@@ -428,6 +429,19 @@
                 axios.get('https://api.telegram.org/bot1035645137:AAHWzg_1YzGUYD_XMZrz28tsMyzZSqq0a9Y/sendMessage?chat_id=@'+this.rest.telegram+'&text='+msg);
                 setTimeout(this.activate,600000);
 
+            },
+            cancel(orderID){
+                CONFIG.DB.collection('orders')
+                    .doc(orderID).delete()
+                    .then(()=>{
+                        this.loading = false;
+                        let isExist = this.orders.find(o => o.orderID === orderID);
+                        this.orders.splice(isExist, 1);
+                    })
+                    .catch((error) => {
+                        this.loading = false;
+                        console.log(error);
+                    });
             },
             activate() {
                 this.bell=true;
