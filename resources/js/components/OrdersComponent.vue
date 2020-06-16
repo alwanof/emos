@@ -235,6 +235,7 @@
             this.getStabledOrders();
 
 
+
         },
         methods: {
             getNewOrders() {
@@ -245,8 +246,10 @@
                     .where('remote','==',false)
                     .orderBy('timestamp',"asc")
                     .onSnapshot(snap=> {
+
                         if (snap.size == 0) {
                             this.loading = false;
+                            this.newOrders=[];
                             return 0;
                         }
                         let newData=[];
@@ -315,6 +318,7 @@
                     .onSnapshot(snap=> {
                         if (snap.size == 0) {
                             this.loading = false;
+                            this.waitingOrders=[];
                             return 0;
                         }
                         snap.forEach(doc=>{
@@ -354,6 +358,7 @@
                     .onSnapshot(snap=> {
                         if (snap.size == 0) {
                             this.loading = false;
+                            this.stabledOrders=[];
                             return 0;
                         }
                         this.stabledOrders=[];
@@ -400,10 +405,6 @@
             },
             pickUp(orderID){
                 this.loading = true;
-                /*let isExist = this.newOrders.findIndex(x => x.orderID == orderID);
-                if(isExist!=-1){
-                    this.newOrders.splice(isExist, 1);
-                }*/
                 CONFIG.DB.collection('orders')
                     .doc(orderID)
                     .update({
@@ -413,8 +414,6 @@
                     })
                     .then(() => {
                         this.loading = false;
-
-
                     })
                     .catch((error) => {
                         this.loading = false;
@@ -437,8 +436,6 @@
                     })
                     .then(() => {
                         this.loading = false;
-
-
                     })
                     .catch((error) => {
                         this.loading = false;
@@ -460,14 +457,13 @@
                     })
                     .then(() => {
                         this.loading = false;
-
-
                     })
                     .catch((error) => {
                         this.loading = false;
                         console.log(error);
                     });
             },
+
             timer(elementID,Seconds){
                 var timer = new Timer;
 

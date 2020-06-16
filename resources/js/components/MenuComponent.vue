@@ -231,6 +231,8 @@
             this.getResults();
             this.getOrders();
 
+            console.log('get it');
+
         },
         methods: {
             getResults() {
@@ -257,6 +259,7 @@
                 setTimeout(this.activate,60000);
 
             },
+
             activate() {
                 this.bell=false;
             },

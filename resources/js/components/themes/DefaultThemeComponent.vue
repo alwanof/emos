@@ -66,31 +66,33 @@
             </nav>
             <transition name="bounce">
                 <div v-show="page==1">
-                    <div class="container-fluid" v-for="(feed,index1) in feeds" :key="feed.id" v-if="feed.fav==1">
-                        <h5 class="my-4 text-center text-danger" :id="'cat-'+feed.id">{{feed.name}}</h5>
-                        <div class="row" v-for="(item,index2) in feed.items" :key="item.id" v-show="item.available">
-                            <div class="col-5 p-1">
-                                <a href="#" @click.prevent="showMedia(item)">
-                                    <div class="imgx">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-6">
+                            <div class="container-sm" v-for="(feed,index1) in feeds" :key="feed.id" v-if="feed.fav==1">
+                                <h5 class="my-4 text-center text-danger" :id="'cat-'+feed.id">{{feed.name}}</h5>
+                                <div class="row" v-for="(item,index2) in feed.items" :key="item.id" v-show="item.available">
+                                    <div class="col-5 p-1">
+                                        <a href="#" @click.prevent="showMedia(item)">
+                                            <div class="imgx">
 
-                                        <i v-show="item.youtube" class="far fa-play-circle fa-3x text-white"></i>
-                                        <img :src="item.avatar" >
+                                                <i v-show="item.youtube" class="far fa-play-circle fa-3x text-white"></i>
+                                                <img :src="item.avatar" >
+
+                                            </div>
+                                        </a>
 
                                     </div>
-                                </a>
-
-                            </div>
-                            <div class="col-7 p-1">
-                                <p class="lead font-weight-bold m-1" style="font-size: 20px;">
-                                    {{item.title}}
-                                    <br>
-                                    <small class="text-muted" style="font-size: 70%;">
-                                        {{item.description}}
-                                    </small>
-                                </p>
-                                <div class="h6 notranslate">
-                                    {{item.price}} {{rest.currency}}
-                                    <span class="float-right">
+                                    <div class="col-7 p-1">
+                                        <p class="lead font-weight-bold m-1" style="font-size: 20px;">
+                                            {{item.title}}
+                                            <br>
+                                            <small class="text-muted" style="font-size: 70%;">
+                                                {{item.description}}
+                                            </small>
+                                        </p>
+                                        <div class="h6 notranslate">
+                                            {{item.price}} {{rest.currency}}
+                                            <span class="float-right">
                                         <button type="button" :disabled="basketAmount(item.id)==0" class="btn btn-sm btn-xs btn-danger" @click="offFromPasket(index1,index2)">
 
                                                 <i class="fas fa-minus"></i>
@@ -101,40 +103,40 @@
                                             </button>
                                     </span>
 
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <hr>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col">
-                                <hr>
-                            </div>
-                        </div>
 
-                    </div>
-                    <div class="container-fluid" v-for="(feed,index1) in feeds" :key="feed.id" v-if="feed.fav==0">
-                        <h5 class="my-4 text-center" :id="'cat-'+feed.id">{{feed.name}} </h5>
-                        <div class="row">
-                            <div class="col-6" v-for="(item,index2) in feed.items" :key="item.id">
+                            </div>
+                            <div class="container-sm" v-for="(feed,index1) in feeds" :key="feed.id" v-if="feed.fav==0">
+                                <h5 class="my-4 text-center" :id="'cat-'+feed.id">{{feed.name}} </h5>
                                 <div class="row">
-                                    <div class="col-12 p-1">
-                                        <a href="#" @click.prevent="showMedia(item)">
-                                            <div class="imgx">
+                                    <div class="col-6" v-for="(item,index2) in feed.items" :key="item.id">
+                                        <div class="row">
+                                            <div class="col-12 p-1">
+                                                <a href="#" @click.prevent="showMedia(item)">
+                                                    <div class="imgx">
 
-                                                <i v-show="item.youtube" class="far fa-play-circle fa-2x text-white"></i>
-                                                <img :src="item.avatar" >
+                                                        <i v-show="item.youtube" class="far fa-play-circle fa-2x text-white"></i>
+                                                        <img :src="item.avatar" >
 
+                                                    </div>
+                                                </a>
                                             </div>
-                                        </a>
-                                    </div>
-                                    <div class="col-12 p-1">
-                                        <p class="lead font-weight-bold m-1" style="font-size: 20px;">
-                                            {{item.title}}
-                                        </p>
-                                        <p class="text-muted" style="font-size: 60%;line-height: 1.5">
-                                            {{item.description}}
-                                        </p>
-                                    </div>
-                                    <div class="col-12 h6 text-center notranslate">
-                                        <span style="font-size: 70%"> {{item.price}} {{rest.currency}}</span>
-                                        <span class="float-right">
+                                            <div class="col-12 p-1">
+                                                <p class="lead font-weight-bold m-1" style="font-size: 20px;">
+                                                    {{item.title}}
+                                                </p>
+                                                <p class="text-muted" style="font-size: 60%;line-height: 1.5">
+                                                    {{item.description}}
+                                                </p>
+                                            </div>
+                                            <div class="col-12 h6 text-center notranslate">
+                                                <span style="font-size: 70%"> {{item.price}} {{rest.currency}}</span>
+                                                <span class="float-right">
                                         <button type="button" :disabled="basketAmount(item.id)==0" class="btn btn-sm btn-xs btn-danger" @click="offFromPasket(index1,index2)">
 
                                                 <i class="fas fa-minus"></i>
@@ -144,82 +146,87 @@
                                                 <i class="fas fa-plus"></i>
                                             </button>
                                         </span>
-                                        <hr>
-                                    </div>
+                                                <hr>
+                                            </div>
 
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+
                 </div>
             </transition>
             <transition name="bounce">
-                <div v-show="page==2">
-                    <div v-show="page==2">
-                        <div class="row"  >
-                            <div class="col-sm-12">
-                                <h4><span class="badge badge-pill badge-dark float-right">{{total()}} {{rest.currency}}</span></h4>
-                            </div>
-                            <div class="col-sm-12">
-                                <div class="card border-dark mt-2">
-                                    <div class="card-body p-1 m-0">
+                <div class="row justify-content-center">
+                    <div class="col-lg-6">
+                        <div v-show="page==2">
+                            <div class="row "  >
+                                <div class="col-sm-12 col-">
+                                    <h4><span class="badge badge-pill badge-dark float-right">{{total()}} {{rest.currency}}</span></h4>
+                                </div>
+                                <div class="col-sm-12">
+                                    <div class="card border-dark mt-2">
+                                        <div class="card-body p-1 m-0">
 
-                                        <table class="table table-striped my-2" v-show="pasket.length>0">
-                                            <tr v-for="(item,index) in pasket" :key="item.id">
-                                                <td width="70%">{{item.title}}</td>
-                                                <td><input type="number" @keypress="onlyNumberKey($event)" min="1" v-model="pasket[index].amount" class="form-control"  value="1"></td>
-                                            </tr>
-                                            <tr>
-                                                <td colspan="2">
-                                                    <div class="form-group">
-                                                        <textarea v-model="note" class="form-control" rows="3" placeholder="Your Note .."></textarea>
-                                                    </div>
+                                            <table class="table table-striped my-2" v-show="pasket.length>0">
+                                                <tr v-for="(item,index) in pasket" :key="item.id">
+                                                    <td width="70%">{{item.title}}</td>
+                                                    <td><input type="number" @keypress="onlyNumberKey($event)" min="1" v-model="pasket[index].amount" class="form-control"  value="1"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="2">
+                                                        <div class="form-group">
+                                                            <textarea v-model="note" class="form-control" rows="3" placeholder="Your Note .."></textarea>
+                                                        </div>
 
-                                                </td>
-                                            </tr>
+                                                    </td>
+                                                </tr>
 
-                                        </table>
+                                            </table>
 
-                                        <hr>
-                                        <div class="alert alert-danger" role="alert" v-show="pasket.length==0">
-                                            Sepet boş!
+                                            <hr>
+                                            <div class="alert alert-danger" role="alert" v-show="pasket.length==0">
+                                                Sepet boş!
+                                            </div>
+                                            <button type="button" class="btn btn-dark btn-lg btn-block" @click="sendOrder" v-show="pasket.length>0">
+                                                <i class="fas fa-paper-plane"></i> SEND!
+                                            </button>
+
+
                                         </div>
-                                        <button type="button" class="btn btn-dark btn-lg btn-block" @click="sendOrder" v-show="pasket.length>0">
-                                            <i class="fas fa-paper-plane"></i> SEND!
-                                        </button>
-
-
                                     </div>
                                 </div>
+
                             </div>
+                            <hr>
+                            <div class="row mb-2">
+                                <div class="col-sm-12" v-for="(order,index) in orders" :key="order.orderID">
+                                    <div :class="'card border-'+colorOrder(order.status.value)">
+                                        <div :class="'card-header text-white h3 bg-'+colorOrder(order.status.value)">
+                                            <span class="badge badge-dark float-left">#{{order.orderID.substring(0, 4)}}</span>
+                                            <button class="btn btn-danger mx-2 float-right" v-show="order.status.value==0" @click="cancel(order.orderID)"><i class="far fa-window-close"></i></button>
+                                            <span class="badge badge-light float-right">{{status(order.status.value)}}</span>
+                                        </div>
+                                        <div class="card-body">
+                                            <ul class="list-group">
+                                                <li v-for="(item,innerIndex) in order.items" :key="item.id" class="list-group-item d-flex justify-content-between align-items-center">
+                                                    {{item.title}}
+                                                    <span class="badge badge-warning badge-pill">{{item.subTotal}} {{rest.currency}}</span>
+                                                </li>
 
-                        </div>
-                        <hr>
-                        <div class="row mb-2">
-                            <div class="col-sm-12" v-for="(order,index) in orders" :key="order.orderID">
-                                <div :class="'card border-'+colorOrder(order.status.value)">
-                                    <div :class="'card-header text-white h3 bg-'+colorOrder(order.status.value)">
-                                        <span class="badge badge-dark float-left">#{{order.orderID.substring(0, 4)}}</span>
-                                        <span class="badge badge-light float-right">{{status(order.status.value)}}</span>
-                                    </div>
-                                    <div class="card-body">
-                                        <ul class="list-group">
-                                            <li v-for="(item,innerIndex) in order.items" :key="item.id" class="list-group-item d-flex justify-content-between align-items-center">
-                                                {{item.title}}
-                                                <span class="badge badge-warning badge-pill">{{item.subTotal}} {{rest.currency}}</span>
-                                            </li>
+                                                <li class="list-group-item d-flex justify-content-between text-danger align-items-center list-group-item-secondary">
+                                                    Toplam vergi ve hizmeti içermez, bu yüzden yaklaşık
+                                                    <span class="badge badge-dark float-right">{{order.total}} {{rest.currency}}</span>
 
-                                            <li class="list-group-item d-flex justify-content-between text-danger align-items-center list-group-item-secondary">
-                                                Toplam vergi ve hizmeti içermez, bu yüzden yaklaşık
-                                                <span class="badge badge-dark float-right">{{order.total}} {{rest.currency}}</span>
-
-                                            </li>
-                                        </ul>
+                                                </li>
+                                            </ul>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </transition>
@@ -275,9 +282,7 @@
 
             };
         },
-
         created() {
-
             this.getResults();
             this.getOrders();
         },
@@ -306,6 +311,19 @@
                 axios.get('https://api.telegram.org/bot1035645137:AAHWzg_1YzGUYD_XMZrz28tsMyzZSqq0a9Y/sendMessage?chat_id=@'+this.rest.telegram+'&text='+msg);
                 setTimeout(this.activate,60000);
 
+            },
+            cancel(orderID){
+                CONFIG.DB.collection('orders')
+                    .doc(orderID).delete()
+                    .then(()=>{
+                        this.loading = false;
+                        let isExist = this.orders.find(o => o.orderID === orderID);
+                        this.orders.splice(isExist, 1);
+                    })
+                    .catch((error) => {
+                        this.loading = false;
+                        console.log(error);
+                    });
             },
             activate() {
                 this.bell=false;

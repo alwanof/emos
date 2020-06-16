@@ -17,6 +17,7 @@
     <!-- Loading Flat UI Pro -->
     <link href="{{asset('templates/default/css/flat-ui.css')}}" rel="stylesheet">
     <link rel="stylesheet" href="{{asset('templates/default/style.css')}}">
+    @yield('css')
 </head>
 <body>
 
@@ -56,10 +57,8 @@
         }
     }
 
-    /*window.addEventListener("hashchange", function () {
-            console.log(window.scrollY-50);
-            window.scrollTo(window.scrollX, window.scrollY-50);
-    });*/
+
 </script>
+ @yield('js')
 </body>
 </html>
