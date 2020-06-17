@@ -33,7 +33,7 @@
 
     <div id="app" >
 
-        <theme-remote :geo="{{json_encode(['country'=>$restaurant->getSetting('country')->value,'city'=>$restaurant->getSetting('city')->value])}}"  :cats="{{json_encode($cats)}}" :rest="{{json_encode($restaurant)}}" :sess="{{json_encode($session)}}" ></theme-remote>
+        <theme-remote :colors="{{json_encode($colors)}}"  :geo="{{json_encode(['country'=>$restaurant->getSetting('country')->value,'city'=>$restaurant->getSetting('city')->value])}}"  :cats="{{json_encode($cats)}}" :rest="{{json_encode($restaurant)}}" :sess="{{json_encode($session)}}" ></theme-remote>
 
     </div>
 

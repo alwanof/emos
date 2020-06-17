@@ -52,7 +52,9 @@ Vue.component('tables-pie', require('./components/info/TablesPieComponent.vue').
 Vue.component('orders-details', require('./components/info/OrdersDetailsComponent.vue').default);
 Vue.component('members-sheet', require('./components/MembersSheetComponent.vue').default);
 Vue.component('theme-default', require('./components/themes/DefaultThemeComponent.vue').default);
+Vue.component('theme-water', require('./components/themes/WaterThemeComponent.vue').default);
 Vue.component('theme-remote', require('./components/themes/RemoteThemeComponent.vue').default);
+Vue.component('water-remote', require('./components/themes/WaterRemoteComponent.vue').default);
 Vue.component('reset', require('./components/info/ResetComponent').default);
 
 

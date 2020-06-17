@@ -20,13 +20,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9a9985b9-c697-4ece-b1fd-b7fff16943e7" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/resources/js/components/themes/WaterRemoteComponent.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/components/themes/WaterThemeComponent.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/menu/remote/water.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/menu/water.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/MenuController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/MenuController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Traits/UserSettingsTrait.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Traits/UserSettingsTrait.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/MenuComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/MenuComponent.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/OrdersComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/OrdersComponent.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/components/themes/DefaultThemeComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/themes/DefaultThemeComponent.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/menu/default.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/menu/default.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/themes/RemoteThemeComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/themes/RemoteThemeComponent.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/menu/default.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/menu/default.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/menu/remote/default.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/menu/remote/default.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -190,7 +196,8 @@
       <workItem from="1591815712241" duration="6582000" />
       <workItem from="1591940135950" duration="30609000" />
       <workItem from="1592226541214" duration="2363000" />
-      <workItem from="1592320991128" duration="10600000" />
+      <workItem from="1592320991128" duration="11555000" />
+      <workItem from="1592401051919" duration="12661000" />
     </task>
     <servers />
   </component>

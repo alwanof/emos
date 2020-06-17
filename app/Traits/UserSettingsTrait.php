@@ -19,8 +19,6 @@ trait UserSettingsTrait
     // get setting value
     public function getSetting($name)
     {
-
-
         $cacheKey = $this->getCacheKey('.all' . $name);
         return cache()->remember($cacheKey, Carbon::now()->addMinutes(5), function () use ($name) {
             $role=$this->roles()->first();
@@ -41,8 +39,6 @@ trait UserSettingsTrait
                 return Configuration::where('name',$name)->first();
             }
         });
-
-
 
     }
 }

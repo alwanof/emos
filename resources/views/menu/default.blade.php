@@ -33,7 +33,7 @@
 
     <div id="app" >
 
-        <theme-default  :cats="{{json_encode($cats)}}" :rest="{{json_encode($restaurant)}}" :sess="{{json_encode($session)}}" :tbl="{{json_encode($table)}}"></theme-default>
+        <theme-default :colors="{{json_encode($colors)}}"  :cats="{{json_encode($cats)}}" :rest="{{json_encode($restaurant)}}" :sess="{{json_encode($session)}}" :tbl="{{json_encode($table)}}"></theme-default>
 
     </div>
 

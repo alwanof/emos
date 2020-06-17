@@ -1,11 +1,11 @@
 <template>
     <div>
-        <div id="mySidebar" class="sidebar">
+        <div id="mySidebar" class="sidebar" :style="'background-color: '+colors.bcolor+' !important;'">
             <a href="#" v-scroll-to="'#cat-'+cat.id" v-for="(cat,index) in cats" :key="cat.id" onclick="openNav();return false">
                 {{cat.name}}
             </a>
         </div>
-        <div id="myLang" class="sidebar">
+        <div id="myLang" class="sidebar" :style="'background-color: '+colors.bcolor+' !important;'">
             <a @click="doGTranslate(rest.language+'|tr')" href="#" onclick="return false;" class="notranslate">
                 <i class="flag-icon flag-icon-tr m-1"></i> Türkiye
             </a>
@@ -38,12 +38,12 @@
         <div id="main">
             <div id="sound"></div>
 
-            <nav class="navbar navbar-inverse fixed-top navbar-embossed  rounded-0">
+            <nav class="navbar navbar-inverse fixed-top navbar-embossed  rounded-0" :style="'background-color: '+colors.bcolor+' !important;'">
                 <a class="navbar-brand" href="#">
                     <img :src="rest.avatar" class="img-thumbnail" style="max-width:150px;max-height:75px"  alt="">
                 </a>
                 <button onclick="openNav()" class="btn mr-auto" type="button" :disabled="page!=1">
-                    <i class="fas fa-align-justify fa-2x text-light" ></i>
+                    <i :class="(colors.dark==1)?'fas fa-align-justify fa-2x text-light':'fas fa-align-justify fa-2x text-dark'" ></i>
                 </button>
                 <i class="fas fa-cog fa-spin px-2 text-white" v-show="loading"></i>
                 <button :class="(pasket.length>0)?'btn btn-sm btn-danger':'btn btn-sm btn-secondary'" v-on:click.prevent="navigate(2)">
@@ -54,11 +54,11 @@
 
                 </button>
             </nav>
-            <nav class="navbar navbar-inverse fixed-bottom navbar-embossed navbar-expand-sm p-0 rounded-0" style="margin-bottom: 0">
+            <nav class="navbar navbar-inverse fixed-bottom navbar-embossed navbar-expand-sm p-0 rounded-0" :style="'margin-bottom: 0;background-color: '+colors.bcolor+' !important;'">
                 <div class="container p-0">
-                    <a class="nav-link" v-on:click.prevent="navigate(1)" :style="(page==1)?'background-color:#1abc9c':''" href="#"><i class="fas fa-home fa-2x text-light"></i></a>
+                    <a class="nav-link" v-on:click.prevent="navigate(1)" :style="(page==1)?'background-color:'+colors.fcolor:''" href="#"><i :class="(colors.dark==1)?'fas fa-home fa-2x text-light':'fas fa-home fa-2x text-dark'"></i></a>
                     <a class="nav-link"  onclick="openLang();return false;"  href="#"><i class="fas fa-globe fa-2x text-light"></i></a>
-                    <a class="nav-link" v-on:click.prevent="navigate(4)" :style="(page==4)?'background-color:#1abc9c':''" href="#"><i class="far fa-envelope fa-2x text-light"></i></a>
+                    <a class="nav-link" v-on:click.prevent="navigate(4)" :style="(page==4)?'background-color:'+colors.fcolor:''" href="#"><i :class="(colors.dark==1)?'fas fa-envelope fa-2x text-light':'fas fa-envelope fa-2x text-dark'"></i></a>
                     <a class="nav-link" v-on:click.prevent="notify"  href="#">
                         <i :class="(bell)?'fas fa-2x fa-bell text-danger':'far fa-2x fa-bell text-white'"></i>
                     </a>
@@ -69,7 +69,7 @@
                     <div class="row justify-content-center">
                         <div class="col-lg-6">
                             <div class="container-sm" v-for="(feed,index1) in feeds" :key="feed.id" v-if="feed.fav==1">
-                                <h5 class="my-4 text-center text-danger" :id="'cat-'+feed.id">{{feed.name}}</h5>
+                                <h5 class="my-4 text-center" :style="'color: '+colors.fcolor+' !important;'" :id="'cat-'+feed.id">{{feed.name}}</h5>
                                 <div class="row" v-for="(item,index2) in feed.items" :key="item.id" v-show="item.available">
                                     <div class="col-5 p-1">
                                         <a href="#" @click.prevent="showMedia(item)">
@@ -90,7 +90,7 @@
                                                 {{item.description}}
                                             </small>
                                         </p>
-                                        <div class="h6 notranslate">
+                                        <div class="h6 notranslate" :style="'color: '+colors.fcolor+' !important;'">
                                             {{item.price}} {{rest.currency}}
                                             <span class="float-right">
                                         <button type="button" :disabled="basketAmount(item.id)==0" class="btn btn-sm btn-xs btn-danger" @click="offFromPasket(index1,index2)">
@@ -112,7 +112,7 @@
 
                             </div>
                             <div class="container-sm" v-for="(feed,index1) in feeds" :key="feed.id" v-if="feed.fav==0">
-                                <h5 class="my-4 text-center" :id="'cat-'+feed.id">{{feed.name}} </h5>
+                                <h5 class="my-4 text-center" :style="'color: '+colors.fcolor+' !important;'" :id="'cat-'+feed.id">{{feed.name}} </h5>
                                 <div class="row">
                                     <div class="col-6" v-for="(item,index2) in feed.items" :key="item.id">
                                         <div class="row">
@@ -130,11 +130,10 @@
                                                 <p class="lead font-weight-bold m-1" style="font-size: 20px;">
                                                     {{item.title}}
                                                 </p>
-                                                <p class="text-muted" style="font-size: 60%;line-height: 1.5">
-                                                    {{item.description}}
-                                                </p>
+                                                <p class="text-muted" style="font-size: 60%;line-height: 1.5">??\Cc
+                                                 </p>
                                             </div>
-                                            <div class="col-12 h6 text-center notranslate">
+                                            <div class="col-12 h6 text-center notranslate" :style="'color: '+colors.fcolor+' !important;'">
                                                 <span style="font-size: 70%"> {{item.price}} {{rest.currency}}</span>
                                                 <span class="float-right">
                                         <button type="button" :disabled="basketAmount(item.id)==0" class="btn btn-sm btn-xs btn-danger" @click="offFromPasket(index1,index2)">
@@ -265,7 +264,7 @@
     export default {
 
         name: "DefaultThemeComponent",
-        props: ["rest","tbl",'sess','cats'],
+        props: ["rest","tbl",'sess','cats','colors'],
         data() {
             return {
                 path: CONFIG.PATH,
