@@ -40,20 +40,20 @@
     function openNav() {
         if(document.getElementById("mySidebar").style.width == '0px' || document.getElementById("mySidebar").style.width == 0  ){
             document.getElementById("mySidebar").style.width = "250px";
-            document.getElementById("main").style.marginLeft = "250px";
+            //document.getElementById("main").style.marginLeft = "250px";
         }else{
             document.getElementById("mySidebar").style.width = "0";
-            document.getElementById("main").style.marginLeft= "0";
+            //document.getElementById("main").style.marginLeft= "0";
         }
     }
 
     function openLang() {
         if(document.getElementById("myLang").style.width == '0px' || document.getElementById("myLang").style.width == 0  ){
             document.getElementById("myLang").style.width = "250px";
-            document.getElementById("main").style.marginLeft = "250px";
+            //document.getElementById("main").style.marginLeft = "250px";
         }else{
             document.getElementById("myLang").style.width = "0";
-            document.getElementById("main").style.marginLeft= "0";
+            //document.getElementById("main").style.marginLeft= "0";
         }
     }
 
