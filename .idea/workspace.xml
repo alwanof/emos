@@ -21,8 +21,9 @@
   <component name="ChangeListManager">
     <list default="true" id="9a9985b9-c697-4ece-b1fd-b7fff16943e7" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/MenuController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/MenuController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Traits/UserSettingsTrait.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Traits/UserSettingsTrait.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -191,7 +192,7 @@
       <workItem from="1592491018889" duration="1891000" />
       <workItem from="1592500448180" duration="58000" />
       <workItem from="1592742489074" duration="2194000" />
-      <workItem from="1592757512735" duration="299000" />
+      <workItem from="1592757512735" duration="3117000" />
     </task>
     <servers />
   </component>
@@ -228,10 +229,18 @@
       <screen x="1366" y="0" width="1920" height="1040" />
     </state>
     <state x="1990" y="216" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1366.728/1366.0.1920.1040@1366.0.1920.1040" timestamp="1591116541742" />
+    <state x="1947" y="231" key="DiffContextDialog" timestamp="1592757762529">
+      <screen x="1366" y="0" width="1920" height="1080" />
+    </state>
+    <state x="1947" y="231" key="DiffContextDialog/0.0.1366.728/1366.0.1920.1080@1366.0.1920.1080" timestamp="1592757762529" />
     <state x="2053" y="216" key="FileChooserDialogImpl" timestamp="1590416145683">
       <screen x="1366" y="0" width="1920" height="1040" />
     </state>
     <state x="2053" y="216" key="FileChooserDialogImpl/0.0.1366.728/1366.0.1920.1040@1366.0.1920.1040" timestamp="1590416145683" />
+    <state x="2150" y="172" width="702" height="736" key="RollbackChangesDialog" timestamp="1592757763842">
+      <screen x="1366" y="0" width="1920" height="1080" />
+    </state>
+    <state x="2150" y="172" width="702" height="736" key="RollbackChangesDialog/0.0.1366.728/1366.0.1920.1080@1366.0.1920.1080" timestamp="1592757763842" />
     <state x="1717" y="78" key="SettingsEditor" timestamp="1590859323273">
       <screen x="1366" y="0" width="1920" height="1040" />
     </state>

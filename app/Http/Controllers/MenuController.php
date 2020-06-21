@@ -39,6 +39,7 @@ class MenuController extends Controller
     }
     public function remote($restaurant){
 
+
         $user=User::where('slug',$restaurant)->first();
         if(!$user){
             return abort(404);

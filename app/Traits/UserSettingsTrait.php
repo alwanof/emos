@@ -19,14 +19,17 @@ trait UserSettingsTrait
     // get setting value
     public function getSetting($name)
     {
+
         $cacheKey = $this->getCacheKey('.all' . $name);
         return cache()->remember($cacheKey, Carbon::now()->addMinutes(5), function () use ($name) {
             $role=$this->roles()->first();
             if(!$role){
+
                 abort(403);
             }
 
             $config=Configuration::where('name',$name)->first();
+            dd($config);
             $rolehasConfig=$config->roles->where('name',$role->name)->count();
             if($rolehasConfig==0){
                 return Configuration::where('name',$name)->first();
