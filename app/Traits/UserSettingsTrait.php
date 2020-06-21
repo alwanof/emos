@@ -29,7 +29,7 @@ trait UserSettingsTrait
             }
 
             $config=Configuration::where('name',$name)->first();
-            dd($config);
+
             $rolehasConfig=$config->roles->where('name',$role->name)->count();
             if($rolehasConfig==0){
                 return Configuration::where('name',$name)->first();
