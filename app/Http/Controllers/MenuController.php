@@ -42,6 +42,7 @@ class MenuController extends Controller
 
 
         $user=User::where('slug',$restaurant)->first();
+        dd($user);
         if(!$user){
             return abort(404);
         }
