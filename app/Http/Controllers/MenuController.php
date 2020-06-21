@@ -42,7 +42,7 @@ class MenuController extends Controller
 
 
         $user=User::where('slug',$restaurant)->first();
-        dd($user);
+        dd($user->getSetting('theme'));
         if(!$user){
             return abort(404);
         }
