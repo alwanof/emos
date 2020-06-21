@@ -49,7 +49,8 @@ class MenuController extends Controller
         $session = Session::getId();
         $cats=Category::where('user_id',$restaurant->id)->get();
 
-        $theme= $user->getSetting('theme')->value;
+        //$theme= $user->getSetting('theme')->value;
+        $theme='default';
 
         $colors=[
             'bcolor'=>($user->getSetting('background-color'))?$user->getSetting('background-color')->value:'#34495e',
