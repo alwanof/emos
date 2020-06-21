@@ -24,8 +24,8 @@ class MenuController extends Controller
         }
         $session = Session::getId();
         $cats=Category::where('user_id',$restaurant->id)->get();
-        //$theme=($user->getSetting('theme'))?$user->getSetting('theme')->value:'default';
-        $theme='default';
+        $theme=($user->getSetting('theme'))?$user->getSetting('theme')->value:'default';
+
 
         $colors=[
             'bcolor'=>($user->getSetting('background-color'))?$user->getSetting('background-color')->value:'#34495e',
@@ -60,7 +60,7 @@ class MenuController extends Controller
             'fcolor'=>($user->getSetting('text-color'))?$user->getSetting('text-color')->value:'#e74c3c',
             'dark'=>($user->getSetting('dark'))?$user->getSetting('dark')->value:1
         ];
-        dd($user->getSetting('theme')->value);
+
         return view('menu.remote.'.$theme,compact(['restaurant','session','cats','colors']));
 
     }
