@@ -25,7 +25,7 @@ Vue.use(VueScrollTo);
 
 import translations from '../lang/vue-translations.json'
 //php artisan lang:js resources/lang/vue-translations.json --json
-//jchl403vz7hy
+//jchl403vz7hy@148.66.155.19
 
 Vue.component('pagination', require('laravel-vue-pagination'));
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
