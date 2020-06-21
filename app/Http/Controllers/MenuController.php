@@ -42,7 +42,7 @@ class MenuController extends Controller
 
 
         $user=User::where('slug',$restaurant)->first();
-        dd($user->getSetting('theme'));
+
         if(!$user){
             return abort(404);
         }
@@ -51,8 +51,9 @@ class MenuController extends Controller
         $session = Session::getId();
         $cats=Category::where('user_id',$restaurant->id)->get();
 
-        //$theme= $user->getSetting('theme')->value;
-        $theme='default';
+        $theme= $user->getSetting('theme')->value;
+        dd($user->getSetting('theme')->value);
+
 
         $colors=[
             'bcolor'=>($user->getSetting('background-color'))?$user->getSetting('background-color')->value:'#34495e',
