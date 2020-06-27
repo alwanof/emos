@@ -72,10 +72,10 @@ function coolNumber(num){
 }
 
 const CONFIG = {
-    //API_URL: 'https://'+window.location.hostname+'/emos/public/api/',
-    //PATH: '/emos/public',
-    API_URL: 'http://'+window.location.hostname+'/emos/public/api/',
+    API_URL: 'https://'+window.location.hostname+'/emos/public/api/',
     PATH: '/emos/public',
+    //API_URL: 'http://'+window.location.hostname+'/emos/public/api/',
+    //PATH: '/emos/public',
     FULL_PATH:'https://'+window.location.hostname+'/emos/public',
     LANG: translations,
     DB:db,
