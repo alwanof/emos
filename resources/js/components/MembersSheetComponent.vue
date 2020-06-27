@@ -1,5 +1,11 @@
 <template>
     <div>
+        <h1>
+            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#addFeed">
+                <i class="fas fa-plus"></i>
+            </button>
+            {{local[lang+'.members']['title']}}
+        </h1>
         <div class="row">
             <div class="card card-primary card-outline col-12">
                 <div class="card-header">
@@ -44,12 +50,20 @@
                             <td>{{member.email}}</td>
                             <td>{{level(member.level)}}</td>
                             <td>
-                                <img :src="member.parent.avatar+'?r='+Math.random()" class="rounded-circle mx-1" width="24px"/>
-                                {{member.parent.name}} <span class="badge badge-info">{{level(member.parent.level)}}</span>
+                                <div v-if="member.refuser">
+                                    <img :src="member.refuser.avatar+'?r='+Math.random()" class="rounded-circle mx-1" width="24px"/>
+                                    {{member.refuser.name}} <span class="badge badge-info">{{level(member.refuser.level)}}</span>
+                                </div>
+
                             </td>
                             <td>
-
-                                <button type="button" class="btn btn-sm btn-danger" @click="removeMember(member)">
+                                <button type="button" class="btn btn-sm btn-info mx-1" @click="editUser(member)">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button type="button" class="btn btn-sm btn-dark mx-1" >
+                                    <i class="fas fa-power-off"></i>
+                                </button>
+                                <button type="button" class="btn btn-sm btn-danger mx-1">
                                     <i class="fa fa-trash"></i>
                                 </button>
 
@@ -64,6 +78,79 @@
                 </div>
             </div>
         </div>
+        <div class="modal fade" id="addFeed"  role="dialog" >
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header text-center">
+                        <h4
+                            class="modal-title w-100 font-weight-bold"
+                            v-show="member.id==null"
+                        >{{ local[lang+".users"]["create-user"] }}</h4>
+                        <h4
+                            class="modal-title w-100 font-weight-bold"
+                            v-show="member.id!=null"
+                        >{{ local[lang+".users"]["edit-user"] }}</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form @submit.prevent="addEditUser">
+                        <div class="modal-body mx-3">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+							<span class="input-group-text">
+								<i class="fas fa-envelope"></i>
+							</span>
+                                </div>
+                                <input type="text" v-model="member.name" class="form-control" :placeholder="local[lang+'.users']['name']" required />
+                            </div>
+                            <div v-if="errors && errors.name" class="text-danger">{{ errors.name[0] }}</div>
+
+                            <div class="input-group mt-3">
+                                <div class="input-group-prepend">
+							<span class="input-group-text">
+								<i class="fas fa-user"></i>
+							</span>
+                                </div>
+                                <input type="email" v-model="member.email" class="form-control" :placeholder="local[lang+'.users']['email']" required />
+                            </div>
+                            <div v-if="errors && errors.email" class="text-danger">{{ errors.email[0] }}</div>
+
+                            <div class="input-group mt-3">
+                                <div class="input-group-prepend">
+							<span class="input-group-text">
+								<i class="fas fa-user-cog"></i>
+							</span>
+                                </div>
+                                <select class="form-control" v-model="member.level" required>
+                                    <option value="99" selected disabled>{{local[lang+".members"]["select_role"]}}</option>
+                                    <option v-for="(element,index) in levels" :key="index" :value="element" >{{level(element)}}</option>
+                                </select>
+                            </div>
+                            <div v-if="errors && errors.level" class="text-danger">{{ errors.level[0] }}</div>
+
+                            <div class="input-group mt-3">
+                                <div class="input-group-prepend">
+							<span class="input-group-text">
+								<i class="fas fa-lock"></i>
+							</span>
+                                </div>
+                                <input type="password" v-model="member.password" class="form-control" :placeholder="local[lang+'.users']['password']" :required="member.id==null" />
+                            </div>
+                            <div v-if="errors && errors.password" class="text-danger">{{ errors.password[0] }}</div>
+                        </div>
+                        <div class="modal-footer d-flex justify-content-center">
+                            <button type="submit" class="btn btn-success">
+                                <i class="fas fa-cog fa-spin" v-show="loading"></i>
+                                <i class="fas fa-cog" v-show="!loading"></i>
+                                <span class="px-1">{{ local[lang+".users"]["save"] }}</span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
 
     </div>
 </template>
@@ -73,7 +160,7 @@
 
     export default {
         name: "MemberSheetComponent",
-        props: ["auth", "lang", "acl"],
+        props: ["auth", "lang",'levels'],
         data() {
             return {
                 path: CONFIG.PATH,
@@ -84,6 +171,8 @@
                     id: null,
                     name: null,
                     email: null,
+                    password:null,
+                    level:99,
                 },
                 keywords: null,
                 errors: []
@@ -138,6 +227,82 @@
                         this.loading = false;
                     });
             },
+            addEditUser(member = null) {
+                this.loading = true;
+                if (this.member.id) {
+                    axios
+                        .put(
+                            CONFIG.API_URL +
+                            "members/" +
+                            this.member.id +
+                            "?api_token=" +
+                            this.auth.api_token,
+                            this.member
+                        )
+                        .then(res => {
+                            this.loading = false;
+                            $("#addFeed").modal("hide");
+                            toastr["success"](
+                                this.local[this.lang + ".alerts"]["updated"],
+                                this.local[this.lang + ".alerts"]["ok"]
+                            );
+                            this.clearFields();
+                            this.getResults(1);
+
+                        })
+                        .catch(error => {
+                            this.loading = false;
+                            if (error.response.status === 422) {
+                                this.errors = error.response.data.errors || {};
+                            } else {
+                                $("#addFeed").modal("hide");
+                                toastr["error"](
+                                    this.local[this.lang + ".alerts"]["error"],
+                                    this.local[this.lang + ".alerts"]["err"]
+                                );
+                                this.clearFields();
+                            }
+                        });
+                } else {
+                    axios
+                        .post(
+                            CONFIG.API_URL + "members" + "?api_token=" + this.auth.api_token,
+                            this.member
+                        )
+                        .then(res => {
+                            this.loading = false;
+                            $("#addFeed").modal("hide");
+                            toastr["success"](
+                                this.local[this.lang + ".alerts"]["added"],
+                                this.local[this.lang + ".alerts"]["ok"]
+                            );
+                            this.clearFields();
+                            this.getResults(1);
+
+                        })
+                        .catch(error => {
+                            console.log(error);
+                            this.loading = false;
+                            if (error.response.status === 422) {
+                                this.errors = error.response.data.errors || {};
+                            } else {
+                                $("#addFeed").modal("hide");
+                                toastr["error"](
+                                    this.local[this.lang + ".alerts"]["error"],
+                                    this.local[this.lang + ".alerts"]["err"]
+                                );
+                                this.clearFields();
+                            }
+                        });
+                }
+            },
+            editUser(member) {
+                this.member.id = member.id;
+                this.member.name = member.name;
+                this.member.email = member.email;
+                this.member.level = member.level;
+                $("#addFeed").modal("show");
+            },
             removeMember(member) {
                 var conf = confirm(this.local[this.lang + ".alerts"]["confirm-delete"]);
                 if (conf) {
@@ -178,16 +343,16 @@
                         return 'root';
                         break;
                     case 1:
-                        return 'supervisor';
+                        return 'agent';
                         break;
                     case 2:
                         return 'grand';
                         break;
                     case 3:
-                        return 'rest';
+                        return 'restaurant';
                         break;
                     case 4:
-                        return 'agent';
+                        return 'operator';
                         break;
 
                 }
@@ -195,7 +360,8 @@
 
             },
             clearFields() {
-                this.member.name = this.member.email = null;
+                this.member.name = this.member.email=this.password= null;
+                this.member.level=99;
             }
         }
     };

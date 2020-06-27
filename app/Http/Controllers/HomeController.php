@@ -39,6 +39,7 @@ class HomeController extends Controller
         ];
 
         auth()->user()->unreadNotifications->markAsRead();
+
         $tables=[
             'all'=>Board::where('user_id',auth()->user()->id)->get()->count(),
             'data'=>Board::where('user_id',auth()->user()->id)->get()

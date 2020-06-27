@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 
@@ -18,10 +19,24 @@ class MemberController extends Controller
      */
     public function index()
     {
-        $acl = [
-            'access_accounts' => (Gate::allows('access_accounts')) ? true : false,
-        ];
-        return view('members.index',compact(['acl']));
+        $levels=[];
+        $user=auth()->user();
+        switch ($user->level){
+            case 0:
+                $levels=[1,2,3];
+                break;
+            case 1:
+                $levels=[2,3];
+                break;
+            case 2:
+                $levels=[3];
+                break;
+            case 3:
+                $levels=[4];
+                break;
+        }
+
+        return view('members.index',compact(['levels']));
     }
 
     /**

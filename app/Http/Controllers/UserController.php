@@ -35,6 +35,11 @@ class UserController extends Controller
 
         return view('users.users', compact(['roles', 'acl']));
     }
+    function members()
+    {
+
+        return view('users.members');
+    }
 
     function profile($user)
     {
@@ -65,34 +70,6 @@ class UserController extends Controller
     }
 
 
-
-
-    public function testo()
-    {
-        //https://docs.spatie.be/laravel-permission/v3/basic-usage/basic-usage/
-        $user = User::find(3);
-        $newUser = User::find(5);
-        $users = User::with('Settings')->where('id', '!=', $newUser->id)->where('id', '!=', $user->id)->get();
-        $users_collections=[];
-        foreach ($users as $user){
-            if($user->settings()->where('name','receive-noti-4new-users')->first()){
-                if($user->settings()->where('name','receive-noti-4new-users')->first()->value==1){
-                    $users_collections[]=$user;
-                }
-
-            }
-        }
-
-
-
-        Notification::send($users_collections, new NewUserCreatedDB($user, $newUser));
-
-        //return auth()->user()->getSetting('notifications-show-limit');
-
-
-
-        //event(new UserHasRemoved($user));
-    }
     function reset($user)
     {
         $acl = [

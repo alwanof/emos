@@ -25,9 +25,9 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password','slug','level','refType','ref'
+        'name', 'email', 'password','slug','level','ref'
     ];
-    protected $appends = ['avatar', 'getroles','parent','telegram','currency','language'];
+    protected $appends = ['avatar', 'getroles','parent','refuser','telegram','currency','language'];
 
     /**
      * The attributes that should be hidden for arrays.
@@ -55,19 +55,82 @@ class User extends Authenticatable
         $avatar = ($path) ? asset('storage/users/' . $this->id . '.jpg') : asset('storage/users/0.jpg');
         return $avatar;
     }
-    /* 0 root , 2 sup , 2 grand , 3 rest , 4 agent */
+    /* 0 root , 1 agent , 2 grand , 3 rest , 4 operator */
 
 
-    public function getParentAttribute()
-    {
-
-        if($this->level>0){
-            return User::findOrFail($this->ref);
+    public function getRefuserAttribute(){
+        if($this->ref==0){
+            return false;
         }
-
-        return false;
+        return User::find($this->ref);
 
     }
+    public function getParentAttribute()
+    {
+        $parents=[
+            'sup'=>0,
+            'grand'=>0,
+            'rest'=>0,
+            'agent'=>0
+        ];
+        if($this->level==4){
+            $parents['agent']=$this->id;
+            $rest=User::findOrFail($this->ref);
+            $parents['rest']=$rest->id;
+            if($rest->ref!=0){
+                $rest_ref=User::findOrFail($rest->ref);
+                    if($rest_ref->level==2){
+                        $parents['grand']=$rest_ref->id;
+                        if($rest_ref->ref!=0){
+                            $grand_ref=User::findOrFail($rest_ref->ref);
+                            if($grand_ref->level==1){
+                                $parents['sup']=$grand_ref->id;
+                            }
+                        }
+
+                    }elseif($rest_ref->level==1){
+                        $parents['sup']=$rest_ref->id;
+                    }
+
+            }
+        }
+        if($this->level==3){
+            $parents['rest']=$this->id;
+            if($this->ref!=0){
+                $rest_ref=User::findOrFail($this->ref);
+
+                    if($rest_ref->level==2){
+                        $parents['grand']=$rest_ref->id;
+                        if($rest_ref->ref!=0){
+                            $grand_ref=User::findOrFail($rest_ref->ref);
+                            if($grand_ref->level==1){
+                                $parents['sup']=$grand_ref->id;
+                            }
+                        }
+
+                    }elseif($rest_ref->level==1){
+                        $parents['sup']=$rest_ref->id;
+                    }
+
+            }
+
+        }
+        if($this->level==2){
+            $parents['grand']=$this->id;
+            if($this->ref!=0){
+                $grand_ref=User::findOrFail($this->ref);
+                if($grand_ref->level==1){
+                    $parents['sup']=$grand_ref->id;
+                }
+            }
+
+        }
+        if($this->level==1){
+            $parents['sup']=$this->id;
+        }
+        return $parents;
+    }
+
     public function getLogoAttribute()
     {
         $path = Storage::exists('/public/users/' . $this->id . '.jpg');
@@ -104,29 +167,5 @@ class User extends Authenticatable
     {
         return $this->hasMany(Setting::class);
     }
-
-    public function orders()
-    {
-        return $this->hasMany(Order::class);
-    }
-
-    public function bills()
-    {
-        return $this->hasMany(Bill::class);
-    }
-
-    public function balance(){
-        $dept=0;
-        $credit=0;
-        foreach ($this->bills as $trans){
-            if($trans->amount>0){
-                $dept=$dept+$trans->amount;
-            }else{
-                $credit=$credit+$trans->amount;
-            }
-        }
-        return -1*($dept+$credit);
-    }
-
 
 }

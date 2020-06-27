@@ -17,6 +17,7 @@ class MenuController extends Controller
         if(!$user){
             return abort(404);
         }
+
         $restaurant=$user;
         $table=Board::where('slug',$table)->first();
         if(!$table){
@@ -34,12 +35,10 @@ class MenuController extends Controller
         ];
 
 
-
         return view('menu.'.$theme,compact(['restaurant','table','session','cats','colors']));
 
     }
     public function remote($restaurant){
-
 
         $user=User::where('slug',$restaurant)->first();
 
@@ -47,13 +46,9 @@ class MenuController extends Controller
             return abort(404);
         }
         $restaurant=$user;
-
         $session = Session::getId();
         $cats=Category::where('user_id',$restaurant->id)->get();
-
-        $theme= $user->getSetting('theme')->value;
-
-
+        $theme= ($user->getSetting('theme'))?$user->getSetting('theme')->value:'default';
 
         $colors=[
             'bcolor'=>($user->getSetting('background-color'))?$user->getSetting('background-color')->value:'#34495e',

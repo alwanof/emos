@@ -5,7 +5,7 @@
             <i class="fas fa-cog fa-spin px-2 text-primary" v-show="loading"></i>
         </div>
         <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-4" v-show="acl.access_remote_new">
                 <div class="card direct-chat direct-chat-primary">
                     <div class="card-header ui-sortable-handle bg-danger" style="cursor: move;">
                         <h3 class="card-title">New</h3>
@@ -61,7 +61,7 @@
                                     </div>
                                 </li>
                                 <li class="list-group-item text-center">
-                                    <div>
+                                    <div v-show="acl.remote_pickitup">
                                         <button type="button" @click="pickUp(newExpand.orderID)" class="btn btn-sm btn-danger" data-toggle="tooltip"  data-widget="chat-pane-toggle">PICKUP!</button>
                                     </div>
                                 </li>
@@ -71,7 +71,7 @@
                 </div>
                 <!-- //card -->
             </div>
-            <div class="col-md-4">
+            <div class="col-md-4" v-show="acl.access_remote_waiting">
                 <div class="card direct-chat direct-chat-primary">
                     <div class="card-header ui-sortable-handle bg-warning" style="cursor: move;">
                         <h3 class="card-title">Waiting</h3>
@@ -127,7 +127,7 @@
                                     </div>
                                 </li>
                                 <li class="list-group-item text-center">
-                                    <div>
+                                    <div v-show="acl.remote_handover">
                                         <button type="button" @click="delivered(waitingExpand.orderID)" class="btn btn-sm btn-warning" data-toggle="tooltip"  data-widget="chat-pane-toggle">Delivered!</button>
                                     </div>
                                 </li>
@@ -139,7 +139,7 @@
                 </div>
                 <!-- //card -->
             </div>
-            <div class="col-md-4">
+            <div class="col-md-4" v-show="acl.access_remote_done">
                 <div class="card direct-chat direct-chat-primary">
                     <div class="card-header bg-success" >
                         <h3 class="card-title">Stabled</h3>
@@ -190,7 +190,7 @@
                                     </div>
                                 </li>
                                 <li class="list-group-item text-center">
-                                    <div>
+                                    <div v-show="false">
                                         <button type="button" @click="done(stabledExpand.orderID)" class="btn btn-sm btn-success" data-toggle="tooltip"  data-widget="chat-pane-toggle">Check-Out!</button>
                                     </div>
                                 </li>
@@ -213,7 +213,7 @@
 
     export default {
         name: "RemoteComponent",
-        props: ["acl","lang","auth"],
+        props: ["acl","lang","auth","actor"],
         data() {
             return {
                 path: CONFIG.PATH,
@@ -253,7 +253,7 @@
             getNewOrders() {
                 this.loading = true;
                 CONFIG.DB.collection('orders')
-                    .where('user.email','==',this.auth.email)
+                    .where('user.email','==',this.actor.email)
                     .where('status.value','==',0)
                     .where('remote','==',true)
                     .orderBy('timestamp',"asc")
@@ -321,7 +321,7 @@
             getWaitingOrders() {
                 this.loading = true;
                 CONFIG.DB.collection('orders')
-                    .where('user.email','==',this.auth.email)
+                    .where('user.email','==',this.actor.email)
                     .where('status.value','==',1)
                     .where('remote','==',true)
                     .orderBy('timestamp',"asc")
@@ -360,7 +360,7 @@
             getStabledOrders() {
                 this.loading = true;
                 CONFIG.DB.collection('orders')
-                    .where('user.email','==',this.auth.email)
+                    .where('user.email','==',this.actor.email)
                     .where('status.value','==',3)
                     .where('remote','==',true)
                     .orderBy('timestamp',"asc")
@@ -392,7 +392,7 @@
             archiveStabled(){
                 this.loading = true;
                 CONFIG.DB.collection('orders')
-                    .where('user.email','==',this.auth.email)
+                    .where('user.email','==',this.actor.email)
                     .where('status.value','==',3)
                     .where('remote','==',true)
                     .get()

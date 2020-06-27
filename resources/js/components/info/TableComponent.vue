@@ -2,7 +2,7 @@
     <div>
         <div class="small-box bg-info">
             <div class="inner">
-                <h3>{{tables.all}}</h3>
+                <h3>{{feeds}}</h3>
 
                 <p>{{ local[lang+".info"]["tables"] }}</p>
             </div>
@@ -18,17 +18,28 @@
 
     export default {
         name: "Table-Component",
-        props: ["auth", "lang","tables"],
+        props: ["auth", "lang"],
         data() {
             return {
                 path: CONFIG.PATH,
                 loading: false,
                 local: CONFIG.LANG,
+                feeds:0,
 
                 errors: []
             };
         },
         created() {
+            this.loading = true;
+            axios
+                .get(
+                    CONFIG.API_URL +
+                    "sta/tables?api_token="+this.auth.api_token
+                )
+                .then(res => {
+                    this.feeds = res.data;
+                    this.loading = false;
+                });
 
         },
 

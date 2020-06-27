@@ -2,7 +2,7 @@
     <div>
         <div class="small-box bg-danger">
             <div class="inner">
-                <h3>{{items.all}}</h3>
+                <h3>{{feeds}}</h3>
 
                 <p>{{ local[lang+".info"]["items"] }}</p>
             </div>
@@ -18,17 +18,27 @@
 
     export default {
         name: "Items-Component",
-        props: ["auth", "lang","items"],
+        props: ["auth", "lang"],
         data() {
             return {
                 path: CONFIG.PATH,
                 loading: false,
                 local: CONFIG.LANG,
-
+                feeds:0,
                 errors: []
             };
         },
         created() {
+            this.loading = true;
+            axios
+                .get(
+                    CONFIG.API_URL +
+                    "sta/items?api_token="+this.auth.api_token
+                )
+                .then(res => {
+                    this.feeds = res.data;
+                    this.loading = false;
+                });
 
         },
 

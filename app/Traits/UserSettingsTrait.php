@@ -24,11 +24,12 @@ trait UserSettingsTrait
         return cache()->remember($cacheKey, Carbon::now()->addMinutes(5), function () use ($name) {
             $role=$this->roles()->first();
             if(!$role){
-
-                abort(403);
+                return false;
             }
-
             $config=Configuration::where('name',$name)->first();
+            if(!$config){
+                return false;
+            }
 
             $rolehasConfig=$config->roles->where('name',$role->name)->count();
             if($rolehasConfig==0){

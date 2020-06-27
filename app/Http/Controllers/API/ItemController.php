@@ -94,4 +94,10 @@ class ItemController extends Controller
         $items->delete();
    	return response()->json(1, 200);
    }
+
+    public function items()
+    {
+        $items=Item::where('user_id',auth()->user()->id)->count();
+        return $items;
+    }
 }

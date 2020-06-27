@@ -4,6 +4,7 @@ return [
     'dashboard' => 'System Control',
     'home' => 'Home',
     'users' => 'Users',
+    'members'=>'Members',
     'config' => 'Configurations',
     'settings' => 'Settings',
     'logout' => 'Logout',

@@ -19,6 +19,7 @@
         <div class="row">
             <div class="col-lg-6">
                 <div class="row">
+                    @can('show_info_rest_tcio')
                     <div class="col-lg-6">
                         <info-tables :tables="{{json_encode($tables)}}" :lang={{ json_encode(app()->getLocale()) }} :auth="{{ json_encode(Auth::user()) }}"></info-tables>
                     </div>
@@ -32,20 +33,21 @@
                         <orders-card  :lang={{ json_encode(app()->getLocale()) }} :auth="{{ json_encode(Auth::user()) }}"></orders-card>
 
                     </div>
+                    @endcan
+                        @can('show_info_rest_spot_light')
                     <div class="col-lg-12">
                         <orders-details  :lang={{ json_encode(app()->getLocale()) }} :auth="{{ json_encode(Auth::user()) }}"></orders-details >
                     </div>
-                    <div class="col-lg-12">
-                        <tables-pie :tables="{{json_encode($tables)}}" :lang={{ json_encode(app()->getLocale()) }} :auth="{{ json_encode(Auth::user()) }}"></tables-pie>
-                    </div>
+                        @endcan
+
 
                 </div>
             </div>
+            @can('show_info_rest_relevance')
             <div class="col-lg-6">
                 <relevance-sheet :items="{{json_encode($items)}}" :lang={{ json_encode(app()->getLocale()) }} :auth="{{ json_encode(Auth::user()) }}"></relevance-sheet >
-
-
             </div>
+                @endcan
 
         </div>
     </div>

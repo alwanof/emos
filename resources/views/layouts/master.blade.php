@@ -138,7 +138,7 @@
                             </a>
                         </li>
                         @endcan
-                        @can('access_accounts')
+                        @can('access_members')
                             <li class="nav-item ">
                                 <a href="{{ route('members.index') }}" class="nav-link ">
                                     <i class="fa fa-users nav-icon"></i>
@@ -160,7 +160,6 @@
                                 <p>{{ __('master.settings') }}</p>
                             </a>
                         </li>
-
 
                     </ul>
                 </li>

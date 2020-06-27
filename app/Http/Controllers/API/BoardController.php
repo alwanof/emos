@@ -67,4 +67,10 @@ class BoardController extends Controller
         $board->delete();
     	return response()->json(1, 200);
     }
+
+    public function tables()
+    {
+        $boards = Board::where('user_id',auth()->user()->id)->get()->count();
+        return $boards;
+    }
 }

@@ -447,7 +447,7 @@
                             snap.forEach(doc=>{
                                 data=doc.data();
                             });
-                            console.log(data.orderID);
+
                             let note=data.note;
                             let allItems=data.items;
                             this.pasket.forEach(item=>{
@@ -499,6 +499,8 @@
                                 name:this.rest.name,
                                 email:this.rest.email
                             }
+                            order.grand=this.rest.parent.grand;
+                            order.sup=this.rest.parent.sup;
                             order.hash=Math.random();
                             CONFIG.DB.collection('orders')
                                 .doc(order.orderID)

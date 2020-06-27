@@ -77,4 +77,9 @@ class CategoryController extends Controller
         $category->delete();
     	return response()->json(1, 200);
     }
+    public function cats()
+    {
+        $cats=Category::where('user_id',auth()->user()->id)->get()->count();
+        return $cats;
+    }
 }

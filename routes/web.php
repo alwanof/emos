@@ -14,7 +14,7 @@
 use App\User;
 
 Route::get('/', function (){
-    echo "hello world";
+    return redirect('/login');
 })->name('route_start');
 
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');

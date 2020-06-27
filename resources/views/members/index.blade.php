@@ -3,13 +3,8 @@
 
 @section('content')
 <!-- Default box -->
-<h1>
-    <a  class="btn btn-success" href="#">
-        <i class="fas fa-plus"></i>
-    </a>
-    {{__('members.title')}}
-</h1>
-    <members-sheet :acl="{{json_encode($acl)}}"  :lang={{ json_encode(app()->getLocale()) }} :auth="{{ json_encode(Auth::user()) }}"></members-sheet>
+
+    <members-sheet :levels={{ json_encode($levels) }} :lang={{ json_encode(app()->getLocale()) }} :auth="{{ json_encode(Auth::user()) }}"></members-sheet>
 
 @endsection
 

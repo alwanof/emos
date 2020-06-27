@@ -20,7 +20,41 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9a9985b9-c697-4ece-b1fd-b7fff16943e7" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/API/BoardController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/API/BoardController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/API/CategoryController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/API/CategoryController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/API/ItemController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/API/ItemController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/API/MemberController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/API/MemberController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/MemberController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/MemberController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/MenuController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/MenuController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/OrderController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/OrderController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Traits/UserSettingsTrait.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Traits/UserSettingsTrait.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/MembersSheetComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/MembersSheetComponent.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/OrdersComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/OrdersComponent.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/RemoteComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/RemoteComponent.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/info/CatsComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/info/CatsComponent.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/info/SubitemsComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/info/SubitemsComponent.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/info/TableComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/info/TableComponent.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/themes/DefaultThemeComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/themes/DefaultThemeComponent.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/themes/RemoteThemeComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/themes/RemoteThemeComponent.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/themes/WaterRemoteComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/themes/WaterRemoteComponent.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/themes/WaterThemeComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/themes/WaterThemeComponent.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/lang/en/master.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/lang/en/master.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/lang/en/members.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/lang/en/members.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/lang/en/users.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/lang/en/users.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/lang/vue-translations.json" beforeDir="false" afterPath="$PROJECT_DIR$/resources/lang/vue-translations.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/home.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/home.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/master.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/master.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/members/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/members/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/order/new.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/order/new.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/order/remote.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/order/remote.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -139,9 +173,9 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views/menu/remote" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Desktop/1/testone" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.General" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -189,7 +223,14 @@
       <workItem from="1592491018889" duration="1891000" />
       <workItem from="1592500448180" duration="58000" />
       <workItem from="1592742489074" duration="2194000" />
-      <workItem from="1592757512735" duration="3793000" />
+      <workItem from="1592757512735" duration="4773000" />
+      <workItem from="1592902495965" duration="13142000" />
+      <workItem from="1592996584040" duration="821000" />
+      <workItem from="1593098695846" duration="25000" />
+      <workItem from="1593098987339" duration="10447000" />
+      <workItem from="1593182735616" duration="6453000" />
+      <workItem from="1593242982823" duration="12863000" />
+      <workItem from="1593282289910" duration="49000" />
     </task>
     <servers />
   </component>
@@ -222,26 +263,29 @@
     </state>
     <state x="2049" y="303" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1366.728/1366.0.1920.1040@1366.0.1920.1040" timestamp="1590836845749" />
     <state x="2049" y="315" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1366.728/1366.0.1920.1080@1366.0.1920.1080" timestamp="1591945543974" />
-    <state x="1990" y="216" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1591116541742">
-      <screen x="1366" y="0" width="1920" height="1040" />
+    <state x="1990" y="224" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1593269402691">
+      <screen x="1366" y="0" width="1920" height="1080" />
     </state>
     <state x="1990" y="216" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1366.728/1366.0.1920.1040@1366.0.1920.1040" timestamp="1591116541742" />
+    <state x="1990" y="224" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1366.728/1366.0.1920.1080@1366.0.1920.1080" timestamp="1593269402691" />
     <state x="1947" y="231" key="DiffContextDialog" timestamp="1592757762529">
       <screen x="1366" y="0" width="1920" height="1080" />
     </state>
     <state x="1947" y="231" key="DiffContextDialog/0.0.1366.728/1366.0.1920.1080@1366.0.1920.1080" timestamp="1592757762529" />
-    <state x="2053" y="216" key="FileChooserDialogImpl" timestamp="1590416145683">
-      <screen x="1366" y="0" width="1920" height="1040" />
+    <state x="2053" y="224" key="FileChooserDialogImpl" timestamp="1593160139889">
+      <screen x="1366" y="0" width="1920" height="1080" />
     </state>
     <state x="2053" y="216" key="FileChooserDialogImpl/0.0.1366.728/1366.0.1920.1040@1366.0.1920.1040" timestamp="1590416145683" />
+    <state x="2053" y="224" key="FileChooserDialogImpl/0.0.1366.728/1366.0.1920.1080@1366.0.1920.1080" timestamp="1593160139889" />
     <state x="2150" y="172" width="702" height="736" key="RollbackChangesDialog" timestamp="1592757763842">
       <screen x="1366" y="0" width="1920" height="1080" />
     </state>
     <state x="2150" y="172" width="702" height="736" key="RollbackChangesDialog/0.0.1366.728/1366.0.1920.1080@1366.0.1920.1080" timestamp="1592757763842" />
-    <state x="1717" y="78" key="SettingsEditor" timestamp="1590859323273">
-      <screen x="1366" y="0" width="1920" height="1040" />
+    <state x="149" y="0" key="SettingsEditor" timestamp="1593282339272">
+      <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="1717" y="78" key="SettingsEditor/0.0.1366.728/1366.0.1920.1040@1366.0.1920.1040" timestamp="1590859323273" />
+    <state x="149" y="0" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1593282339272" />
     <state x="1898" y="237" key="run.anything.popup" timestamp="1590520360957">
       <screen x="1366" y="0" width="1920" height="1040" />
     </state>

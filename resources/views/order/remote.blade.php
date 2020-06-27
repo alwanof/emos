@@ -15,7 +15,7 @@
 @endsection
 @section('content')
     <!-- Default box -->
-    <remote-orders :acl="{{json_encode($acl)}}"  :lang={{ json_encode(app()->getLocale()) }} :auth="{{ json_encode(Auth::user()) }}" ></remote-orders>
+    <remote-orders :acl="{{json_encode($acl)}}"  :actor="{{json_encode($actor)}}" :lang={{ json_encode(app()->getLocale()) }} :auth="{{ json_encode(Auth::user()) }}" ></remote-orders>
 
 @endsection
 

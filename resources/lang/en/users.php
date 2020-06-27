@@ -5,6 +5,7 @@ return [
     'roles' => 'Roles',
     'permissions' => 'Permissions',
     'name' => 'Name',
+    'members'=>'Members',
     'email' => 'Email',
     'reset'=>'Reset',
     'wifi_qr'=>'Wifi QR',
