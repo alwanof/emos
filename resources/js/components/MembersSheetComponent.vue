@@ -48,11 +48,11 @@
                                 {{ member.name }}
                             </td>
                             <td>{{member.email}}</td>
-                            <td>{{level(member.level)}}</td>
+                            <td>{{level(Number(member.level))}}</td>
                             <td>
                                 <div v-if="member.refuser">
                                     <img :src="member.refuser.avatar+'?r='+Math.random()" class="rounded-circle mx-1" width="24px"/>
-                                    {{member.refuser.name}} <span class="badge badge-info">{{level(member.refuser.level)}}</span>
+                                    {{member.refuser.name}} <span class="badge badge-info">{{level(Number(member.refuser.level))}}</span>
                                 </div>
 
                             </td>
