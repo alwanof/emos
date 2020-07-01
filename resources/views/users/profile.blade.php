@@ -73,7 +73,9 @@
                         </div>
                         <div class="card-body">
                             @if(auth()->user()->getSetting('address')->value!='null')
-                                {!! QrCode::color(0,255,0)->size(250)->generate(route('menu.remote',auth()->user()->slug)); !!}
+                                <a href="{{route('menu.remote',auth()->user()->slug)}}" target="_blank">
+                                    {!! QrCode::color(0,255,0)->size(250)->generate(route('menu.remote',auth()->user()->slug)); !!}
+                                </a>
                             @else
                                 <h3>
                                     <a href="{{route('config.settings')}}">
