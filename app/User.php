@@ -140,15 +140,15 @@ class User extends Authenticatable
 
     public function getTelegramAttribute()
     {
-        return $this->getSetting('telegram')->value;
+        return (is_object($this->getSetting('telegram')))?$this->getSetting('telegram')->value:null;
     }
     public function getCurrencyAttribute()
     {
-        return $this->getSetting('currency')->value;
+        return (is_object($this->getSetting('currency')))?$this->getSetting('currency')->value:null;
     }
     public function getLanguageAttribute()
     {
-        return $this->getSetting('language')->value;
+        return (is_object($this->getSetting('language')))?$this->getSetting('language')->value:'tr';
     }
 
     public function getGetrolesAttribute()
