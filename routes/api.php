@@ -46,6 +46,8 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::get('sta/cats', 'API\CategoryController@cats');
     Route::get('sta/items', 'API\ItemController@items');
 
+    Route::get('statistic/{type}', 'API\UserController@statistic');
+
 
 
 });

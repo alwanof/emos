@@ -213,7 +213,7 @@
 
     export default {
         name: "RemoteComponent",
-        props: ["acl","lang","auth","actor"],
+        props: ["acl","lang","auth","actor","masa"],
         data() {
             return {
                 path: CONFIG.PATH,

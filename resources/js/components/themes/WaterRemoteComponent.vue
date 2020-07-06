@@ -155,7 +155,7 @@
                                             <div class="alert alert-danger" role="alert" v-show="pasket.length==0">
                                                 Sepet boş!
                                             </div>
-                                            <button type="button" class="btn btn-dark btn-lg btn-block" data-toggle="modal" data-target="#customerInfo" v-show="pasket.length>0">
+                                            <button type="button" class="btn btn-dark btn-lg btn-block" @click="sendOrder" v-show="pasket.length>0">
                                                 <i class="fas fa-paper-plane"></i> SEND!
                                             </button>
 
@@ -339,7 +339,7 @@
     export default {
 
         name: "RemoteWaterComponent",
-        props: ["rest",'sess','cats','geo','colors'],
+        props: ["rest",'sess','cats','geo','colors','param'],
         data() {
             return {
                 path: CONFIG.PATH,
@@ -355,6 +355,7 @@
                     total:0
                 },
                 customer:{
+                    clientID:null,
                     country:this.geo.country,
                     city:this.geo.city,
                     name:null,
@@ -375,10 +376,22 @@
 
             this.getResults();
             this.getOrders();
+            this.checkClientID();
 
         },
 
         methods: {
+            checkClientID(){
+                if(this.param.clientID && this.param.name && this.param.email && this.param.phone&& this.param){
+                    if(this.param.clientID>1 && this.param.name.length>1 && this.param.email.length>4 && this.param.phone.length>5 && this.param.address.length>5) {
+                        this.customer.name=this.param.name;
+                        this.customer.email=this.param.email;
+                        this.customer.phone=this.param.phone;
+                        this.customer.address=this.param.address;
+                        this.customer.clientID=this.param.clientID;
+                    }
+                }
+            },
 
             getResults() {
                 this.loading = true;
@@ -512,6 +525,10 @@
                     alert('Error!!');
                     return false;
                 }
+                if(!this.customer.name){
+                    $("#customerInfo").modal("show");
+                    return false;
+                }
                 this.loading=true;
 
                 let order={}
@@ -540,6 +557,7 @@
                 order.timestamp=new Date();
                 order.total=this.total();
                 order.customer={
+                    clientID:(this.customer.clientID)?this.customer.clientID:0,
                     name:this.customer.name,
                     email:this.customer.email,
                     phone:this.customer.phone,

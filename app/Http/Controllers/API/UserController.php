@@ -132,4 +132,25 @@ class UserController extends Controller
             return response()->json($e->getMessage(), 400);
         }
     }
+    function statistic($type){
+
+        switch ($type){
+            case 'a':
+                return User::where('level',1)->get()->count();
+                break;
+            case 'g':
+                if(auth()->user()->level==0){
+                    return User::where('ref',0)->where('level',2)->get()->count();
+                }
+                return User::where('ref',auth()->user()->id)->where('level',2)->get()->count();
+                break;
+            case 'r':
+                if(auth()->user()->level==0){
+                    return User::where('ref',0)->where('level',3)->get()->count();
+                }
+                return User::where('ref',auth()->user()->id)->where('level',3)->get()->count();
+                break;
+        }
+        return 0;
+    }
 }

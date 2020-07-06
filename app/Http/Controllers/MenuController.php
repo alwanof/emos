@@ -38,7 +38,14 @@ class MenuController extends Controller
         return view('menu.'.$theme,compact(['restaurant','table','session','cats','colors']));
 
     }
-    public function remote($restaurant){
+    public function remote(Request $request,$restaurant){
+        $param=[
+            'clientID'=>(isset($request->clientID))?$request->clientID:null,
+            'name'=>(isset($request->name))?$request->name:null,
+            'email'=>(isset($request->email))?$request->email:null,
+            'phone'=>(isset($request->phone))?$request->phone:null,
+            'address'=>(isset($request->address))?$request->address:null,
+        ];
 
         $user=User::where('slug',$restaurant)->first();
 
@@ -56,7 +63,7 @@ class MenuController extends Controller
             'dark'=>($user->getSetting('dark'))?$user->getSetting('dark')->value:1
         ];
 
-        return view('menu.remote.'.$theme,compact(['restaurant','session','cats','colors']));
+        return view('menu.remote.'.$theme,compact(['restaurant','session','cats','colors','param']));
 
     }
 

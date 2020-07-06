@@ -32,7 +32,7 @@
     </center>
 
     <div id="app" >
-        <water-remote :colors="{{json_encode($colors)}}"  :geo="{{json_encode(['country'=>$restaurant->getSetting('country')->value,'city'=>$restaurant->getSetting('city')->value])}}"  :cats="{{json_encode($cats)}}" :rest="{{json_encode($restaurant)}}" :sess="{{json_encode($session)}}" ></water-remote>
+        <water-remote :colors="{{json_encode($colors)}}"  :param="{{json_encode($param)}}" :geo="{{json_encode(['country'=>$restaurant->getSetting('country')->value,'city'=>$restaurant->getSetting('city')->value])}}"  :cats="{{json_encode($cats)}}" :rest="{{json_encode($restaurant)}}" :sess="{{json_encode($session)}}" ></water-remote>
 
     </div>
 
