@@ -130,7 +130,8 @@
                                                 <p class="lead font-weight-bold m-1" style="font-size: 20px;">
                                                     {{item.title}}
                                                 </p>
-                                                <p class="text-muted" style="font-size: 60%;line-height: 1.5">??\Cc
+                                                <p class="text-muted" style="font-size: 60%;line-height: 1.5">
+                                                    {{item.description}}
                                                  </p>
                                             </div>
                                             <div class="col-12 h6 text-center notranslate" :style="'color: '+colors.fcolor+' !important;'">

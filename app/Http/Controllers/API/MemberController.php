@@ -45,7 +45,7 @@ class MemberController extends Controller
             'level'=>'required|min:0|max:4'
         ]);
         try {
-            $user=auth()->user();
+
 
             $actor=User::create([
                 'name' => $request->name,
@@ -54,7 +54,7 @@ class MemberController extends Controller
                 'slug'=>Str::slug($request->name),
                 'remember_token' => Str::random(10),
                 'level'=>$request->level,
-                'ref'=>$user->id
+                'ref'=>auth()->user()->id
             ]);
             switch ($actor->level){
                 case 1:
