@@ -17,7 +17,7 @@ trait UserSettingsTrait
     }
 
     // get setting value
-    public function getSetting($name)
+    /*public function getSetting($name)
     {
 
         $cacheKey = $this->getCacheKey('.all' . $name);
@@ -27,8 +27,10 @@ trait UserSettingsTrait
                 return false;
             }
             $config=Configuration::where('name',$name)->first();
+
             if(!$config){
                 return false;
+
             }
 
             $rolehasConfig=$config->roles->where('name',$role->name)->count();
@@ -43,6 +45,34 @@ trait UserSettingsTrait
                 return Configuration::where('name',$name)->first();
             }
         });
+
+    }*/
+    public function getSetting($name)
+    {
+        $role=$this->roles()->first();
+        if(!$role){
+            return false;
+        }
+        $config=Configuration::where('name',$name)->first();
+
+        if(!$config){
+            return false;
+
+        }
+
+        $rolehasConfig=$config->roles->where('name',$role->name)->count();
+        if($rolehasConfig==0){
+            return Configuration::where('name',$name)->first();
+        }
+
+        $setting_attempt= Setting::where(['name' => $name, 'user_id' => $this->id]);
+        if($setting_attempt->count()>0){
+            return $setting_attempt->first();
+        }else{
+            return Configuration::where('name',$name)->first();
+        }
+
+        return false;
 
     }
 }

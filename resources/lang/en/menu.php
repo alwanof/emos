@@ -4,6 +4,7 @@ return [
     'front_title' => 'Menu',
     'title' => 'Menu Manager',
     'tables'=>'Tables',
+    'hooks'=>'hooks',
     'categories'=>'Categories',
     'send'=>'Send',
     'name'=>'Name',

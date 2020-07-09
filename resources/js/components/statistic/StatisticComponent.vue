@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="row">
-            <div class="col-lg-3">
+            <div class="col-lg-3" v-if="acl.access_agent_statistic">
                 <div class="small-box bg-info">
                     <div class="inner">
                         Agent<h3><i class="fas fa-cog fa-spin px-2 text-white" v-show="loading"></i>{{afeedsSize}}</h3>
@@ -13,7 +13,7 @@
                 </div>
             </div>
 
-            <div class="col-lg-3">
+            <div class="col-lg-3" v-if="acl.access_grand_statistic">
                 <div class="small-box bg-warning">
                     <div class="inner">
                         Grand<h3><i class="fas fa-cog fa-spin px-2 text-white" v-show="loading"></i>{{gfeedsSize}}</h3>
@@ -25,7 +25,7 @@
                 </div>
             </div>
 
-            <div class="col-lg-3">
+            <div class="col-lg-3" v-if="acl.access_rest_statistic">
                 <div class="small-box bg-danger">
                     <div class="inner">
                         Restaurant<h3><i class="fas fa-cog fa-spin px-2 text-white" v-show="loading"></i>{{rfeedsSize}}</h3>
@@ -58,7 +58,7 @@
 
     export default {
         name: "StatisticComponent",
-        props: ["auth", "lang"],
+        props: ["auth", "lang","acl"],
         data() {
             return {
                 path: CONFIG.PATH,

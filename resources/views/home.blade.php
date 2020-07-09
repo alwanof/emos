@@ -17,7 +17,7 @@
     <!-- Default box -->
     <div class="container">
         @can('access_admin_statistic')
-            <statistic :lang={{ json_encode(app()->getLocale()) }} :auth="{{ json_encode(Auth::user()) }}"></statistic>
+            <statistic :acl="{{json_encode($acl)}}" :lang={{ json_encode(app()->getLocale()) }} :auth="{{ json_encode(Auth::user()) }}"></statistic>
             @endcan
         <div class="row">
             <div class="col-lg-6">

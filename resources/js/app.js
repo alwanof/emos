@@ -26,6 +26,7 @@ Vue.use(VueScrollTo);
 import translations from '../lang/vue-translations.json'
 //php artisan lang:js resources/lang/vue-translations.json --json
 //jchl403vz7hy@148.66.155.19
+//₺
 
 Vue.component('pagination', require('laravel-vue-pagination'));
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
@@ -57,6 +58,7 @@ Vue.component('theme-remote', require('./components/themes/RemoteThemeComponent.
 Vue.component('water-remote', require('./components/themes/WaterRemoteComponent.vue').default);
 Vue.component('reset', require('./components/info/ResetComponent').default);
 Vue.component('statistic', require('./components/statistic/StatisticComponent').default);
+Vue.component('hooks', require('./components/HookComponent').default);
 
 function coolNumber(num){
     if(num <1000){

@@ -9,6 +9,7 @@ use App\Item;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Gate;
 
 class HomeController extends Controller
 {
@@ -30,7 +31,8 @@ class HomeController extends Controller
     public function index()
     {
 
-        $limit=auth()->user()->getSetting('notifications-show-limit')->value;
+
+        $limit=(auth()->user()->getSetting('notifications-show-limit'))?auth()->user()->getSetting('notifications-show-limit')->value:10;
 
         $data=[
             'allNoti'=>auth()->user()->notifications->take($limit),
@@ -55,9 +57,17 @@ class HomeController extends Controller
             'max'=>$itemQuery->get()->max('view')
         ];
 
+        $acl = [
+            'access_rest_statistic' => (Gate::allows('access_rest_statistic')) ? true : false,
+            'access_grand_statistic' => (Gate::allows('access_grand_statistic')) ? true : false,
+            'access_agent_statistic' => (Gate::allows('access_agent_statistic')) ? true : false,
+            'access_admin_statistic' => (Gate::allows('access_admin_statistic')) ? true : false,
+        ];
+
 
 
         return view('home',compact([
+            'acl',
             'data',
             'tables',
             'cats',

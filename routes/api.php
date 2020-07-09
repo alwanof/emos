@@ -47,6 +47,7 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::get('sta/items', 'API\ItemController@items');
 
     Route::get('statistic/{type}', 'API\UserController@statistic');
+    Route::apiResource('hooks', 'API\HookController', ['except' => ['create','update', 'edit', 'show']]);
 
 
 

@@ -200,6 +200,15 @@
                                         </a>
                                     </li>
                                 @endcan
+                                @can('access_hooks')
+                                    <li class="nav-item">
+                                        <a href="{{route('hooks.index')}}" class="nav-link ">
+                                            <i class="fas fa-retweet"></i>
+                                            {{__('menu.hooks')}}
+
+                                        </a>
+                                    </li>
+                                @endcan
                         </ul>
                     </li>
                 @endcan

@@ -20,19 +20,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9a9985b9-c697-4ece-b1fd-b7fff16943e7" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/resources/js/components/statistic/StatisticComponent.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/components/HookComponent.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/lang/en/hooks.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/lang/tr/hooks.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/hooks/index.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/API/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/API/UserController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/MenuController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/MenuController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Traits/UserSettingsTrait.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Traits/UserSettingsTrait.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/RemoteComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/RemoteComponent.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/themes/RemoteThemeComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/themes/RemoteThemeComponent.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/themes/WaterRemoteComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/themes/WaterRemoteComponent.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/statistic/StatisticComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/statistic/StatisticComponent.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/lang/en/menu.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/lang/en/menu.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/lang/vue-translations.json" beforeDir="false" afterPath="$PROJECT_DIR$/resources/lang/vue-translations.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/home.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/home.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/menu/default.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/menu/default.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/menu/remote/default.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/menu/remote/default.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/menu/remote/water.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/menu/remote/water.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/master.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/master.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
@@ -153,12 +155,13 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Desktop/1/testone" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/lang/tr" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\emos\resources\lang\tr" />
       <recent name="C:\xampp\htdocs\emos\resources\views\menu\remote" />
       <recent name="C:\xampp\htdocs\emos\public\assets\dist\js\lib" />
     </key>
@@ -220,7 +223,9 @@
       <workItem from="1593848298262" duration="567000" />
       <workItem from="1593849408960" duration="530000" />
       <workItem from="1593849972569" duration="782000" />
-      <workItem from="1594036278523" duration="9113000" />
+      <workItem from="1594036278523" duration="10227000" />
+      <workItem from="1594108017286" duration="691000" />
+      <workItem from="1594189552170" duration="15375000" />
     </task>
     <servers />
   </component>
@@ -244,6 +249,10 @@
       <screen x="1366" y="0" width="1920" height="1040" />
     </state>
     <state x="1478" y="57" key="#Live_Templates/0.0.1366.728/1366.0.1920.1040@1366.0.1920.1040" timestamp="1590860116598" />
+    <state x="2183" y="373" key="#Notifications" timestamp="1594277731523">
+      <screen x="1366" y="0" width="1920" height="1080" />
+    </state>
+    <state x="2183" y="373" key="#Notifications/0.0.1366.728/1366.0.1920.1080@1366.0.1920.1080" timestamp="1594277731523" />
     <state x="1974" y="305" key="#com.intellij.codeInsight.template.impl.EditVariableDialog" timestamp="1590859431909">
       <screen x="1366" y="0" width="1920" height="1040" />
     </state>
@@ -253,11 +262,11 @@
     </state>
     <state x="2049" y="303" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1366.728/1366.0.1920.1040@1366.0.1920.1040" timestamp="1590836845749" />
     <state x="2049" y="315" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1366.728/1366.0.1920.1080@1366.0.1920.1080" timestamp="1591945543974" />
-    <state x="1990" y="224" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1593269402691">
+    <state x="1990" y="224" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1594197120488">
       <screen x="1366" y="0" width="1920" height="1080" />
     </state>
     <state x="1990" y="216" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1366.728/1366.0.1920.1040@1366.0.1920.1040" timestamp="1591116541742" />
-    <state x="1990" y="224" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1366.728/1366.0.1920.1080@1366.0.1920.1080" timestamp="1593269402691" />
+    <state x="1990" y="224" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1366.728/1366.0.1920.1080@1366.0.1920.1080" timestamp="1594197120488" />
     <state x="1947" y="231" key="DiffContextDialog" timestamp="1592757762529">
       <screen x="1366" y="0" width="1920" height="1080" />
     </state>
