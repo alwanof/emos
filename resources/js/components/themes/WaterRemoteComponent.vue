@@ -538,6 +538,7 @@
                         amount:item.amount,
                         catID:item.catID,
                         slug:item.slug,
+                        out:0,
                         id:item.id,
                         price:item.price,
                         subTotal:item.price*item.amount,

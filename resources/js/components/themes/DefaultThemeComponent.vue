@@ -428,6 +428,7 @@
                     items.push({
                         amount:item.amount,
                         catID:item.catID,
+                        out:0,
                         slug:item.slug,
                         id:item.id,
                         price:item.price,
@@ -456,6 +457,7 @@
                                     amount:item.amount,
                                     catID:item.catID,
                                     slug:item.slug,
+                                    out:0,
                                     id:item.id,
                                     price:item.price,
                                     subTotal:item.price*item.amount,

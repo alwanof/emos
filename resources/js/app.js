@@ -59,6 +59,7 @@ Vue.component('water-remote', require('./components/themes/WaterRemoteComponent.
 Vue.component('reset', require('./components/info/ResetComponent').default);
 Vue.component('statistic', require('./components/statistic/StatisticComponent').default);
 Vue.component('hooks', require('./components/HookComponent').default);
+Vue.component('stack', require('./components/StackComponent').default);
 
 function coolNumber(num){
     if(num <1000){

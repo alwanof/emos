@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Hook;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
@@ -57,5 +58,16 @@ class OrderController extends Controller
 
 
         return view('order.remote', compact(['acl','actor']));
+    }
+    public function stack(){
+
+        $acl = [
+
+        ];
+        $hook=Hook::where('user_id',auth()->user()->id)->get()->pluck('category_id')->toArray();
+        $rest=User::find(auth()->user()->ref);
+
+
+        return view('stack.index', compact(['acl','hook','rest']));
     }
 }

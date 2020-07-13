@@ -109,6 +109,9 @@
 
 
                                     </div>
+                                    <div class="progress mt-1" style="height:0.5rem">
+                                        <div class="progress-bar progress-bar-striped bg-success" role="progressbar" :style="'width: '+orderProgress(waitingOrder)+'%'"  aria-valuemax="100"></div>
+                                    </div>
                                 </li>
                             </ul>
                         </div>
@@ -332,6 +335,15 @@
                         }
                         snap.forEach(doc=>{
                             let isExist = this.waitingOrders.findIndex(x => x.orderID == doc.data().orderID);
+                            if(isExist > -1){
+                                this.waitingOrders[isExist].items.forEach((e,i)=>{
+                                    if(e.out!=doc.data().items[i].out){
+                                        //console.log(doc.data().items[i]);
+                                        this.waitingOrders[isExist].items[i].out=doc.data().items[i].out;
+
+                                    }
+                                });
+                            }
                             if(isExist==-1){
                                 const today= new Date();
                                 const now=today.getTime()/1000;
@@ -507,6 +519,15 @@
                 });
                 return [add,trash,updated];
 
+            },
+            orderProgress(order){
+                let out=0;
+                order.items.forEach(e=>{
+                    if(e.out==1){
+                        out++;
+                    }
+                });
+                return Math.round((100*out)/order.items.length);
             }
 
         }

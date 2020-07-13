@@ -243,6 +243,16 @@
                         </ul>
                     </li>
                 @endcan
+                @can('access_operations_room')
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{route('stack.index')}}" >
+                            <i class="nav-icon fas fa-retweet"></i>
+                            <p>
+                                {{ __('stack.title') }}
+                            </p>
+                        </a>
+                    </li>
+                @endcan
 
 
 

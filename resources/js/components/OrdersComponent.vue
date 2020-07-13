@@ -100,7 +100,9 @@
                                             <span class="badge badge-warning float-right">{{waitingOrder.total}}</span>
                                         </a>
 
-
+                                    </div>
+                                    <div class="progress mt-1" style="height:0.5rem">
+                                        <div class="progress-bar progress-bar-striped bg-success" role="progressbar" :style="'width: '+orderProgress(waitingOrder)+'%'"  aria-valuemax="100"></div>
                                     </div>
                                 </li>
                             </ul>
@@ -116,7 +118,12 @@
                                 <li class="list-group-item" v-for="(item,index) in waitingExpand.items" :key="index">
                                     <div >
                                         {{item.title}}
-                                        <span class="badge badge-light float-right">{{item.amount}}</span>
+                                        <span class="badge badge-light float-right">
+                                            {{item.amount}}
+                                            <span class="badge badge-success" v-show="item.out==1">
+                                              <i class="fas fa-check-double"></i>
+                                            </span>
+                                        </span>
                                     </div>
                                 </li>
                                 <li class="list-group-item text-center">
@@ -321,8 +328,20 @@
                             this.waitingOrders=[];
                             return 0;
                         }
+
                         snap.forEach(doc=>{
+
                             let isExist = this.waitingOrders.findIndex(x => x.orderID == doc.data().orderID);
+                            if(isExist > -1){
+                                this.waitingOrders[isExist].items.forEach((e,i)=>{
+                                    if(e.out!=doc.data().items[i].out){
+                                        //console.log(doc.data().items[i]);
+                                        this.waitingOrders[isExist].items[i].out=doc.data().items[i].out;
+
+                                    }
+                                });
+                            }
+
                             if(isExist==-1){
                                 const today= new Date();
                                 const now=today.getTime()/1000;
@@ -332,6 +351,7 @@
                                 this.waitingOrders.push(doc.data());
                             }
                         });
+                        //console.log(this.whatsHappened(this.waitingOrders,oData,99999));
                         this.loading = false;
 
                     });
@@ -343,7 +363,8 @@
                 order.items.forEach(element=>{
                     this.waitingExpand.items.push({
                         title:element.title,
-                        amount:element.amount
+                        amount:element.amount,
+                        out:element.out
                     });
                 });
 
@@ -493,6 +514,15 @@
                 });
                 return [add,trash,updated];
 
+            },
+            orderProgress(order){
+                let out=0;
+                order.items.forEach(e=>{
+                    if(e.out==1){
+                        out++;
+                    }
+                });
+                return Math.round((100*out)/order.items.length);
             }
 
         }
