@@ -19,16 +19,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9a9985b9-c697-4ece-b1fd-b7fff16943e7" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/StackComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/StackComponent.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/themes/DefaultThemeComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/themes/DefaultThemeComponent.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/themes/RemoteThemeComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/themes/RemoteThemeComponent.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/themes/WaterRemoteComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/themes/WaterRemoteComponent.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/themes/WaterThemeComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/themes/WaterThemeComponent.vue" afterDir="false" />
-    </list>
+    <list default="true" id="9a9985b9-c697-4ece-b1fd-b7fff16943e7" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -222,7 +213,7 @@
       <workItem from="1594315257219" duration="4061000" />
       <workItem from="1594368784476" duration="13767000" />
       <workItem from="1594566508387" duration="7763000" />
-      <workItem from="1594707119150" duration="4368000" />
+      <workItem from="1594707119150" duration="4891000" />
     </task>
     <servers />
   </component>
