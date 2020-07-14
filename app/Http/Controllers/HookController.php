@@ -23,4 +23,9 @@ class HookController extends Controller
 
         return view('hooks.index', compact(['operators','categories']));
     }
+    public function test()
+    {
+
+        return 99;
+    }
 }

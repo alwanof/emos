@@ -50,7 +50,7 @@ Route::prefix('admin')->group(function () {
     Route::resource('/members', 'MemberController');
     Route::get('/reset/{rest}', 'UserController@reset')->name('users.reset');
     Route::get('/hooks', 'hookController@index')->name('hooks.index');
-
+    Route::get('/hookz', 'hookController@test')->name('hookz.index');
     Route::get('/stack', 'OrderController@stack')->name('stack.index');
 
 
