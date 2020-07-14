@@ -15,17 +15,11 @@ class HookController extends Controller
         $this->middleware('auth');
     }
 
-    /*public function index()
+    public function index()
     {
-
         $categories=Category::where('user_id',auth()->user()->id)->get();;
         $operators=User::where('ref',auth()->user()->id)->get();
-
         return view('hooks.index', compact(['operators','categories']));
-    }*/
-    public function test()
-    {
-
-        return 99;
     }
+
 }
