@@ -49,10 +49,8 @@ Route::prefix('admin')->group(function () {
     Route::get('/print/qrcode/{board}', 'BoardController@print_qrcode')->name('boards.qrcode');
     Route::resource('/members', 'MemberController');
     Route::get('/reset/{rest}', 'UserController@reset')->name('users.reset');
-    //Route::get('/hooks', 'hookController@index')->name('hooks.index');
-    Route::get('/hooks', function (){
-        return 99;
-    })->name('hooks.index');
+    Route::get('/hooks', 'hookController@index')->name('hooks.index');
+
     Route::get('/stack', 'OrderController@stack')->name('stack.index');
 
 
