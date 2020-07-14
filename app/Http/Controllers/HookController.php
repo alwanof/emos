@@ -18,9 +18,9 @@ class HookController extends Controller
     function index()
     {
         return 99;
-        $categories=Category::where('user_id',auth()->user()->id)->get();;
-        $operators=User::where('ref',auth()->user()->id)->get();
+        //$categories=Category::where('user_id',auth()->user()->id)->get();;
+        //$operators=User::where('ref',auth()->user()->id)->get();
 
-        return view('hooks.index', compact(['operators','categories']));
+        //return view('hooks.index', compact(['operators','categories']));
     }
 }
