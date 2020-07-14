@@ -79,27 +79,30 @@
                             this.loading = false;
                             return 0;
                         }
-                        docs=[];
+                        //docs=[];
+                        this.feeds=[];
                         this.orders=[];
 
                         snap.forEach(doc=>{
-                            let i={};
+
                             doc.data().items.forEach((e,index)=>{
+                                let i={};
                                 i.title=e.title;
                                 i.amount=e.amount;
                                 i.order=doc.data().orderID;
                                 i.index=index;
                                 i.out=e.out;
                                 i.id=e.id;
-
                                 if(this.hook.includes(e.catID) && e.out==0){
-                                    docs.push(i);
+                                    //docs.push(i);
+                                    this.feeds.push(i);
+
                                     this.orders.push(doc.data());
                                 }
 
                             });
                         });
-                        this.feeds=docs;
+                        //this.feeds=docs;
 
                         this.loading = false;
 

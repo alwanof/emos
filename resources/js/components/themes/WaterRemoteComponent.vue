@@ -443,7 +443,7 @@
                 if(isExist==-1){
                     let item={}
                     item.id=this.feeds[cat].items[index].id;
-                    item.catID=cat;
+                    item.catID=this.feeds[cat].items[index].category_id;
                     item.avatar=this.feeds[cat].items[index].avatar;
                     item.slug=this.feeds[cat].items[index].slug;
                     item.price=this.feeds[cat].items[index].price;
