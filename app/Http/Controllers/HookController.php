@@ -10,14 +10,17 @@ use Spatie\Permission\Models\Role;
 
 class HookController extends Controller
 {
-
-
-    function index()
+    public function __construct()
     {
-        return 99;
-        //$categories=Category::where('user_id',auth()->user()->id)->get();;
-        //$operators=User::where('ref',auth()->user()->id)->get();
+        $this->middleware('auth');
+    }
 
-        //return view('hooks.index', compact(['operators','categories']));
+    public function index()
+    {
+
+        $categories=Category::where('user_id',auth()->user()->id)->get();;
+        $operators=User::where('ref',auth()->user()->id)->get();
+
+        return view('hooks.index', compact(['operators','categories']));
     }
 }
