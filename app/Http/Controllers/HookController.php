@@ -10,10 +10,7 @@ use Spatie\Permission\Models\Role;
 
 class HookController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+
 
     function index()
     {
