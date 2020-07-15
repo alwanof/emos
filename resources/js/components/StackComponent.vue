@@ -5,7 +5,7 @@
             <i class="fas fa-cog fa-spin px-2 text-primary" v-show="loading"></i>
         </div>
         <div class="row">
-           <div class="col-lg-6">
+           <div class="col-lg-12">
                <div class="card direct-chat direct-chat-primary">
                    <div class="card-header ui-sortable-handle bg-danger" style="cursor: move;">
                        <h3 class="card-title">Feeds</h3>

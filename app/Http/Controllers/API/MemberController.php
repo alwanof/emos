@@ -66,6 +66,9 @@ class MemberController extends Controller
                 case 3:
                     $actor->syncRoles('restaurant');
                     break;
+                case 4:
+                    $actor->syncRoles('operator');
+                    break;
             }
             return response()->json(1, 200);
         } catch (Exception $e) {
@@ -97,6 +100,10 @@ class MemberController extends Controller
                     case 3:
                         $actor->syncRoles('restaurant');
                         break;
+                    case 4:
+                        $actor->syncRoles('operator');
+                        break;
+
                 }
                 $actor->level=$request->level;
             }
