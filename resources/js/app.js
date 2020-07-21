@@ -15,7 +15,7 @@ firebase.initializeApp({
 });
 const db = firebase.firestore();
 const firestore = firebase.firestore;
-const dbAuth=firebase.auth();
+const dbAuth = firebase.auth();
 
 window.Vue = require('vue');
 Vue.use(require('vue-moment'));
@@ -53,6 +53,7 @@ Vue.component('tables-pie', require('./components/info/TablesPieComponent.vue').
 Vue.component('orders-details', require('./components/info/OrdersDetailsComponent.vue').default);
 Vue.component('members-sheet', require('./components/MembersSheetComponent.vue').default);
 Vue.component('theme-default', require('./components/themes/DefaultThemeComponent.vue').default);
+Vue.component('theme-pwa', require('./components/themes/PwaThemeComponent.vue').default);
 Vue.component('theme-water', require('./components/themes/WaterThemeComponent.vue').default);
 Vue.component('theme-remote', require('./components/themes/RemoteThemeComponent.vue').default);
 Vue.component('water-remote', require('./components/themes/WaterRemoteComponent.vue').default);
@@ -61,30 +62,30 @@ Vue.component('statistic', require('./components/statistic/StatisticComponent').
 Vue.component('hooks', require('./components/HookComponent').default);
 Vue.component('stack', require('./components/StackComponent').default);
 
-function coolNumber(num){
-    if(num <1000){
+function coolNumber(num) {
+    if (num < 1000) {
         return $num;
     }
 
-    if(num <1000000){
-        return (num/1000)+'K';
+    if (num < 1000000) {
+        return (num / 1000) + 'K';
     }
-    if($num >=1000000){
-        return (num/1000000)+'M';
+    if ($num >= 1000000) {
+        return (num / 1000000) + 'M';
     }
 }
 
 const CONFIG = {
-    API_URL: 'https://'+window.location.hostname+'/emos/public/api/',
+    API_URL: 'https://' + window.location.hostname + '/emos/public/api/',
     PATH: '/emos/public',
-    //API_URL: 'http://'+window.location.hostname+'/emos/public/api/',
+    //API_URL: 'http://' + window.location.hostname + '/emos/public/api/',
     //PATH: '/emos/public',
-    FULL_PATH:'https://'+window.location.hostname+'/emos/public',
+    FULL_PATH: 'https://' + window.location.hostname + '/emos/public',
     LANG: translations,
-    DB:db,
-    FIRESTORE:firestore,
-    dbAuth:dbAuth,
-    coolNumber:coolNumber
+    DB: db,
+    FIRESTORE: firestore,
+    dbAuth: dbAuth,
+    coolNumber: coolNumber
 
 }
 

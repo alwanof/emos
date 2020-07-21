@@ -39,7 +39,7 @@
                     @endcan
                         @can('show_info_rest_spot_light')
                     <div class="col-lg-12">
-                        <orders-details  :lang={{ json_encode(app()->getLocale()) }} :auth="{{ json_encode(Auth::user()) }}"></orders-details >
+                        <orders-details :coin="{{ json_encode($coin) }}"  :lang={{ json_encode(app()->getLocale()) }} :auth="{{ json_encode(Auth::user()) }}"></orders-details >
                     </div>
                         @endcan
 

@@ -32,29 +32,29 @@ class HomeController extends Controller
     {
 
 
-        $limit=(auth()->user()->getSetting('notifications-show-limit'))?auth()->user()->getSetting('notifications-show-limit')->value:10;
+        $limit = (auth()->user()->getSetting('notifications-show-limit')) ? auth()->user()->getSetting('notifications-show-limit')->value : 10;
 
-        $data=[
-            'allNoti'=>auth()->user()->notifications->take($limit),
-            'newNoti'=>auth()->user()->unreadNotifications->take($limit),
-            'oldNoti'=>auth()->user()->readNotifications->take($limit),
+        $data = [
+            'allNoti' => auth()->user()->notifications->take($limit),
+            'newNoti' => auth()->user()->unreadNotifications->take($limit),
+            'oldNoti' => auth()->user()->readNotifications->take($limit),
         ];
 
         auth()->user()->unreadNotifications->markAsRead();
-
-        $tables=[
-            'all'=>Board::where('user_id',auth()->user()->id)->get()->count(),
-            'data'=>Board::where('user_id',auth()->user()->id)->get()
+        $coin = (auth()->user()->level == 3) ? auth()->user()->getSetting('currency')->value : 'N';
+        $tables = [
+            'all' => Board::where('user_id', auth()->user()->id)->get()->count(),
+            'data' => Board::where('user_id', auth()->user()->id)->get()
         ];
-        $cats=[
-            'all'=>Category::where('user_id',auth()->user()->id)->get()->count()
+        $cats = [
+            'all' => Category::where('user_id', auth()->user()->id)->get()->count()
 
         ];
-        $itemQuery=Item::where('user_id',auth()->user()->id);
-        $items=[
-            'all'=>$itemQuery->get()->count(),
-            'data'=>$itemQuery->orderBy('view','desc')->take(10)->get(),
-            'max'=>$itemQuery->get()->max('view')
+        $itemQuery = Item::where('user_id', auth()->user()->id);
+        $items = [
+            'all' => $itemQuery->get()->count(),
+            'data' => $itemQuery->orderBy('view', 'desc')->take(10)->get(),
+            'max' => $itemQuery->get()->max('view')
         ];
 
         $acl = [
@@ -66,12 +66,13 @@ class HomeController extends Controller
 
 
 
-        return view('home',compact([
+        return view('home', compact([
             'acl',
             'data',
             'tables',
             'cats',
-            'items'
+            'items',
+            'coin'
         ]));
     }
 
