@@ -5,10 +5,12 @@ $(window).on('load', function() {
 
 $(document).ready(function() {
     'use strict'
-    $(".exerpt").on('click', function() {
-        $(this).find('span').toggle();
+    $("span[class^='exerpt']").on('click', function() {
+        $(this).find('span').fadeToggle();
         $(this).toggleClass('efade');
+
     });
+
     $("#searchInput").on("keyup", function() {
         var value = $(this).val().toLowerCase();
         if (value.length > 2 || value.length == 0) {

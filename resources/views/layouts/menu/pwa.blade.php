@@ -9,6 +9,8 @@
 <!-- CSRF Token -->
 <meta name="csrf-token" content="{{ csrf_token() }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('templates/pwa/styles/bootstrap.css') }}">
+<!-- flahs -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.3.0/css/flag-icon.css" />
 <link rel="stylesheet" type="text/css" href="{{ asset('templates/pwa/styles/style.css') }}">
 <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i,900,900i|Source+Sans+Pro:300,300i,400,400i,600,600i,700,700i,900,900i&display=swap" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="{{ asset('templates/pwa/fonts/css/fontawesome-all.min.css') }}">
