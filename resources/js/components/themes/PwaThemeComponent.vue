@@ -90,21 +90,21 @@
           <img :src="rest.avatar" width="100px" class="mt-1" />
         </a>
         <a href="#" data-menu="menu-settings" class="back-button1 header-icon header-icon-1">
-          <i class="fas fa-globe-americas"></i>
+          <i class="fas fa-globe-americas" style="font-size:1.5em"></i>
         </a>
         <a href="#" class="back-button header-icon header-icon-2">
           <i class="fas fa-cog fa-spin color-highlight" v-show="loading"></i>
         </a>
 
         <a href="#" data-toggle-theme class="header-icon header-icon-4">
-          <i class="fas fa-lightbulb"></i>
+          <i class="fas fa-lightbulb" style="font-size:1.5em"></i>
         </a>
       </div>
 
       <div id="footer-bar" class="footer-bar-1">
         <a href="#" class="active-nav">
           <i class="fa fa-home"></i>
-          <span>Home</span>
+          <span>Ana Sayfa</span>
         </a>
         <a href="#" data-menu="menu-sidebar-left-1">
           <i class="fa fa-list-alt"></i>
@@ -112,15 +112,23 @@
         </a>
         <a href="#">
           <i class="fas fa-shopping-cart"></i>
-          <span>Sepetim</span>
+          <i class="badge badge-danger notranslate" v-show="pasket.length>0">{{pasket.length}}</i>
+
+          <span>
+            <i
+              class="spinner-grow text-danger notranslate"
+              style="width:1rem;height:1rem"
+              v-show="pasket.length>0"
+            ></i>Sepetim
+          </span>
         </a>
         <a href="#">
           <i class="fas fa-university"></i>
-          <span>About</span>
+          <span>Hakkında</span>
         </a>
         <a href="#">
           <i class="far fa-envelope"></i>
-          <span>Contact</span>
+          <span>İletişim</span>
         </a>
       </div>
 
@@ -177,14 +185,17 @@
                               <button
                                 type="button"
                                 class="btn btn-danger"
+                                :disabled="basketAmount(item.id)==0"
+                                @click="offFromPasket(i,k)"
                                 style="padding: 2px 5px !important;"
                               >
                                 <i class="fas fa-minus"></i>
                               </button>
-                              <span class="lead font-weight-bold">0</span>
+                              <span class="lead font-weight-bold">{{basketAmount(item.id)}}</span>
                               <button
                                 type="button"
                                 class="btn btn-danger"
+                                @click="addToPasket(i,k)"
                                 style="padding: 2px 5px !important;"
                               >
                                 <i class="fas fa-plus"></i>
@@ -234,14 +245,17 @@
                           <button
                             type="button"
                             class="btn btn-danger"
+                            :disabled="basketAmount(item.id)==0"
+                            @click="offFromPasket(i,k)"
                             style="padding: 2px 5px !important;"
                           >
                             <i class="fas fa-minus"></i>
                           </button>
-                          <span class="lead font-weight-bold">0</span>
+                          <span class="lead font-weight-bold">{{basketAmount(item.id)}}</span>
                           <button
                             type="button"
                             class="btn btn-danger"
+                            @click="addToPasket(i,k)"
                             style="padding: 2px 5px !important;"
                           >
                             <i class="fas fa-plus"></i>
@@ -288,14 +302,17 @@
                           <button
                             type="button"
                             class="btn btn-danger"
+                            :disabled="basketAmount(item.id)==0"
+                            @click="offFromPasket(i,k)"
                             style="padding: 2px 5px !important;"
                           >
                             <i class="fas fa-minus"></i>
                           </button>
-                          <span class="lead font-weight-bold">0</span>
+                          <span class="lead font-weight-bold">{{basketAmount(item.id)}}</span>
                           <button
                             type="button"
                             class="btn btn-danger"
+                            @click="addToPasket(i,k)"
                             style="padding: 2px 5px !important;"
                           >
                             <i class="fas fa-plus"></i>
@@ -338,22 +355,38 @@
       >
         <div class="divider divider-margins mb-n2"></div>
         <div class="content">
-          <div class="list-group list-custom-small list-icon-0">
-            <a href="#" class="notranslate">
+          <div id="myLang" class="list-group list-custom-small list-icon-0">
+            <a @click.prevent="doGTranslate(rest.language+'|tr')" href="#" class="notranslate">
               <i class="flag-icon flag-icon-tr font-14 color-blue2-dark"></i>
               <span>Türkiye</span>
             </a>
-            <a href="#" class="notranslate">
+            <a @click.prevent="doGTranslate(rest.language+'|en')" href="#" class="notranslate">
               <i class="flag-icon flag-icon-us font-14 color-blue2-dark"></i>
               <span>English</span>
             </a>
-            <a href="#" class="notranslate">
+            <a @click.prevent="doGTranslate(rest.language+'|ar')" href="#" class="notranslate">
               <i class="flag-icon flag-icon-sa font-14 color-blue2-dark"></i>
               <span>عربي</span>
             </a>
-            <a href="#" class="notranslate">
+            <a @click.prevent="doGTranslate(rest.language+'|fr')" href="#" class="notranslate">
               <i class="flag-icon flag-icon-fr font-14 color-blue2-dark"></i>
               <span>FRANÇAIS</span>
+            </a>
+            <a @click.prevent="doGTranslate(rest.language+'|ru')" href="#" class="notranslate">
+              <i class="flag-icon flag-icon-ru font-14 color-blue2-dark"></i>
+              <span>русский</span>
+            </a>
+            <a @click.prevent="doGTranslate(rest.language+'|sv')" href="#" class="notranslate">
+              <i class="flag-icon flag-icon-se font-14 color-blue2-dark"></i>
+              <span>Svenska</span>
+            </a>
+            <a @click.prevent="doGTranslate(rest.language+'|am')" href="#" class="notranslate">
+              <i class="flag-icon flag-icon-et font-14 color-blue2-dark"></i>
+              <span>አማርኛ</span>
+            </a>
+            <a @click.prevent="doGTranslate(rest.language+'|zh-CN')" href="#" class="notranslate">
+              <i class="flag-icon flag-icon-cn font-14 color-blue2-dark"></i>
+              <span>中文</span>
             </a>
           </div>
         </div>
@@ -428,7 +461,7 @@ export default {
       bell: false,
       selectedItem: null,
       pasket: [],
-      note: null
+      note: null,
     };
     P;
   },
@@ -439,7 +472,7 @@ export default {
   methods: {
     getResults() {
       this.loading = true;
-      axios.get(CONFIG.API_URL + "menu/show/" + this.rest.id).then(res => {
+      axios.get(CONFIG.API_URL + "menu/show/" + this.rest.id).then((res) => {
         this.ds = res.data;
         this.feeds = res.data;
         this.loading = false;
@@ -451,13 +484,57 @@ export default {
       if (p == 0) {
         this.feeds = this.ds;
       } else {
-        this.ds.forEach(e => {
+        this.ds.forEach((e) => {
           if (e.id == p) {
             this.feeds.push(e);
           }
         });
       }
-    }
-  }
+    },
+    addToPasket(cat, index) {
+      console.log("cat:", cat);
+      console.log("index:", index);
+      const isExist = this.pasket.findIndex(
+        (x) => x.id == this.feeds[cat].items[index].id
+      );
+      if (isExist == -1) {
+        let item = {};
+        item.id = this.feeds[cat].items[index].id;
+        item.catID = this.feeds[cat].items[index].category_id;
+        item.avatar = this.feeds[cat].items[index].avatar;
+        item.slug = this.feeds[cat].items[index].slug;
+        item.price = this.feeds[cat].items[index].price;
+        item.title = this.feeds[cat].items[index].title;
+        item.amount = 1;
+        this.pasket.push(item);
+      } else {
+        this.pasket[isExist].amount++;
+      }
+    },
+    offFromPasket(cat, index) {
+      const isExist = this.pasket.findIndex(
+        (x) => x.id == this.feeds[cat].items[index].id
+      );
+      if (isExist != -1) {
+        if (this.pasket[isExist].amount > 1) {
+          this.pasket[isExist].amount--;
+        } else {
+          this.pasket.splice(isExist, 1);
+        }
+      }
+    },
+    basketAmount(id) {
+      const index = this.pasket.findIndex((x) => x.id == id);
+      if (index == -1) {
+        return 0;
+      }
+
+      return this.pasket[index].amount;
+    },
+    doGTranslate(param) {
+      doGTranslate(param);
+      $("#menu-settings").hideMenu();
+    },
+  },
 };
 </script>
