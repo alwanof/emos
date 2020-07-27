@@ -14,7 +14,7 @@
 <link rel="stylesheet" type="text/css" href="{{ asset('templates/pwa/styles/style.css') }}">
 <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i,900,900i|Source+Sans+Pro:300,300i,400,400i,600,600i,700,700i,900,900i&display=swap" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="{{ asset('templates/pwa/fonts/css/fontawesome-all.min.css') }}">
-<link rel="manifest" href="{{asset('templates/pwa/_manifest.json')}}" data-pwa-version="set_in_manifest_and_pwa_js">
+<link rel="manifest" href="{{ asset('templates/pwa/_manifest.json') }}" data-pwa-version="set_in_manifest_and_pwa_js">
 <link rel="icon" href="{{asset('assets/dist/img/log-icon.png')}}" type="image/gif" sizes="16x16">
 <style type="text/css">
 
