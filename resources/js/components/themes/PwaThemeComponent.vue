@@ -110,13 +110,13 @@
           <i class="fa fa-list-alt"></i>
           <span>Kategoriler</span>
         </a>
-        <a href="#">
+        <a href="#" data-menu="menu-basket">
           <i class="fas fa-shopping-cart"></i>
           <i class="badge badge-danger notranslate" v-show="pasket.length>0">{{pasket.length}}</i>
 
           <span>
             <i
-              class="spinner-grow text-danger notranslate"
+              class="spinner-grow color-highlight notranslate"
               style="width:1rem;height:1rem"
               v-show="pasket.length>0"
             ></i>Sepetim
@@ -172,11 +172,9 @@
                         <div class="ml-3">
                           <h4 class="font-600">{{item.title}}</h4>
                           <p class="m-0">
-                            <span class="exerpt efade">
+                            <span class="exerpt efade" @click="showMore">
                               {{item.description.substring(0, 50)}}
-                              <span
-                                style="display: none;"
-                              >{{item.description.substring(50, 320)}}</span>
+                              <span>{{item.description.substring(50, 320)}}</span>
                             </span>
                           </p>
                           <h1 class="pt-3">
@@ -210,7 +208,7 @@
               </div>
             </div>
           </div>
-
+          <!-- Fav section -->
           <div v-for="(feed,i) in feeds" :key="feed.id" v-if="feed.fav">
             <div class="card card-style mb-1">
               <div class="card-header text-center">
@@ -232,11 +230,9 @@
                     <div class="ml-3">
                       <h4 class="font-600">{{item.title}}</h4>
                       <p class="m-0">
-                        <span class="exerpt efade">
+                        <span class="exerpt efade" @click="showMore">
                           {{item.description.substring(0, 50)}}
-                          <span
-                            style="display: none;"
-                          >{{item.description.substring(50, 320)}}</span>
+                          <span>{{item.description.substring(50, 320)}}</span>
                         </span>
                       </p>
                       <h1 class="pt-3">
@@ -268,6 +264,7 @@
               </div>
             </div>
           </div>
+          <!-- fav off -->
           <div v-for="(feed,i) in feeds" :key="feed.id" v-if="!feed.fav">
             <div class="card card-style mb-1">
               <div class="card-header text-center">
@@ -289,11 +286,9 @@
                     <div class="ml-3">
                       <h4 class="font-600">{{item.title}}</h4>
                       <p class="m-0">
-                        <span class="exerpt efade">
+                        <span class="exerpt efade" @click="showMore">
                           {{item.description.substring(0, 50)}}
-                          <span
-                            style="display: none;"
-                          >{{item.description.substring(50, 320)}}</span>
+                          <span>{{item.description.substring(50, 320)}}</span>
                         </span>
                       </p>
                       <h1 class="pt-3">
@@ -392,6 +387,82 @@
         </div>
       </div>
 
+      <!-- basket -->
+      <div
+        id="menu-basket"
+        class="menu menu-box-bottom menu-box-detached rounded-m"
+        data-menu-height="300"
+      >
+        <div class="menu-title">
+          <h1>
+            <i class="fas fa-shopping-cart"></i>
+            Sepetim
+            <i
+              class="badge badge-danger notranslate"
+              v-show="pasket.length>0"
+            >{{pasket.length}}</i>
+          </h1>
+          <p class="color-highlight">Preveiew & Confirm</p>
+          <a href="#" class="close-menu">
+            <i class="fa fa-times"></i>
+          </a>
+        </div>
+        <div class="divider divider-margins mb-n2"></div>
+        <div class="content">
+          <div class="row">
+            <div class="col-sm-12 col-">
+              <h4>
+                <span class="badge badge-pill badge-dark float-right">{{total()}} {{rest.currency}}</span>
+              </h4>
+            </div>
+            <div class="col-sm-12">
+              <div class="card border-dark mt-2">
+                <div class="card-body p-1 m-0">
+                  <table class="table table-striped my-2" v-show="pasket.length>0">
+                    <tr v-for="(item,index) in pasket" :key="item.id">
+                      <td width="70%">{{item.title}}</td>
+                      <td>
+                        <input
+                          type="number"
+                          @keypress="onlyNumberKey($event)"
+                          min="1"
+                          v-model="pasket[index].amount"
+                          class="form-control"
+                          value="1"
+                        />
+                      </td>
+                    </tr>
+                    <tr>
+                      <td colspan="2">
+                        <div class="form-group">
+                          <textarea
+                            v-model="note"
+                            class="form-control"
+                            rows="3"
+                            placeholder="Your Note .."
+                          ></textarea>
+                        </div>
+                      </td>
+                    </tr>
+                  </table>
+
+                  <hr />
+                  <div class="alert alert-danger" role="alert" v-show="pasket.length==0">Sepet boş!</div>
+                  <button
+                    type="button"
+                    class="btn btn-dark btn-lg btn-block"
+                    @click="sendOrder"
+                    v-show="pasket.length>0"
+                  >
+                    <i class="fas fa-paper-plane"></i> SEND!
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <!-- Be sure this is on your main visiting page, for example, the index.html page-->
       <!-- Install Prompt for Android -->
       <div
@@ -478,6 +549,9 @@ export default {
         this.loading = false;
       });
     },
+    showMore(event) {
+      event.target.classList.toggle("efade");
+    },
     loadSection(p) {
       $("#menu-sidebar-left-1").hideMenu();
       this.feeds = [];
@@ -531,6 +605,14 @@ export default {
 
       return this.pasket[index].amount;
     },
+    total() {
+      let total = 0;
+      this.pasket.forEach((item) => {
+        total = total + item.price * item.amount;
+      });
+      return total.toFixed(2);
+    },
+    sendOrder() {},
     doGTranslate(param) {
       doGTranslate(param);
       $("#menu-settings").hideMenu();

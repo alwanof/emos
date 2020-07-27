@@ -18,6 +18,10 @@
     position:relative;
     display:inline-block;
     }
+
+    .efade > span{
+        display: none;
+    }
 </style>
 @stop
 

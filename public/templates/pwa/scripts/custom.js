@@ -5,11 +5,6 @@ $(window).on('load', function() {
 
 $(document).ready(function() {
     'use strict'
-    $("span[class^='exerpt']").on('click', function() {
-        $(this).find('span').fadeToggle();
-        $(this).toggleClass('efade');
-
-    });
 
     $("#searchInput").on("keyup", function() {
         var value = $(this).val().toLowerCase();
