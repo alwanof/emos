@@ -409,14 +409,14 @@
         </div>
         <div class="divider divider-margins mb-n2"></div>
         <div class="content">
-          <div class="row">
+          <div class="row mb-0">
             <div class="col-sm-12 col-">
               <h4>
                 <span class="badge badge-pill badge-dark float-right">{{total()}} {{rest.currency}}</span>
               </h4>
             </div>
             <div class="col-sm-12">
-              <div class="card border-dark mt-2">
+              <div class="card border-dark mb-0 mt-2">
                 <div class="card-body p-1 m-0">
                   <table class="table table-striped my-2" v-show="pasket.length>0">
                     <tr v-for="(item,index) in pasket" :key="item.id">
@@ -456,6 +456,47 @@
                   >
                     <i class="fas fa-paper-plane"></i> SEND!
                   </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Current Orders -->
+          <div class="row mb-2">
+            <div class="col-sm-12" v-for="(order,index) in orders" :key="order.orderID">
+              <div :class="'card border-'+colorOrder(order.status.value)">
+                <div :class="'card-header text-white h3 bg-'+colorOrder(order.status.value)">
+                  <span class="badge badge-dark float-left">#{{order.orderID.substring(0, 4)}}</span>
+                  <button
+                    class="btn btn-danger mx-2 float-right"
+                    v-show="order.status.value==0"
+                    @click="cancel(order.orderID)"
+                  >
+                    <i class="far fa-window-close"></i>
+                  </button>
+                  <span class="badge badge-light float-right">{{status(order.status.value)}}</span>
+                </div>
+                <div class="card-body">
+                  <ul class="list-group">
+                    <li
+                      v-for="(item,innerIndex) in order.items"
+                      :key="item.id"
+                      class="list-group-item d-flex justify-content-between align-items-center"
+                    >
+                      {{item.title}}
+                      <span
+                        class="badge badge-warning badge-pill"
+                      >{{item.subTotal}} {{rest.currency}}</span>
+                    </li>
+
+                    <li
+                      class="list-group-item d-flex justify-content-between text-danger align-items-center list-group-item-secondary"
+                    >
+                      Toplam vergi ve hizmeti içermez, bu yüzden yaklaşık
+                      <span
+                        class="badge badge-dark float-right"
+                      >{{order.total}} {{rest.currency}}</span>
+                    </li>
+                  </ul>
                 </div>
               </div>
             </div>
@@ -534,10 +575,10 @@ export default {
       pasket: [],
       note: null,
     };
-    P;
   },
   created() {
     this.getResults();
+    this.getOrders();
   },
 
   methods: {
@@ -548,6 +589,32 @@ export default {
         this.feeds = res.data;
         this.loading = false;
       });
+    },
+    getOrders() {
+      this.loading = true;
+      CONFIG.DB.collection("orders")
+        .where("user.email", "==", this.rest.email)
+        .where("session", "==", this.sess)
+        .limit(10)
+        .onSnapshot((snap) => {
+          if (snap.size == 0) {
+            this.loading = false;
+            return 0;
+          }
+          snap.forEach((doc) => {
+            let isExist = this.orders.find(
+              (o) => o.orderID === doc.data().orderID
+            );
+            if (!isExist) {
+              this.orders.push(doc.data());
+            } else {
+              const index = this.orders.indexOf(isExist);
+              this.orders.splice(index, 1);
+              this.orders.push(doc.data());
+            }
+          });
+          this.loading = false;
+        });
     },
     showMore(event) {
       event.target.classList.toggle("efade");
@@ -612,10 +679,181 @@ export default {
       });
       return total.toFixed(2);
     },
-    sendOrder() {},
+    sendOrder() {
+      if (this.total() == 0) {
+        alert("Error!!");
+        return false;
+      }
+      this.loading = true;
+
+      let order = {};
+      let items = [];
+      this.pasket.forEach((item) => {
+        items.push({
+          amount: item.amount,
+          catID: item.catID,
+          out: 0,
+          slug: item.slug,
+          id: item.id,
+          price: item.price,
+          subTotal: item.price * item.amount,
+          title: item.title,
+        });
+      });
+      CONFIG.DB.collection("orders")
+        .where("status.value", "==", 0)
+        .where("table.id", "==", this.tbl.id)
+        .get()
+        .then((snap) => {
+          let data;
+
+          let exist = snap.size > 0 ? true : false;
+          if (exist) {
+            snap.forEach((doc) => {
+              data = doc.data();
+            });
+
+            let note = data.note;
+            let allItems = data.items;
+            this.pasket.forEach((item) => {
+              allItems.push({
+                amount: item.amount,
+                catID: item.catID,
+                slug: item.slug,
+                out: 0,
+                id: item.id,
+                price: item.price,
+                subTotal: item.price * item.amount,
+                title: item.title,
+              });
+            });
+            CONFIG.DB.collection("orders")
+              .doc(data.orderID)
+              .update({
+                items: allItems,
+                note: note + "-" + (this.note ? this.note : ""),
+                hash: Math.random(),
+                total: parseFloat(data.total) + parseFloat(this.total()),
+                status: {
+                  timestamp: new Date(),
+                  value: 0,
+                },
+              })
+              .then(() => {
+                this.loading = false;
+                this.resetPasket();
+              });
+          } else {
+            order.items = items;
+            order.note = this.note ? this.note : "";
+            order.remote = false;
+            order.session = this.sess;
+            order.orderID = this.makeid(28);
+            order.status = {
+              timestamp: new Date(),
+              value: 0,
+            };
+            order.timestamp = new Date();
+            order.total = this.total();
+            order.table = {
+              id: this.tbl.id,
+              name: this.tbl.name,
+              slug: this.tbl.slug,
+            };
+            order.user = {
+              id: this.rest.id,
+              name: this.rest.name,
+              email: this.rest.email,
+            };
+            order.grand = this.rest.parent.grand;
+            order.sup = this.rest.parent.sup;
+            order.hash = Math.random();
+            CONFIG.DB.collection("orders")
+              .doc(order.orderID)
+              .set(order)
+              .then(() => {
+                this.loading = false;
+                this.resetPasket();
+              })
+              .catch((error) => {
+                this.loading = false;
+                console.log(error);
+              });
+          }
+        })
+        .catch((error) => {
+          this.loading = false;
+          console.log(error);
+        });
+    },
+    cancel(orderID) {
+      CONFIG.DB.collection("orders")
+        .doc(orderID)
+        .delete()
+        .then(() => {
+          this.loading = false;
+          let isExist = this.orders.find((o) => o.orderID === orderID);
+          this.orders.splice(isExist, 1);
+        })
+        .catch((error) => {
+          this.loading = false;
+          console.log(error);
+        });
+    },
+    makeid(length) {
+      var result = "";
+      var characters =
+        "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+      var charactersLength = characters.length;
+      for (var i = 0; i < length; i++) {
+        result += characters.charAt(
+          Math.floor(Math.random() * charactersLength)
+        );
+      }
+      return result;
+    },
+    resetPasket() {
+      this.pasket = [];
+    },
     doGTranslate(param) {
       doGTranslate(param);
       $("#menu-settings").hideMenu();
+    },
+    status(status) {
+      let result = "";
+      switch (status) {
+        case 0:
+          result = "Alınan";
+          break;
+        case 1:
+          result = "Görüldü";
+          break;
+        case 2:
+          result = "Teslim etti";
+          break;
+        default:
+          result = "";
+          break;
+      }
+      return result;
+    },
+    colorOrder(status) {
+      let result = "";
+      switch (status) {
+        case 0:
+          result = "warning";
+          break;
+        case 1:
+          result = "success";
+          break;
+        case 2:
+          result = "secondary";
+          break;
+        default:
+          result = "";
+          break;
+      }
+      return result;
     },
   },
 };
