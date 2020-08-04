@@ -25,9 +25,9 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password','slug','level','ref'
+        'name', 'email', 'password', 'slug', 'level', 'ref'
     ];
-    protected $appends = ['avatar', 'getroles','parent','refuser','telegram','currency','language'];
+    protected $appends = ['avatar', 'getroles', 'parent', 'refuser', 'telegram', 'currency', 'language'];
 
     /**
      * The attributes that should be hidden for arrays.
@@ -58,75 +58,69 @@ class User extends Authenticatable
     /* 0 root , 1 agent , 2 grand , 3 rest , 4 operator */
 
 
-    public function getRefuserAttribute(){
-        if($this->ref==0){
+    public function getRefuserAttribute()
+    {
+        if ($this->ref == 0) {
             return false;
         }
         return User::find($this->ref);
-
     }
     public function getParentAttribute()
     {
-        $parents=[
-            'sup'=>0,
-            'grand'=>0,
-            'rest'=>0,
-            'agent'=>0
+        $parents = [
+            'sup' => 0,
+            'grand' => 0,
+            'rest' => 0,
+            'agent' => 0
         ];
-        if($this->level==4){
-            $parents['agent']=$this->id;
-            $rest=User::findOrFail($this->ref);
-            $parents['rest']=$rest->id;
-            if($rest->ref!=0){
-                $rest_ref=User::findOrFail($rest->ref);
-                    if($rest_ref->level==2){
-                        $parents['grand']=$rest_ref->id;
-                        if($rest_ref->ref!=0){
-                            $grand_ref=User::findOrFail($rest_ref->ref);
-                            if($grand_ref->level==1){
-                                $parents['sup']=$grand_ref->id;
-                            }
+        if ($this->level == 4) {
+            $parents['agent'] = $this->id;
+            $rest = User::findOrFail($this->ref);
+            $parents['rest'] = $rest->id;
+            if ($rest->ref != 0) {
+                $rest_ref = User::findOrFail($rest->ref);
+                if ($rest_ref->level == 2) {
+                    $parents['grand'] = $rest_ref->id;
+                    if ($rest_ref->ref != 0) {
+                        $grand_ref = User::findOrFail($rest_ref->ref);
+                        if ($grand_ref->level == 1) {
+                            $parents['sup'] = $grand_ref->id;
                         }
-
-                    }elseif($rest_ref->level==1){
-                        $parents['sup']=$rest_ref->id;
                     }
-
-            }
-        }
-        if($this->level==3){
-            $parents['rest']=$this->id;
-            if($this->ref!=0){
-                $rest_ref=User::findOrFail($this->ref);
-
-                    if($rest_ref->level==2){
-                        $parents['grand']=$rest_ref->id;
-                        if($rest_ref->ref!=0){
-                            $grand_ref=User::findOrFail($rest_ref->ref);
-                            if($grand_ref->level==1){
-                                $parents['sup']=$grand_ref->id;
-                            }
-                        }
-
-                    }elseif($rest_ref->level==1){
-                        $parents['sup']=$rest_ref->id;
-                    }
-
-            }
-
-        }
-        if($this->level==2){
-            $parents['grand']=$this->id;
-            if($this->ref!=0){
-                $grand_ref=User::findOrFail($this->ref);
-                if($grand_ref->level==1){
-                    $parents['sup']=$grand_ref->id;
+                } elseif ($rest_ref->level == 1) {
+                    $parents['sup'] = $rest_ref->id;
                 }
             }
-
         }
-        if($this->level==1){
-            $parents['sup']=$this->id;
+        if ($this->level == 3) {
+            $parents['rest'] = $this->id;
+            if ($this->ref != 0) {
+                $rest_ref = User::findOrFail($this->ref);
+
+                if ($rest_ref->level == 2) {
+                    $parents['grand'] = $rest_ref->id;
+                    if ($rest_ref->ref != 0) {
+                        $grand_ref = User::findOrFail($rest_ref->ref);
+                        if ($grand_ref->level == 1) {
+                            $parents['sup'] = $grand_ref->id;
+                        }
+                    }
+                } elseif ($rest_ref->level == 1) {
+                    $parents['sup'] = $rest_ref->id;
+                }
+            }
+        }
+        if ($this->level == 2) {
+            $parents['grand'] = $this->id;
+            if ($this->ref != 0) {
+                $grand_ref = User::findOrFail($this->ref);
+                if ($grand_ref->level == 1) {
+                    $parents['sup'] = $grand_ref->id;
+                }
+            }
+        }
+        if ($this->level == 1) {
+            $parents['sup'] = $this->id;
         }
         return $parents;
     }
@@ -140,15 +134,15 @@ class User extends Authenticatable
 
     public function getTelegramAttribute()
     {
-        return (is_object($this->getSetting('telegram')))?$this->getSetting('telegram')->value:null;
+        return (is_object($this->getSetting('telegram'))) ? $this->getSetting('telegram')->value : null;
     }
     public function getCurrencyAttribute()
     {
-        return (is_object($this->getSetting('currency')))?$this->getSetting('currency')->value:null;
+        return (is_object($this->getSetting('currency'))) ? $this->getSetting('currency')->value : null;
     }
     public function getLanguageAttribute()
     {
-        return (is_object($this->getSetting('language')))?$this->getSetting('language')->value:'tr';
+        return (is_object($this->getSetting('language'))) ? $this->getSetting('language')->value : 'tr';
     }
 
     public function getGetrolesAttribute()
@@ -167,5 +161,4 @@ class User extends Authenticatable
     {
         return $this->hasMany(Setting::class);
     }
-
 }

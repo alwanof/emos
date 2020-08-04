@@ -9,35 +9,30 @@
       <div id="menu-sidebar-left-1" class="bg-white menu menu-box-left" data-menu-width="320">
         <div class="d-flex">
           <a
-            href="#"
+            :href="getSetting('facebook')"
             class="flex-fill icon icon-m text-center color-facebook border-bottom border-right"
           >
             <i class="fab font-12 fa-facebook-f"></i>
           </a>
           <a
-            href="#"
+            :href="getSetting('twitter')"
             class="flex-fill icon icon-m text-center color-twitter border-bottom border-right"
           >
             <i class="fab font-12 fa-twitter"></i>
           </a>
           <a
-            href="#"
+            :href="getSetting('instagram')"
             class="flex-fill icon icon-m text-center color-instagram border-bottom border-right"
           >
             <i class="fab font-12 fa-instagram"></i>
           </a>
           <a
-            href="#"
-            class="flex-fill icon icon-m text-center color-whatsapp border-bottom border-right"
+            :href="getSetting('youtube')"
+            class="flex-fill icon icon-m text-center color-instagram border-bottom border-right"
           >
-            <i class="fab font-12 fa-whatsapp"></i>
+            <i class="fab font-12 fa-youtube"></i>
           </a>
-          <a
-            href="#"
-            class="flex-fill icon icon-m text-center color-linkedin border-bottom border-right"
-          >
-            <i class="fab font-12 fa-linkedin-in"></i>
-          </a>
+
           <a
             href="#"
             class="close-menu flex-fill icon icon-m text-center color-red2-dark border-bottom"
@@ -53,7 +48,7 @@
             <div class="flex-grow-1">
               <h1 class="font-22 font-700 mb-0">{{rest.name}}</h1>
               <p class="mt-n2 font-10 font-400">
-                <a :href="'mailto:'+rest.email">{{rest.email}}</a>
+                <a :href="'mailto:'+getSetting('contact_email')">{{getSetting('contact_email')}}</a>
               </p>
             </div>
           </div>
@@ -102,7 +97,7 @@
       </div>
 
       <div id="footer-bar" class="footer-bar-1">
-        <a href="#" class="active-nav">
+        <a href="#" :class="(page==0)?'active-nav':''" @click.prevent="page=0">
           <i class="fa fa-home"></i>
           <span>Ana Sayfa</span>
         </a>
@@ -122,11 +117,11 @@
             ></i>Sepetim
           </span>
         </a>
-        <a href="#">
+        <a href="#" :class="(page==1)?'active-nav':''" @click.prevent="page=1">
           <i class="fas fa-university"></i>
           <span>Hakkında</span>
         </a>
-        <a href="#">
+        <a href="#" data-menu="menu-contact">
           <i class="far fa-envelope"></i>
           <span>İletişim</span>
         </a>
@@ -134,7 +129,7 @@
 
       <!--start of page content, add your stuff here-->
       <div class="page-content header-clear-medium mt-5">
-        <section id="home">
+        <section id="home" v-show="page==0">
           <!-- Search form -->
           <div class="search-box search-header bg-theme card-style mr-3 ml-3">
             <i class="fa fa-search"></i>
@@ -321,6 +316,38 @@
             </div>
           </div>
         </section>
+
+        <section id="about" v-show="page==1">
+          <div
+            data-card-height="240"
+            class="card card-style mb-4 preload-img"
+            :data-src="fullPath+'/templates/pwa/img/promo.jpg'"
+            :style="'height: 240px; background-image: url('+fullPath+'/templates/pwa/img/promo.jpg);'"
+          >
+            <div class="card-center text-center p-2">
+              <img
+                :src="rest.avatar"
+                :alt="rest.name"
+                :title="rest.name"
+                class="img-thumbnail rounded-circle"
+                width="150"
+              />
+              <h1 class="color-white font-28">{{ rest.name }}</h1>
+            </div>
+            <div class="card-overlay bg-black opacity-80"></div>
+          </div>
+          <div class="card card-overflow card-style">
+            <div class="content">
+              <div class="d-flex">
+                <div class="flex-grow-1">
+                  <h2 class="font-30">Hakkımızda</h2>
+                </div>
+              </div>
+              <div class="divider"></div>
+              <p v-html="getSetting('about')"></p>
+            </div>
+          </div>
+        </section>
         <!-- go2top icon -->
         <div class="content mt-5">
           <div class="row">
@@ -387,11 +414,74 @@
         </div>
       </div>
 
+      <!-- contact -->
+      <div
+        id="menu-contact"
+        class="menu menu-box-bottom menu-box-detached rounded-m"
+        data-menu-height="500"
+      >
+        <div class="menu-title">
+          <h1>
+            <i class="far fa-envelope"></i>
+            Gözden Geçirmek
+          </h1>
+          <p class="color-highlight">Şikayet & not</p>
+          <a href="#" class="close-menu">
+            <i class="fa fa-times"></i>
+          </a>
+        </div>
+        <div class="divider divider-margins mb-n2"></div>
+        <div class="content">
+          <form class="contactForm">
+            <fieldset>
+              <div class="form-field form-name">
+                <label class="contactNameField color-theme" for="contactNameField">
+                  Ad:
+                  <span>(gereklidir)</span>
+                </label>
+                <input
+                  type="text"
+                  class="contactField round-small requiredField"
+                  v-model="contact.name"
+                />
+              </div>
+              <div class="form-field form-email">
+                <label class="contactEmailField color-theme" for="contactEmailField">
+                  E-posta:
+                  <span>(gereklidir)</span>
+                </label>
+                <input type="text" name="contactEmailField" v-model="contact.email" />
+              </div>
+              <div class="form-field form-text">
+                <label class="contactMessageTextarea color-theme" for="contactMessageTextarea">
+                  İleti:
+                  <span>(gereklidir)</span>
+                </label>
+                <textarea
+                  name="contactMessageTextarea"
+                  class="contactTextarea round-small requiredField"
+                  v-model="contact.msg"
+                ></textarea>
+              </div>
+              <div class="form-button">
+                <input
+                  type="button"
+                  @click="notify"
+                  class="btn bg-highlight text-uppercase font-900 btn-m btn-full rounded-sm shadow-xl contactSubmitButton"
+                  value="Gönderme"
+                />
+              </div>
+            </fieldset>
+          </form>
+        </div>
+      </div>
+      <!-- end /contact -->
+
       <!-- basket -->
       <div
         id="menu-basket"
         class="menu menu-box-bottom menu-box-detached rounded-m"
-        data-menu-height="300"
+        data-menu-height="500"
       >
         <div class="menu-title">
           <h1>
@@ -450,7 +540,7 @@
                   <div class="alert alert-danger" role="alert" v-show="pasket.length==0">Sepet boş!</div>
                   <button
                     type="button"
-                    class="btn btn-dark btn-lg btn-block"
+                    class="btn btn-dark btn-lg btn-block bg-highlight text-uppercase font-900 btn-full rounded-sm shadow-xl"
                     @click="sendOrder"
                     v-show="pasket.length>0"
                   >
@@ -503,7 +593,44 @@
           </div>
         </div>
       </div>
+      <!-- success box -->
 
+      <div
+        id="menu-success-1"
+        class="menu menu-box-bottom menu-box-detached rounded-m"
+        data-menu-height="305"
+        data-menu-effect="menu-over"
+      >
+        <h1 class="text-center mt-4">
+          <i class="fa fa-3x fa-check-circle color-green1-dark"></i>
+        </h1>
+        <h1 class="text-center mt-3 text-uppercase font-900">Her Şey İyi</h1>
+        <p class="boxed-text-l">Önceki işlemlerinize devam edebilirsiniz.</p>
+        <a
+          href="#"
+          class="close-menu btn btn-m btn-center-m button-s shadow-l rounded-s text-uppercase font-900 bg-green1-light"
+        >Harika</a>
+      </div>
+      <div
+        id="menu-success-2"
+        class="menu menu-box-bottom menu-box-detached bg-green1-dark rounded-m"
+        data-menu-height="305"
+        data-menu-effect="menu-over"
+      >
+        <h1 class="text-center mt-4">
+          <i class="fa fa-3x fa-check-circle color-white shadow-xl rounded-circle"></i>
+        </h1>
+        <h1 class="text-center mt-3 text-uppercase font-900 color-white">All's Good</h1>
+        <p class="boxed-text-l color-white opacity-70">
+          You can continue with your previous actions.
+          <br />Easy to attach these to success calls.
+        </p>
+        <a
+          href="#"
+          class="close-menu btn btn-m btn-center-m button-s shadow-l rounded-s text-uppercase font-900 bg-white"
+        >Great</a>
+      </div>
+      <!-- /end success box -->
       <!-- Be sure this is on your main visiting page, for example, the index.html page-->
       <!-- Install Prompt for Android -->
       <div
@@ -513,9 +640,9 @@
         data-menu-effect="menu-parallax"
       >
         <div class="boxed-text-l mt-4">
-          <img class="rounded-l mb-3" src="app/icons/icon-128x128.png" alt="img" width="90" />
-          <h4 class="mt-3">Add Sticky on your Home Screen</h4>
-          <p>Install Sticky on your home screen, and access it just like a regular app. It really is that simple!</p>
+          <img class="rounded-l mb-3" :src="rest.avatar" alt="img" width="90" />
+          <h4 class="mt-3">Add {{rest.name}} on your Home Screen</h4>
+          <p>Install {{rest.name}} on your home screen, and access it just like a regular app. It really is that simple!</p>
           <a
             href="#"
             class="pwa-install btn btn-s rounded-s shadow-l text-uppercase font-900 bg-highlight mb-2"
@@ -537,11 +664,11 @@
         data-menu-effect="menu-parallax"
       >
         <div class="boxed-text-xl mt-4">
-          <img class="rounded-l mb-3" src="app/icons/icon-128x128.png" alt="img" width="90" />
-          <h4 class="mt-3">Add Sticky on your Home Screen</h4>
+          <img class="rounded-l mb-3" :src="rest.avatar" alt="img" width="90" />
+          <h4 class="mt-3">Add {{rest.name}} on your Home Screen</h4>
           <p
             class="mb-0 pb-0"
-          >Install Sticky on your home screen, and access it just like a regular app. Open your Safari menu and tap "Add to Home Screen".</p>
+          >Install {{rest.name}} on your home screen, and access it just like a regular app. Open your Safari menu and tap "Add to Home Screen".</p>
           <div class="clear"></div>
           <a
             href="#"
@@ -570,7 +697,11 @@ export default {
       ds: [],
       feeds: [],
       orders: [],
-      bell: false,
+      contact: {
+        name: null,
+        email: null,
+        msg: null,
+      },
       selectedItem: null,
       pasket: [],
       note: null,
@@ -589,6 +720,25 @@ export default {
         this.feeds = res.data;
         this.loading = false;
       });
+    },
+    notify() {
+      const msg =
+        "👋" +
+        this.tbl.name +
+        "🔔" +
+        this.contact.name +
+        "<" +
+        this.contact.email +
+        ">:" +
+        this.contact.msg;
+      axios.get(
+        "https://api.telegram.org/bot1035645137:AAHWzg_1YzGUYD_XMZrz28tsMyzZSqq0a9Y/sendMessage?chat_id=@" +
+          this.rest.telegram +
+          "&text=" +
+          msg
+      );
+      $("#menu-contact").hideMenu();
+      $("#menu-success-1").showMenu();
     },
     getOrders() {
       this.loading = true;
@@ -814,6 +964,11 @@ export default {
     },
     resetPasket() {
       this.pasket = [];
+    },
+    getSetting(setting) {
+      let obj = this.rest.settings.find((o) => o.name === setting);
+      let res = obj ? obj.value : "#";
+      return res;
     },
     doGTranslate(param) {
       doGTranslate(param);

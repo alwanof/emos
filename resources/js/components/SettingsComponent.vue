@@ -100,13 +100,13 @@
                     <i class="fas fa-user-cog"></i>
                   </span>
                 </div>
-                <input
-                  type="text"
+                <textarea
                   v-model="setting.value"
-                  class="form-control"
                   :placeholder="local[lang+'.config']['value']"
+                  cols="30"
+                  rows="10"
                   required
-                />
+                ></textarea>
               </div>
               <div v-if="errors && errors.value" class="text-danger">{{ errors.value[0] }}</div>
             </div>
@@ -138,10 +138,10 @@ export default {
       setting: {
         id: null,
         name: null,
-        value: null
+        value: null,
       },
       keywords: null,
-      errors: []
+      errors: [],
     };
   },
   created() {
@@ -152,7 +152,7 @@ export default {
       if (this.keywords.length > 2 || this.keywords.length === 0) {
         this.search();
       }
-    }
+    },
   },
   methods: {
     getResults(page = 1) {
@@ -168,7 +168,7 @@ export default {
             "&api_token=" +
             this.auth.api_token
         )
-        .then(res => {
+        .then((res) => {
           this.settings = res.data;
           this.loading = false;
         });
@@ -188,7 +188,7 @@ export default {
             "&api_token=" +
             this.auth.api_token
         )
-        .then(res => {
+        .then((res) => {
           this.settings = res.data;
           this.loading = false;
         });
@@ -204,18 +204,17 @@ export default {
             this.auth.api_token,
           this.setting
         )
-        .then(res => {
+        .then((res) => {
           this.loading = false;
           $("#addFeed").modal("hide");
           toastr["success"](
             this.local[this.lang + ".alerts"]["updated"],
             this.local[this.lang + ".alerts"]["ok"]
           );
-            this.clearFields();
+          this.clearFields();
           this.getResults(1);
-
         })
-        .catch(error => {
+        .catch((error) => {
           this.loading = false;
           if (error.response.status === 422) {
             this.errors = error.response.data.errors || {};
@@ -236,9 +235,9 @@ export default {
       $("#addFeed").modal("show");
     },
     clearFields() {
-      this.setting.name =this.setting.id= this.setting.value = null;
-    }
-  }
+      this.setting.name = this.setting.id = this.setting.value = null;
+    },
+  },
 };
 </script>
 

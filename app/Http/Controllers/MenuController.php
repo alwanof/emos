@@ -15,7 +15,7 @@ class MenuController extends Controller
     {
 
 
-        $user = User::where('slug', $restaurant)->first();
+        $user = User::with('settings')->where('slug', $restaurant)->first();
         if (!$user) {
             return abort(404);
         }
@@ -52,7 +52,7 @@ class MenuController extends Controller
             'address' => (isset($request->address)) ? $request->address : null,
         ];
 
-        $user = User::where('slug', $restaurant)->first();
+        $user = User::with('settings')->where('slug', $restaurant)->first();
 
         if (!$user) {
             return abort(404);

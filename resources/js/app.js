@@ -54,6 +54,7 @@ Vue.component('orders-details', require('./components/info/OrdersDetailsComponen
 Vue.component('members-sheet', require('./components/MembersSheetComponent.vue').default);
 Vue.component('theme-default', require('./components/themes/DefaultThemeComponent.vue').default);
 Vue.component('theme-pwa', require('./components/themes/PwaThemeComponent.vue').default);
+Vue.component('remote-pwa', require('./components/themes/PwaRemoteComponent.vue').default);
 Vue.component('theme-water', require('./components/themes/WaterThemeComponent.vue').default);
 Vue.component('theme-remote', require('./components/themes/RemoteThemeComponent.vue').default);
 Vue.component('water-remote', require('./components/themes/WaterRemoteComponent.vue').default);
@@ -79,7 +80,7 @@ const CONFIG = {
     API_URL: 'https://' + window.location.hostname + '/emos/public/api/',
     PATH: '/emos/public',
     //API_URL: 'http://' + window.location.hostname + '/emos/public/api/',
-    // PATH: '/emos/public',
+    //PATH: '/emos/public',
     FULL_PATH: 'https://' + window.location.hostname + '/emos/public',
     LANG: translations,
     DB: db,
