@@ -20,7 +20,7 @@
             <div class="description-block border-right">
               <span class="description-percentage text-danger">
                 <i class="fas fa-concierge-bell"></i>
-                {{orders.amountYesterday}}
+                {{orders.yesterday}}
               </span>
               <h5 class="description-header">{{ coin }}{{orders.incomeYesterday}}</h5>
               <span class="description-text">{{ local[lang+".info"]["yesterday"] }}</span>
@@ -32,7 +32,7 @@
             <div class="description-block border-right">
               <span class="description-percentage text-danger">
                 <i class="fas fa-concierge-bell"></i>
-                {{orders.amountLastwaek}}
+                {{orders.lastweak}}
               </span>
               <h5 class="description-header">{{ coin }}{{orders.incomeLastwaek}}</h5>
               <span class="description-text">{{ local[lang+".info"]["lastweak"] }}</span>
@@ -44,7 +44,7 @@
             <div class="description-block border-right">
               <span class="description-percentage text-danger">
                 <i class="fas fa-concierge-bell"></i>
-                {{orders.amountLastmonth}}
+                {{orders.lastmonth}}
               </span>
               <h5 class="description-header">{{ coin }}{{orders.incomeLastmonth}}</h5>
               <span class="description-text">{{ local[lang+".info"]["lastmonth"] }}</span>
@@ -56,7 +56,7 @@
             <div class="description-block">
               <span class="description-percentage text-danger">
                 <i class="fas fa-concierge-bell"></i>
-                {{orders.amountLastyear}}
+                {{orders.lastyear}}
               </span>
               <h5 class="description-header">{{ coin }}{{orders.incomeLastyear}}</h5>
               <span class="description-text">{{ local[lang+".info"]["lastyear"] }}</span>
@@ -96,9 +96,9 @@ export default {
         percYesterday: 0,
         percLastweak: 0,
         percLastmonth: 0,
-        percLastyear: 0
+        percLastyear: 0,
       },
-      errors: []
+      errors: [],
     };
   },
   created() {
@@ -106,34 +106,39 @@ export default {
 
     const today = new Date();
     const now = today.getTime() / 1000;
+
     //today.setDate(today.getDate() - 1);
     //const today = new Date(1555653600000);*/
 
     CONFIG.DB.collection("orders")
       .where("user.email", "==", this.auth.email)
       .get()
-      .then(snapshot => {
-        snapshot.forEach(doc => {
+      .then((snapshot) => {
+        snapshot.forEach((doc) => {
           const firebaseDate = new Date(
             doc.data().timestamp.toDate()
           ).toDateString();
+
           const datePoint = new Date(firebaseDate).getTime() / 1000;
+
           if (now - datePoint > 86400 && now - datePoint < 172800) {
             this.orders.yesterday++;
             let amount = 0;
             let total = 0;
-            doc.data().items.forEach(item => {
+            doc.data().items.forEach((item) => {
               amount = amount + item.amount;
               total = total + item.subTotal;
             });
+
             this.orders.incomeYesterday = total;
             this.orders.amountYesterday = amount;
           }
           if (now - datePoint < 604800) {
             this.orders.lastweak++;
+
             let amount = 0;
             let total = 0;
-            doc.data().items.forEach(item => {
+            doc.data().items.forEach((item) => {
               amount = amount + item.amount;
               total = total + item.subTotal;
             });
@@ -144,7 +149,7 @@ export default {
             this.orders.lastmonth++;
             let amount = 0;
             let total = 0;
-            doc.data().items.forEach(item => {
+            doc.data().items.forEach((item) => {
               amount = amount + item.amount;
               total = total + item.subTotal;
             });
@@ -155,7 +160,7 @@ export default {
             this.orders.lastyear++;
             let amount = 0;
             let total = 0;
-            doc.data().items.forEach(item => {
+            doc.data().items.forEach((item) => {
               amount = amount + item.amount;
               total = total + item.subTotal;
             });
@@ -168,7 +173,7 @@ export default {
       });
   },
 
-  methods: {}
+  methods: {},
 };
 </script>
 

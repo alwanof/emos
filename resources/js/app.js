@@ -13,6 +13,10 @@ firebase.initializeApp({
     apiKey: 'AIzaSyC-dFnAYRRg8SyDGa-DzA66Hc3Z6Uc9Fko ',
     projectId: 'emossmartmenu'
 });
+/* firebase.initializeApp({
+    apiKey: 'AIzaSyCfHMiEGontiU0StbGpoNKZyBUxMunSkfM',
+    projectId: 'emostestmode'
+}); */
 const db = firebase.firestore();
 const firestore = firebase.firestore;
 const dbAuth = firebase.auth();
@@ -79,8 +83,8 @@ function coolNumber(num) {
 const CONFIG = {
     API_URL: 'https://' + window.location.hostname + '/emos/public/api/',
     PATH: '/emos/public',
-    //API_URL: 'http://' + window.location.hostname + '/emos/public/api/',
-    //PATH: '/emos/public',
+    /*    API_URL: 'http://' + window.location.hostname + '/emos/public/api/',
+       PATH: '/emos/public', */
     FULL_PATH: 'https://' + window.location.hostname + '/emos/public',
     LANG: translations,
     DB: db,

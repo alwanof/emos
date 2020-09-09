@@ -55,7 +55,9 @@
         </div>
 
         <div class="mr-3 ml-3">
-          <span class="text-uppercase font-900 font-11 opacity-30">Kategoriler</span>
+          <span
+            class="text-uppercase font-900 font-11 opacity-30"
+          >{{ local[lang+".start"]["categories"] }}</span>
           <div class="list-group list-custom-small list-icon-0">
             <a href="#" @click.prevent="loadSection(0)">
               <i class="fa font-14 fa-list-alt color-blue2-dark"></i>
@@ -99,11 +101,11 @@
       <div id="footer-bar" class="footer-bar-1">
         <a href="#" :class="(page==0)?'active-nav':''" @click.prevent="page=0">
           <i class="fa fa-home"></i>
-          <span>Ana Sayfa</span>
+          <span>{{ local[lang+".start"]["home"] }}</span>
         </a>
         <a href="#" data-menu="menu-sidebar-left-1">
           <i class="fa fa-list-alt"></i>
-          <span>Kategoriler</span>
+          <span>{{ local[lang+".start"]["categories"] }}</span>
         </a>
         <a href="#" data-menu="menu-basket">
           <i class="fas fa-shopping-cart"></i>
@@ -114,16 +116,17 @@
               class="spinner-grow color-highlight notranslate"
               style="width:1rem;height:1rem"
               v-show="pasket.length>0"
-            ></i>Sepetim
+            ></i>
+            {{ local[lang+".start"]["basket"] }}
           </span>
         </a>
         <a href="#" :class="(page==1)?'active-nav':''" @click.prevent="page=1">
           <i class="fas fa-university"></i>
-          <span>Hakkında</span>
+          <span>{{ local[lang+".start"]["about"] }}</span>
         </a>
         <a href="#" data-menu="menu-contact">
           <i class="far fa-envelope"></i>
-          <span>İletişim</span>
+          <span>{{ local[lang+".start"]["contact"] }}</span>
         </a>
       </div>
 
@@ -137,7 +140,7 @@
               type="text"
               id="searchInput"
               class="border-0"
-              placeholder="What are you looking for? "
+              :placeholder="local[lang+'.start']['search_hint']"
             />
             <a href="#" class="disabled">
               <i class="fa fa-times-circle color-red2-dark"></i>
@@ -812,6 +815,8 @@ export default {
       path: CONFIG.PATH,
       fullPath: CONFIG.FULL_PATH,
       loading: false,
+      local: CONFIG.LANG,
+      lang: this.rest.language,
       page: 0,
       sec: 0,
       ds: [],
@@ -842,6 +847,7 @@ export default {
       note: null,
     };
   },
+
   created() {
     this.getResults();
     this.getOrders();

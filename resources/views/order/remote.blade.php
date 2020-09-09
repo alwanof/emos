@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title',__('orders.remote_order'))
+@section('title', __('orders.remote_order'))
 
 @section('nav')
     <div class="container-fluid">
@@ -15,16 +15,18 @@
 @endsection
 @section('content')
     <!-- Default box -->
-    <remote-orders :acl="{{json_encode($acl)}}"  :actor="{{json_encode($actor)}}" :lang={{ json_encode(app()->getLocale()) }} :auth="{{ json_encode(Auth::user()) }}" ></remote-orders>
+    <remote-orders :acl="{{ json_encode($acl) }}" :actor="{{ json_encode($actor) }}"
+        :lang={{ json_encode(app()->getLocale()) }} :auth="{{ json_encode(Auth::user()) }}"></remote-orders>
 
 @endsection
 
 @section('css')
-    <link rel="stylesheet" href="{{asset('assets/plugins/toastr/toastr.css')}}">
+    <link rel="stylesheet" href="{{ asset('assets/plugins/toastr/toastr.css') }}">
 @endsection
 
 @section('js')
-    <script src="{{asset('assets/plugins/toastr/toastr.min.js')}}"></script>
+    <script src="{{ asset('assets/plugins/toastr/toastr.min.js') }}"></script>
+
 
 
 

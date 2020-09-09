@@ -69,13 +69,11 @@
         @yield('content')
     </div>
 
-
-
-
     <script type="text/javascript" src="{{ asset('templates/pwa/scripts/jquery.js') }}"></script>
     <script type="text/javascript" src="{{ asset('templates/pwa/scripts/bootstrap.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('templates/pwa/scripts/custom.js') }}"></script>
     <script src="{{ asset('js/app.js') }}"></script>
+    @yield('langjs')
     <script type="text/javascript">
         function googleTranslateElementInit2() {
             new google.translate.TranslateElement({
