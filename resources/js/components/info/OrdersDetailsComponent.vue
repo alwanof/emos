@@ -111,13 +111,15 @@ export default {
     //const today = new Date(1555653600000);*/
 
     CONFIG.DB.collection("orders")
-      .where("user.email", "==", this.auth.email)
+      .where("user.email", "==", "test1@emosqr.com") //this.auth.email
       .get()
       .then((snapshot) => {
         snapshot.forEach((doc) => {
           const firebaseDate = new Date(
             doc.data().timestamp.toDate()
           ).toDateString();
+
+          console.log(firebaseDate);
 
           const datePoint = new Date(firebaseDate).getTime() / 1000;
 

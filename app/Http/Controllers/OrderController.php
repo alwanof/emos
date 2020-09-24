@@ -13,12 +13,13 @@ class OrderController extends Controller
     {
         $this->middleware('auth');
     }
-    public function rightNow(){
-        $actor=auth()->user();
+    public function rightNow()
+    {
+        $actor = auth()->user();
 
-        if($actor->hasRole('restaurant')){
-            if($actor->parent['rest']!=$actor->id){
-                $actor=User::find($actor->parent['rest']);
+        if ($actor->hasRole('restaurant')) {
+            if ($actor->parent['rest'] != $actor->id) {
+                $actor = User::find($actor->parent['rest']);
             }
         }
         $acl = [
@@ -34,14 +35,15 @@ class OrderController extends Controller
 
 
 
-        return view('order.new', compact(['acl','actor']));
+        return view('order.new', compact(['acl', 'actor']));
     }
-    public function remote(){
-        $actor=auth()->user();
+    public function remote()
+    {
+        $actor = auth()->user();
 
-        if($actor->hasRole('restaurant')){
-            if($actor->parent['rest']!=$actor->id){
-                $actor=User::find($actor->parent['rest']);
+        if ($actor->hasRole('restaurant')) {
+            if ($actor->parent['rest'] != $actor->id) {
+                $actor = User::find($actor->parent['rest']);
             }
         }
         $acl = [
@@ -57,17 +59,28 @@ class OrderController extends Controller
 
 
 
-        return view('order.remote', compact(['acl','actor']));
+        return view('order.remote', compact(['acl', 'actor']));
     }
-    public function stack(){
+    public function printInvoice($orderID, $pureTotal)
+    {
+        $actor = auth()->user();
 
-        $acl = [
+        if ($actor->hasRole('restaurant')) {
+            if ($actor->parent['rest'] != $actor->id) {
+                $actor = User::find($actor->parent['rest']);
+            }
+        }
 
-        ];
-        $hook=Hook::where('user_id',auth()->user()->id)->get()->pluck('category_id')->toArray();
-        $rest=User::find(auth()->user()->ref);
+        return view('order.print', compact(['orderID', 'pureTotal', 'actor']));
+    }
+    public function stack()
+    {
+
+        $acl = [];
+        $hook = Hook::where('user_id', auth()->user()->id)->get()->pluck('category_id')->toArray();
+        $rest = User::find(auth()->user()->ref);
 
 
-        return view('stack.index', compact(['acl','hook','rest']));
+        return view('stack.index', compact(['acl', 'hook', 'rest']));
     }
 }

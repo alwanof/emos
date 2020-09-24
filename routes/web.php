@@ -13,7 +13,7 @@
 
 use App\User;
 
-Route::get('/', function (){
+Route::get('/', function () {
     return redirect('/login');
 })->name('route_start');
 
@@ -26,11 +26,11 @@ Route::get('/menu/{rest}', 'MenuController@remote')->name('menu.remote');
 
 //Route::get('/print/all/{user}', 'MenuController@print_all')->name('print.all');
 
-Route::get('/language/{language}','LanguageController@index')->name('switcher')->where('language','[A-Za-z]+');
+Route::get('/language/{language}', 'LanguageController@index')->name('switcher')->where('language', '[A-Za-z]+');
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('lang/{locale}', 'HomeController@lang')->name('lang');
-Route::get('/busy','StartController@tableIsBusy');
+Route::get('/busy', 'StartController@tableIsBusy');
 
 Route::prefix('admin')->group(function () {
     Route::get('/users', 'UserController@index')->name('users')->middleware('permission:access-users');
@@ -51,7 +51,5 @@ Route::prefix('admin')->group(function () {
     Route::get('/reset/{rest}', 'UserController@reset')->name('users.reset');
     Route::get('/hooks', 'HookController@index')->name('hooks.index');
     Route::get('/stack', 'OrderController@stack')->name('stack.index');
-
-
+    Route::get('/invoice/print/{orderID}/{purePrice}', 'OrderController@printInvoice')->name('invoice.print');
 });
-
