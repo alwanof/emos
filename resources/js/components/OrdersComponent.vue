@@ -384,6 +384,14 @@
             </button>
           </div>
           <div class="modal-body">
+            <label for="tax">Tax</label>
+            <input
+              id="tax"
+              type="text"
+              class="form-control"
+              v-model="waitingExpand.tax"
+            />
+            <br />
             <label for="puretotal">Final Total</label>
             <input
               id="puretotal"
@@ -404,7 +412,11 @@
             <button
               type="button"
               @click="
-                getInvoice(waitingExpand.orderID, waitingExpand.pureTotal)
+                getInvoice(
+                  waitingExpand.orderID,
+                  waitingExpand.pureTotal,
+                  waitingExpand.tax
+                )
               "
               target="_blank"
               class="btn btn-primary"
@@ -423,7 +435,7 @@ import Timer from "../../../public/assets/dist/js/lib/timer/easytimer.min";
 
 export default {
   name: "OrdersComponent",
-  props: ["acl", "lang", "auth", "actor"],
+  props: ["acl", "lang", "auth", "actor", "tax"],
   data() {
     return {
       path: CONFIG.PATH,
@@ -573,6 +585,7 @@ export default {
       this.waitingExpand.table = order.table.name;
       this.waitingExpand.total = order.total;
       this.waitingExpand.pureTotal = order.total;
+      this.waitingExpand.tax = 0;
       this.waitingExpand.orderID = order.orderID;
       order.items.forEach((element) => {
         this.waitingExpand.items.push({
@@ -734,9 +747,15 @@ export default {
       });
       return Math.round((100 * out) / order.items.length);
     },
-    getInvoice(orderID, pureTotal) {
+    getInvoice(orderID, pureTotal, tax) {
       window.open(
-        this.fullPath + "/admin/invoice/print/" + orderID + "/" + pureTotal
+        this.fullPath +
+          "/admin/invoice/print/" +
+          orderID +
+          "/" +
+          pureTotal +
+          "/" +
+          tax
       );
     },
   },

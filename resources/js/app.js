@@ -140,7 +140,10 @@ Vue.component(
 );
 Vue.component("hooks", require("./components/HookComponent").default);
 Vue.component("stack", require("./components/StackComponent").default);
-Vue.component("invoice-print", require("./components/InvoiceComponent").default);
+Vue.component(
+    "invoice-print",
+    require("./components/InvoiceComponent").default
+);
 
 function coolNumber(num) {
     if (num < 1000) {
@@ -156,7 +159,7 @@ function coolNumber(num) {
 }
 
 const CONFIG = {
-    API_URL: 'https://' + window.location.hostname + '/emos/public/api/',
+    API_URL: "https://" + window.location.hostname + "/emos/public/api/",
     PATH: "/emos/public",
     //API_URL: "http://" + window.location.hostname + "/emos/public/api/",
 

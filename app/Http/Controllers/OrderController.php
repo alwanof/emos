@@ -61,7 +61,7 @@ class OrderController extends Controller
 
         return view('order.remote', compact(['acl', 'actor']));
     }
-    public function printInvoice($orderID, $pureTotal)
+    public function printInvoice($orderID, $pureTotal, $tax)
     {
         $actor = auth()->user();
 
@@ -71,7 +71,7 @@ class OrderController extends Controller
             }
         }
 
-        return view('order.print', compact(['orderID', 'pureTotal', 'actor']));
+        return view('order.print', compact(['orderID', 'pureTotal', 'actor', 'tax']));
     }
     public function stack()
     {

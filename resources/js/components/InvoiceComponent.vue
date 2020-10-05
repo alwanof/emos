@@ -25,6 +25,10 @@
       {{ actor.currency }}
     </div>
     <div>
+      <span class="font-weight-bold">Tax:</span> {{ tax }}
+      {{ actor.currency }}
+    </div>
+    <div>
       <span class="font-weight-bold">Discount:</span>
       {{ order.total - float(puretotal.replace(/['"]+/g, "")) }}
       {{ actor.currency }}
@@ -32,7 +36,8 @@
     <hr />
     <div>
       <span class="font-weight-bold">Final Total:</span>
-      {{ float(puretotal.replace(/['"]+/g, "")) }} {{ actor.currency }}
+      {{ float(puretotal.replace(/['"]+/g, "")) + Number(tax) }}
+      {{ actor.currency }}
     </div>
   </div>
 </template>
@@ -42,7 +47,7 @@ import CONFIG from "../app";
 
 export default {
   name: "InvoiceComponent.vue",
-  props: ["auth", "lang", "orderid", "puretotal", "actor"],
+  props: ["auth", "lang", "orderid", "puretotal", "actor", "tax"],
   data() {
     return {
       path: CONFIG.PATH,

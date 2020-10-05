@@ -43,7 +43,8 @@
                         </div>
                         <invoice-print :lang={{ json_encode(app()->getLocale()) }}
                             :auth="{{ json_encode(Auth::user()) }}" :orderid="{{ json_encode($orderID) }}"
-                            puretotal="{{ json_encode($pureTotal) }}" :actor="{{ json_encode($actor) }}">
+                            puretotal="{{ json_encode($pureTotal) }}" :actor="{{ json_encode($actor) }}"
+                            :tax="{{ json_encode($tax) }}">
                         </invoice-print>
                     </div>
                     <div class="card-footer text-center">
