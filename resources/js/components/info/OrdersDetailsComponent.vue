@@ -111,7 +111,7 @@ export default {
     //const today = new Date(1555653600000);*/
 
     CONFIG.DB.collection("orders")
-      .where("user.email", "==", "test1@emosqr.com") //this.auth.email
+      .where("user.email", "==", this.auth.email) //this.auth.email
       .get()
       .then((snapshot) => {
         snapshot.forEach((doc) => {

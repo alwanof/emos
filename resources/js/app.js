@@ -30,6 +30,10 @@ import translations from "../lang/vue-translations.json";
 //php artisan lang:js resources/lang/vue-translations.json --json
 //jchl403vz7hy@148.66.155.19
 //₺
+// ssh root@142.93.174.231
+// cd /home/2urkeymenu.com/public_html
+// scp narabana.com.zip root@142.93.174.231:/home/narabana.com/public_html
+//Zoom+9314MU
 
 Vue.component("pagination", require("laravel-vue-pagination"));
 Vue.component(
@@ -160,9 +164,10 @@ function coolNumber(num) {
 
 const CONFIG = {
     API_URL: "https://" + window.location.hostname + "/public/api/",
-    PATH: "/public",
     FULL_PATH: "https://" + window.location.hostname + "/public",
+    //FULL_PATH: "http://" + window.location.hostname + "/emos/public",
     //API_URL: "http://" + window.location.hostname + "/emos/public/api/",
+    PATH: "/public",
     LANG: translations,
     DB: db,
     FIRESTORE: firestore,
