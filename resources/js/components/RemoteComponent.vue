@@ -186,6 +186,14 @@
                       data-toggle="tooltip"
                       data-widget="chat-pane-toggle"
                     >Delivered!</button>
+                    <button
+                      type="button"
+                      class="btn btn-sm btn-danger"
+                      data-toggle="modal"
+                      data-target="#exampleModal"
+                    >
+                      Print!
+                    </button>
                   </div>
                 </li>
               </ul>
@@ -282,6 +290,77 @@
           </div>
         </div>
         <!-- //card -->
+      </div>
+    </div>
+     <!-- Modal -->
+    <div
+      class="modal fade"
+      id="exampleModal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true" >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">
+              Invoice#
+              {{
+                waitingExpand.orderID
+                  ? waitingExpand.orderID.substring(0, 6)
+                  : ""
+              }}
+            </h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <label for="tax">Tax</label>
+            <input
+              id="tax"
+              type="text"
+              class="form-control"
+              v-model="waitingExpand.tax"
+            />
+            <br />
+            <label for="puretotal">Final Total</label>
+            <input
+              id="puretotal"
+              type="text"
+              class="form-control"
+              v-model="waitingExpand.pureTotal"
+            />
+          </div>
+
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Close
+            </button>
+            <button
+              type="button"
+              @click="
+                getInvoice(
+                  waitingExpand.orderID,
+                  waitingExpand.pureTotal,
+                  waitingExpand.tax
+                )
+              "
+              target="_blank"
+              class="btn btn-primary"
+            >
+              Apply
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -594,6 +673,17 @@ export default {
         }
       });
       return Math.round((100 * out) / order.items.length);
+    },
+       getInvoice(orderID, pureTotal, tax) {
+      window.open(
+        this.fullPath +
+          "/admin/invoice/print/" +
+          orderID +
+          "/" +
+          pureTotal +
+          "/" +
+          tax
+      );
     },
   },
 };
