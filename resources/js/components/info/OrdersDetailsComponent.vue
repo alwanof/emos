@@ -107,67 +107,58 @@ export default {
     const today = new Date();
     const now = today.getTime() / 1000;
 
-    //today.setDate(today.getDate() - 1);
-    //const today = new Date(1555653600000);*/
+
 
     CONFIG.DB.collection("orders")
       .where("user.email", "==", this.auth.email) //this.auth.email
       .get()
       .then((snapshot) => {
+
         snapshot.forEach((doc) => {
           const firebaseDate = new Date(
             doc.data().timestamp.toDate()
           ).toDateString();
 
-          console.log(firebaseDate);
+          //console.log(firebaseDate);
+
 
           const datePoint = new Date(firebaseDate).getTime() / 1000;
 
+
+
           if (now - datePoint > 86400 && now - datePoint < 172800) {
             this.orders.yesterday++;
-            let amount = 0;
-            let total = 0;
+
             doc.data().items.forEach((item) => {
-              amount = amount + item.amount;
-              total = total + item.subTotal;
+              this.orders.amountYesterday = this.orders.amountYesterday + item.amount;
+              this.orders.incomeYesterday = this.orders.incomeYesterday + item.subTotal;
             });
 
-            this.orders.incomeYesterday = total;
-            this.orders.amountYesterday = amount;
+
           }
           if (now - datePoint < 604800) {
             this.orders.lastweak++;
 
-            let amount = 0;
-            let total = 0;
             doc.data().items.forEach((item) => {
-              amount = amount + item.amount;
-              total = total + item.subTotal;
+              this.orders.amountLastwaek = this.orders.amountLastwaek + item.amount;
+              this.orders.incomeLastwaek = this.orders.incomeLastwaek + item.subTotal;
             });
-            this.orders.incomeLastwaek = total;
-            this.orders.amountLastwaek = amount;
+
           }
           if (now - datePoint < 2592000) {
             this.orders.lastmonth++;
-            let amount = 0;
-            let total = 0;
             doc.data().items.forEach((item) => {
-              amount = amount + item.amount;
-              total = total + item.subTotal;
+
+              this.orders.amountLastmonth = this.orders.amountLastmonth + item.amount;
+              this.orders.incomeLastmonth = this.orders.incomeLastmonth + item.subTotal;
             });
-            this.orders.incomeLastmonth = total;
-            this.orders.amountLastmonth = amount;
           }
           if (now - datePoint < 31449600) {
             this.orders.lastyear++;
-            let amount = 0;
-            let total = 0;
             doc.data().items.forEach((item) => {
-              amount = amount + item.amount;
-              total = total + item.subTotal;
+              this.orders.amountLastyear = this.orders.amountLastyear + item.amount;
+              this.orders.incomeLastyear = this.orders.incomeLastyear + item.subTotal;
             });
-            this.orders.incomeLastyear = total;
-            this.orders.amountLastyear = amount;
           }
         });
 
