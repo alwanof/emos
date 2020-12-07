@@ -30,13 +30,26 @@
             <div class="col-lg-6">
                 <div class="card">
                     <div class="card-header text-center">
-                        <img src="{{ $actor->avatar }}" height="40" alt="">
+                        <img src="{{ $actor->avatar }}" height="72" alt="">
+                        <div class="h4">{{ $actor->name }}</div>
                     </div>
                     <div class="card-body p-3">
                         <div class="row">
                             <div class="col-12">
                                 <span class="font-weight-bold">#</span>{{ Str::substr($orderID, 0, 6) }}
                                 <hr>
+                            </div>
+                            <div class="col-6">
+                                {{ $name }}
+                            </div>
+                            <div class="col-6">
+                                {{ $phone }}
+                            </div>
+                            <div class="col-6">
+                                {{ $note }}
+                            </div>
+                            <div class="col-12">
+                                {{ $address }}
                             </div>
                             <div class="col"><span class="font-weight-bold">Date:</span> {{ Date('d-M-Y') }}</div>
                             <div class="col"><span class="font-weight-bold">Time:</span> {{ Date('H:i:s') }}</div>

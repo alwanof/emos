@@ -88,19 +88,7 @@
                 </button>
               </div>
               <ul class="list-group list-group-flush mt-4 rn-details">
-                <li
-                  class="list-group-item"
-                  v-for="(item, index) in newExpand.items"
-                  :key="index"
-                >
-                  <div>
-                    {{ item.title }}
-                    <span class="badge badge-light float-right">{{
-                      item.amount
-                    }}</span>
-                  </div>
-                </li>
-                <li class="list-group-item text-center">
+                  <li class="list-group-item text-center">
                   <div v-show="acl.order_pickitup">
                     <button
                       type="button"
@@ -113,6 +101,19 @@
                     </button>
                   </div>
                 </li>
+                <li
+                  class="list-group-item"
+                  v-for="(item, index) in newExpand.items"
+                  :key="index"
+                >
+                  <div>
+                    {{ item.title }}
+                    <span class="badge badge-light float-right">{{
+                      item.amount
+                    }}</span>
+                  </div>
+                </li>
+
               </ul>
             </div>
           </div>
@@ -208,22 +209,7 @@
                 </button>
               </div>
               <ul class="list-group list-group-flush mt-4 rn-details">
-                <li
-                  class="list-group-item"
-                  v-for="(item, index) in waitingExpand.items"
-                  :key="index"
-                >
-                  <div>
-                    {{ item.title }}
-                    <span class="badge badge-light float-right">
-                      {{ item.amount }}
-                      <span class="badge badge-success" v-show="item.out == 1">
-                        <i class="fas fa-check-double"></i>
-                      </span>
-                    </span>
-                  </div>
-                </li>
-                <li class="list-group-item text-center">
+                  <li class="list-group-item text-center">
                   <div v-show="acl.order_handover">
                     <button
                       type="button"
@@ -244,6 +230,22 @@
                     </button>
                   </div>
                 </li>
+                <li
+                  class="list-group-item"
+                  v-for="(item, index) in waitingExpand.items"
+                  :key="index"
+                >
+                  <div>
+                    {{ item.title }}
+                    <span class="badge badge-light float-right">
+                      {{ item.amount }}
+                      <span class="badge badge-success" v-show="item.out == 1">
+                        <i class="fas fa-check-double"></i>
+                      </span>
+                    </span>
+                  </div>
+                </li>
+
               </ul>
             </div>
           </div>
@@ -414,7 +416,8 @@
                 getInvoice(
                   waitingExpand.orderID,
                   waitingExpand.pureTotal,
-                  waitingExpand.tax
+                  waitingExpand.tax,
+                  waitingExpand.note
                 )
               "
               target="_blank"
@@ -586,6 +589,7 @@ export default {
       this.waitingExpand.pureTotal = order.total;
       this.waitingExpand.tax = 0;
       this.waitingExpand.orderID = order.orderID;
+      this.waitingExpand.note = order.note;
       order.items.forEach((element) => {
         this.waitingExpand.items.push({
           title: element.title,
@@ -619,6 +623,7 @@ export default {
       this.stabledExpand.items = [];
       this.stabledExpand.table = order.table.name;
       this.stabledExpand.orderID = order.orderID;
+
       order.items.forEach((element) => {
         this.stabledExpand.items.push({
           title: element.title,
@@ -746,7 +751,7 @@ export default {
       });
       return Math.round((100 * out) / order.items.length);
     },
-    getInvoice(orderID, pureTotal, tax) {
+    getInvoice(orderID, pureTotal, tax,note) {
       window.open(
         this.fullPath +
           "/admin/invoice/print/" +
@@ -754,7 +759,9 @@ export default {
           "/" +
           pureTotal +
           "/" +
-          tax
+          tax+
+          "/" +
+          note
       );
     },
   },

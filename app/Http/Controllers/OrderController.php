@@ -61,8 +61,9 @@ class OrderController extends Controller
 
         return view('order.remote', compact(['acl', 'actor']));
     }
-    public function printInvoice($orderID, $pureTotal, $tax)
+    public function printInvoice($orderID, $pureTotal, $tax, $note = null, $address = null, $name = null, $phone = null)
     {
+
         $actor = auth()->user();
 
         if ($actor->hasRole('restaurant')) {
@@ -71,7 +72,7 @@ class OrderController extends Controller
             }
         }
 
-        return view('order.print', compact(['orderID', 'pureTotal', 'actor', 'tax']));
+        return view('order.print', compact(['orderID', 'pureTotal', 'actor', 'tax', 'note', 'address', 'name', 'phone']));
     }
     public function stack()
     {

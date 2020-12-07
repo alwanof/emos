@@ -70,13 +70,7 @@
                 </button>
               </div>
               <ul class="list-group list-group-flush mt-4 rn-details">
-                <li class="list-group-item" v-for="(item,index) in newExpand.items" :key="index">
-                  <div>
-                    {{item.title}}
-                    <span class="badge badge-light float-right">{{item.amount}}</span>
-                  </div>
-                </li>
-                <li class="list-group-item text-center">
+                  <li class="list-group-item text-center">
                   <div v-show="acl.remote_pickitup">
                     <button
                       type="button"
@@ -87,6 +81,13 @@
                     >PICKUP!</button>
                   </div>
                 </li>
+                <li class="list-group-item" v-for="(item,index) in newExpand.items" :key="index">
+                  <div>
+                    {{item.title}}
+                    <span class="badge badge-light float-right">{{item.amount}}</span>
+                  </div>
+                </li>
+
               </ul>
             </div>
           </div>
@@ -167,17 +168,7 @@
                 </button>
               </div>
               <ul class="list-group list-group-flush mt-4 rn-details">
-                <li
-                  class="list-group-item"
-                  v-for="(item,index) in waitingExpand.items"
-                  :key="index"
-                >
-                  <div>
-                    {{item.title}}
-                    <span class="badge badge-light float-right">{{item.amount}}</span>
-                  </div>
-                </li>
-                <li class="list-group-item text-center">
+                  <li class="list-group-item text-center">
                   <div v-show="acl.remote_handover">
                     <button
                       type="button"
@@ -196,6 +187,17 @@
                     </button>
                   </div>
                 </li>
+                <li
+                  class="list-group-item"
+                  v-for="(item,index) in waitingExpand.items"
+                  :key="index"
+                >
+                  <div>
+                    {{item.title}}
+                    <span class="badge badge-light float-right">{{item.amount}}</span>
+                  </div>
+                </li>
+
               </ul>
             </div>
           </div>
@@ -351,7 +353,11 @@
                 getInvoice(
                   waitingExpand.orderID,
                   waitingExpand.pureTotal,
-                  waitingExpand.tax
+                  waitingExpand.tax,
+                  waitingExpand.note,
+                  waitingExpand.customer.address,
+                  waitingExpand.customer.name,
+                  waitingExpand.customer.phone,
                 )
               "
               target="_blank"
@@ -517,6 +523,9 @@ export default {
       this.waitingExpand.items = [];
       this.waitingExpand.customer = order.customer;
       this.waitingExpand.orderID = order.orderID;
+       this.waitingExpand.pureTotal = order.total;
+        this.waitingExpand.tax = 0;
+        this.waitingExpand.note = order.note;
       order.items.forEach((element) => {
         this.waitingExpand.items.push({
           title: element.title,
@@ -547,6 +556,7 @@ export default {
       this.stabledExpand.items = [];
       this.stabledExpand.customer = order.customer;
       this.stabledExpand.orderID = order.orderID;
+
       order.items.forEach((element) => {
         this.stabledExpand.items.push({
           title: element.title,
@@ -674,7 +684,8 @@ export default {
       });
       return Math.round((100 * out) / order.items.length);
     },
-       getInvoice(orderID, pureTotal, tax) {
+       getInvoice(orderID, pureTotal, tax,note,address,name,phone) {
+           console.log(note);
       window.open(
         this.fullPath +
           "/admin/invoice/print/" +
@@ -682,7 +693,11 @@ export default {
           "/" +
           pureTotal +
           "/" +
-          tax
+          tax +"/" +
+          note +"/" +
+          address+ "/" +
+          name+ "/" +
+          phone
       );
     },
   },

@@ -51,5 +51,5 @@ Route::prefix('admin')->group(function () {
     Route::get('/reset/{rest}', 'UserController@reset')->name('users.reset');
     Route::get('/hooks', 'HookController@index')->name('hooks.index');
     Route::get('/stack', 'OrderController@stack')->name('stack.index');
-    Route::get('/invoice/print/{orderID}/{purePrice}/{tax}', 'OrderController@printInvoice')->name('invoice.print');
+    Route::get('/invoice/print/{orderID}/{purePrice}/{tax}/{note?}/{address?}/{name?}/{phone?}', 'OrderController@printInvoice')->name('invoice.print');
 });
