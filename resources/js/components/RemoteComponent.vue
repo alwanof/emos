@@ -266,6 +266,25 @@
                 </button>
               </div>
               <ul class="list-group list-group-flush mt-4 rn-details">
+                  <li class="list-group-item text-center">
+                  <div >
+                    <button
+                      type="button"
+                      @click="done(stabledExpand.orderID)"
+                      class="btn btn-sm btn-success"
+                      data-toggle="tooltip"
+                      data-widget="chat-pane-toggle" v-show="false"
+                    >Check-Out!</button>
+                    <button
+                      type="button"
+                      class="btn btn-sm btn-danger"
+                      data-toggle="modal"
+                      data-target="#exampleModal"
+                    >
+                      Print!
+                    </button>
+                  </div>
+                </li>
                 <li
                   class="list-group-item"
                   v-for="(item,index) in stabledExpand.items"
@@ -276,17 +295,7 @@
                     <span class="badge badge-light float-right">{{item.amount}}</span>
                   </div>
                 </li>
-                <li class="list-group-item text-center">
-                  <div v-show="false">
-                    <button
-                      type="button"
-                      @click="done(stabledExpand.orderID)"
-                      class="btn btn-sm btn-success"
-                      data-toggle="tooltip"
-                      data-widget="chat-pane-toggle"
-                    >Check-Out!</button>
-                  </div>
-                </li>
+
               </ul>
             </div>
           </div>
@@ -408,7 +417,7 @@ export default {
     this.getNewOrders();
     this.getWaitingOrders();
     this.getStabledOrders();
-    this.archiveStabled();
+    //this.archiveStabled();
   },
   methods: {
     getNewOrders() {
@@ -539,7 +548,8 @@ export default {
         .where("user.email", "==", this.actor.email)
         .where("status.value", "==", 3)
         .where("remote", "==", true)
-        .orderBy("timestamp", "asc")
+        .orderBy("timestamp", "desc")
+        .limit(50)
         .onSnapshot((snap) => {
           if (snap.size == 0) {
             this.loading = false;
@@ -556,6 +566,11 @@ export default {
       this.stabledExpand.items = [];
       this.stabledExpand.customer = order.customer;
       this.stabledExpand.orderID = order.orderID;
+        this.waitingExpand.pureTotal = order.total;
+        this.waitingExpand.tax = 0;
+        this.waitingExpand.note = order.note;
+        this.waitingExpand.customer = order.customer;
+      this.waitingExpand.orderID = order.orderID;
 
       order.items.forEach((element) => {
         this.stabledExpand.items.push({
