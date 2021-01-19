@@ -1,6 +1,6 @@
 <?php
 //upload.php
-$base_url = 'http://localhost/smartmenu/public';
+$base_url = 'https://2urkeymenu.com/public/';
 $rand=rand(1,9999);
 if (isset($_POST["image"])) {
     $data = $_POST["image"];

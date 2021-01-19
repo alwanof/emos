@@ -4,7 +4,7 @@
 
 <div id="app" >
 
-    <theme-pwa :colors="{{json_encode($colors)}}"  :cats="{{json_encode($cats)}}" :rest="{{json_encode($restaurant)}}"  :sess="{{json_encode($session)}}" :tbl="{{json_encode($table)}}"></theme-pwa>
+    <theme-pwa :colors="{{json_encode($colors)}}"   :cats="{{json_encode($cats)}}" :rest="{{json_encode($restaurant)}}"  :sess="{{json_encode($session)}}" :tbl="{{json_encode($table)}}"></theme-pwa>
 
 </div>
 @stop

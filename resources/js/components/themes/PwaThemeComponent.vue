@@ -99,11 +99,11 @@
       <div id="footer-bar" class="footer-bar-1">
         <a href="#" :class="(page==0)?'active-nav':''" @click.prevent="page=0">
           <i class="fa fa-home"></i>
-          <span>Ana Sayfa</span>
+          <span>{{ local[lang+".start"]["home"] }}</span>
         </a>
         <a href="#" data-menu="menu-sidebar-left-1">
           <i class="fa fa-list-alt"></i>
-          <span>Kategoriler</span>
+          <span>{{ local[lang+".start"]["categories"] }}</span>
         </a>
         <a href="#" data-menu="menu-basket">
           <i class="fas fa-shopping-cart"></i>
@@ -114,16 +114,16 @@
               class="spinner-grow color-highlight notranslate"
               style="width:1rem;height:1rem"
               v-show="pasket.length>0"
-            ></i>Sepetim
+            ></i> {{ local[lang+".start"]["basket"] }}
           </span>
         </a>
         <a href="#" :class="(page==1)?'active-nav':''" @click.prevent="page=1">
           <i class="fas fa-university"></i>
-          <span>Hakkında</span>
+          <span>{{ local[lang+".start"]["about"] }}</span>
         </a>
         <a href="#" data-menu="menu-contact">
           <i class="far fa-envelope"></i>
-          <span>İletişim</span>
+          <span>{{ local[lang+".start"]["contact"] }}</span>
         </a>
       </div>
 
@@ -137,7 +137,7 @@
               type="text"
               id="searchInput"
               class="border-0"
-              placeholder="What are you looking for? "
+              :placeholder="local[lang+'.start']['search_hint'] "
             />
             <a href="#" class="disabled">
               <i class="fa fa-times-circle color-red2-dark"></i>
@@ -423,9 +423,9 @@
         <div class="menu-title">
           <h1>
             <i class="far fa-envelope"></i>
-            Gözden Geçirmek
+            Gözden Geçirmek {{lang}}
           </h1>
-          <p class="color-highlight">Şikayet & not</p>
+          <p class="color-highlight">Şikayet & not </p>
           <a href="#" class="close-menu">
             <i class="fa fa-times"></i>
           </a>
@@ -691,6 +691,8 @@ export default {
     return {
       path: CONFIG.PATH,
       fullPath: CONFIG.FULL_PATH,
+      local: CONFIG.LANG,
+      lang: this.rest.language,
       loading: false,
       page: 0,
       sec: 0,

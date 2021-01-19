@@ -1,5 +1,5 @@
 var placeID = null;
-const base_url = 'http://localhost/smartmenu/public';
+const base_url = 'https://2urkeymenu.com/public/';
 $image_crop = $('#image_demo').croppie({
     enableExif: true,
     viewport: {

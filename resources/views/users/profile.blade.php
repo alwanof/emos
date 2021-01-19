@@ -56,7 +56,7 @@
                         </div>
                         <div class="card-body">
                             @if(auth()->user()->getSetting('wifi_ssid')->value!='null')
-                                <img class="img-fluid" src="data:image/png;base64,{{base64_encode(QrCode::format('png')->color(255,0,0)->size(512)->wiFi(['encryption' => auth()->user()->getSetting('wifi_encryp')->value,'ssid' => auth()->user()->getSetting('wifi_ssid')->value,'password' => auth()->user()->getSetting('wifi_password')->value]))}}">
+                                <img class="img-fluid" src="data:image/png;base64,{{base64_encode(QrCode::format('png')->color(0,0,0)->size(512)->wiFi(['encryption' => auth()->user()->getSetting('wifi_encryp')->value,'ssid' => auth()->user()->getSetting('wifi_ssid')->value,'password' => auth()->user()->getSetting('wifi_password')->value]))}}">
                             @else
                                 <h3>
                                     <a href="{{route('config.settings')}}">
@@ -74,7 +74,7 @@
                         <div class="card-body">
                             @if(auth()->user()->getSetting('address')->value!='null')
                                 <a href="{{route('menu.remote',auth()->user()->slug)}}" target="_blank">
-                                    <img class="img-fluid" src="data:image/png;base64,{{base64_encode(QrCode::format('png')->color(0,255,0)->size(512)->generate(route('menu.remote',auth()->user()->slug)))}}">
+                                    <img class="img-fluid" src="data:image/png;base64,{{base64_encode(QrCode::format('png')->color(0,0,0)->size(512)->generate(route('menu.remote',auth()->user()->slug)))}}">
                                 </a>
                             @else
                                 <h3>

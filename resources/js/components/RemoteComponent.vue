@@ -46,18 +46,23 @@
                       <span class="badge badge-danger float-right">{{newOrder.total}}</span>
                     </a>
                     <span class="product-description" :title="newOrder.note">
-                      <i class="fas fa-phone-alt"></i>
+                     <ul style="list-style: none;">
+                         <li> <i class="fas fa-phone-alt"></i>
                       {{newOrder.customer.phone}}
-                      <i class="fas fa-map-marker-alt"></i>
-                      {{newOrder.customer.address}}
-                      <i class="far fa-comment"></i>
-                      {{newOrder.note}}
+                     </li>
+                         <li> <i class="fas fa-map-marker-alt"></i>
+                      {{newOrder.customer.city}} / {{newOrder.customer.address}}
+                      </li>
+
+                         <li v-if="newOrder.note"><i class="far fa-comment"></i>
+                      {{newOrder.note}}</li>
+                     </ul>
                     </span>
                   </div>
                 </li>
               </ul>
             </div>
-            <div class="direct-chat-contacts p-2">
+            <div :id="newExpand.orderID" class="direct-chat-contacts p-2">
               <div class="pt-2">
                 {{newExpand.customer.name}}@{{newExpand.customer.phone}}
                 <button
@@ -72,14 +77,20 @@
               <ul class="list-group list-group-flush mt-4 rn-details">
                   <li class="list-group-item text-center">
                   <div v-show="acl.remote_pickitup">
-                    <button
+                    <div class="btn-group">
+                        <button
                       type="button"
                       @click="pickUp(newExpand.orderID)"
-                      class="btn btn-sm btn-danger"
+                      class="btn btn-sm btn-success"
                       data-toggle="tooltip"
                       data-widget="chat-pane-toggle"
-                    >PICKUP!</button>
+                    >PICKUP! <i class="fas fa-truck"></i>  </button>
+                      <button type="button" @click="canceled(newExpand.orderID)" class="btn btn-sm btn-danger">
+                              Cancel <i class="fas fa-ban"></i>
+                          </button>
+                    </div>
                   </div>
+
                 </li>
                 <li class="list-group-item" v-for="(item,index) in newExpand.items" :key="index">
                   <div>
@@ -601,6 +612,21 @@ export default {
           });
         });
     },
+      canceled(orderID){
+        //del
+        this.loading = true;
+        CONFIG.DB.collection("orders").
+            doc(orderID)
+            .delete()
+          .then(()=>{
+              this.loading = false;
+              $("#"+orderID).toggle();
+          })
+          .catch((error)=>{
+              this.loading = false;
+              console.log(error);
+          });
+      },
     pickUp(orderID) {
       this.loading = true;
 
