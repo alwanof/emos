@@ -75,7 +75,7 @@
                 </li>
               </ul>
             </div>
-            <div class="direct-chat-contacts p-2">
+            <div :id="newExpand.orderID" class="direct-chat-contacts p-2">
               <div class="pt-2">
                 {{ newExpand.table }}
                 <button
@@ -90,15 +90,18 @@
               <ul class="list-group list-group-flush mt-4 rn-details">
                   <li class="list-group-item text-center">
                   <div v-show="acl.order_pickitup">
-                    <button
+                   <div class="btn-group">
+                        <button
                       type="button"
                       @click="pickUp(newExpand.orderID)"
-                      class="btn btn-sm btn-danger"
+                      class="btn btn-sm btn-success"
                       data-toggle="tooltip"
                       data-widget="chat-pane-toggle"
-                    >
-                      PICKUP!
-                    </button>
+                    >PICKUP! <i class="fas fa-truck"></i>  </button>
+                      <button type="button" @click="canceled(newExpand.orderID)" class="btn btn-sm btn-danger">
+                              Cancel <i class="fas fa-ban"></i>
+                          </button>
+                    </div>
                   </div>
                 </li>
                 <li
@@ -672,6 +675,21 @@ export default {
           });
         });
     },
+      canceled(orderID){
+        //del
+        this.loading = true;
+        CONFIG.DB.collection("orders").
+            doc(orderID)
+            .delete()
+          .then(()=>{
+              this.loading = false;
+              $("#"+orderID).toggle();
+          })
+          .catch((error)=>{
+              this.loading = false;
+              console.log(error);
+          });
+      },
     pickUp(orderID) {
       this.loading = true;
       CONFIG.DB.collection("orders")

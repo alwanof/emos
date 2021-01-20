@@ -159,6 +159,15 @@
                                    :placeholder="local[lang+'.menu']['price']" required/>
 
                         </div>
+                         <div class="input-group mb-2">
+                            <div class="input-group-prepend">
+                                    <span class="input-group-text">
+                                        <i class="far fa-image"></i>
+                                    </span>
+                            </div>
+                            <input type="file" v-on:change="onFileChange" class="form-control"
+                                    required/>
+                        </div>
                         <div v-if="errors && errors.price" class="text-danger">{{ errors.price[0] }}</div>
                         <div class="input-group mb-2">
                             <div class="input-group-prepend">
@@ -221,6 +230,7 @@
                     title: null,
                     description: null,
                     price: null,
+                    file:'',
                     available: 1,
                     category_id: 0,
                 },
@@ -240,6 +250,9 @@
             }
         },
         methods: {
+            onFileChange(e){
+              this.file = e.target.files[0];
+            },
             getResults(page = 1) {
                 this.loading = true;
                 if (typeof page === "undefined") {
@@ -320,10 +333,11 @@
                             }
                         });
                 } else {
+                    const config = {headers:{'content-type':'multipart/form-data'}};
                     axios
                         .post(
                             CONFIG.API_URL + "items" + "?api_token=" + this.auth.api_token,
-                            this.item
+                            this.item,config
                         )
                         .then(res => {
                             this.loading = false;

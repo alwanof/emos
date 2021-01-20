@@ -17,7 +17,7 @@
                         icon: 'https://www.kindpng.com/picc/m/169-1699400_svg-png-icon-free-android-notification-icon-png.png',
                         body: body,
                     });
-            $.playSound('/alert.wav');
+            $.playSound('alert.wav');
         },
             newRemoteOrders(){
                 CONFIG.DB.collection("orders")
@@ -26,7 +26,9 @@
         .where("remote", "==", true)
         .orderBy("timestamp", "asc")
         .onSnapshot((snap) => {
-            this.Notify('New Order','New Remote Order');
+            if (snap.size != 0){
+                this.Notify('New Order','New Remote Order');
+            }
         });
             },
             newTableOrders(){
@@ -36,7 +38,9 @@
         .where("remote", "==", false)
         .orderBy("timestamp", "asc")
         .onSnapshot((snap) => {
-            this.Notify('New Order','New Table Order');
+            if(snap.size != 0){
+                this.Notify('New Order','New Table Order');
+            }
         });
             }
 
