@@ -431,6 +431,7 @@ export default {
     //this.archiveStabled();
   },
   methods: {
+
     getNewOrders() {
       this.loading = true;
       CONFIG.DB.collection("orders")
@@ -444,6 +445,7 @@ export default {
             this.newOrders = [];
             return 0;
           }
+
           let newData = [];
           snap.forEach((doc) => {
             newData.push(doc.data());
@@ -490,6 +492,7 @@ export default {
           this.loading = false;
         });
     },
+
     exapandNew(order) {
       this.newExpand.items = [];
       this.newExpand.customer = order.customer;

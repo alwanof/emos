@@ -308,7 +308,7 @@
             <strong>Copyright &copy; 2020 <a href="https://2uerkey.com">2urkey</a>.</strong> All rights
             reserved.
         </footer>
-
+        <notifications :actor="{{ json_encode(Auth::user()) }}" ></notifications>
         <!-- Control Sidebar -->
         <aside class="control-sidebar control-sidebar-dark">
             <!-- Control sidebar content goes here -->
@@ -328,7 +328,21 @@
     <script src="{{ asset('assets/dist/js/adminlte.min.js') }}"></script>
     <!-- AdminLTE for demo purposes -->
     <script src="{{ asset('assets/dist/js/demo.js') }}"></script>
+  <script src="{{asset('assets/plugins/jquery.playSound.js')}}"></script>
     @yield('js')
+     <script>
+            // request permission on page load
+        document.addEventListener('DOMContentLoaded', function() {
+         if (!Notification) {
+          alert('Desktop notifications not available in your browser. Try Chromium.');
+          return;
+         }
+
+         if (Notification.permission !== 'granted')
+          Notification.requestPermission();
+        });
+        </script>
+
 </body>
 
 </html>

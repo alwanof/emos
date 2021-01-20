@@ -34,7 +34,7 @@ import translations from "../lang/vue-translations.json";
 // cd /home/2urkeymenu.com/public_html
 // scp narabana.com.zip root@142.93.174.231:/home/narabana.com/public_html
 //Zoom+9314MU
-
+Vue.component("notifications",require("./components/notifications.vue").default);
 Vue.component("pagination", require("laravel-vue-pagination"));
 Vue.component(
     "example-component",
@@ -166,7 +166,7 @@ const CONFIG = {
     API_URL: "https://" + window.location.hostname + "/public/api/",
     FULL_PATH: "https://" + window.location.hostname + "/public",
     //FULL_PATH: "http://" + window.location.hostname + "/emos/public",
-    //API_URL: "http://" + window.location.hostname + "/emos/public/api/",
+    // API_URL: "http://" + window.location.hostname + "/emos/public/api/",
     //     FULL_PATH: "http://" + window.location.hostname + ":8000",
     // API_URL: "http://" + window.location.hostname + ":8000/api/",
     PATH: "/public",
