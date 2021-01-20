@@ -52,7 +52,7 @@
                                 {{ $address }}
                             </div>
                             <div class="col"><span class="font-weight-bold">Date:</span> {{ Date('d-M-Y') }}</div>
-                            <div class="col"><span class="font-weight-bold">Time:</span> {{ Date('H:i:s') }}</div>
+                            <div class="col"><span class="font-weight-bold">Time:</span> <span id="timer"></span> </div>
                         </div>
                         <invoice-print :lang={{ json_encode(app()->getLocale()) }}
                             :auth="{{ json_encode(Auth::user()) }}" :orderid="{{ json_encode($orderID) }}"
@@ -79,6 +79,19 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
     <script type="text/javascript">
+        let options = {
+            timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+            // year: 'numeric',
+            // month: 'numeric',
+            // day: 'numeric',
+            hour: 'numeric',
+            minute: 'numeric',
+            second: 'numeric',
+          };
+
+        formatter = new Intl.DateTimeFormat([], options);
+        time = formatter.format(new Date());
+        $("#timer").html(time);
         function printpage() {
             //Get the print button and put it into a variable
             var printButton = document.getElementById("pr");
