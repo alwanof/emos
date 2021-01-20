@@ -9,7 +9,7 @@
         props:["actor"],
         created() {
           this.newRemoteOrders();
-
+          this.newTableOrders();
         },
         methods:{
             Notify(title,body){
