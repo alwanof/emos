@@ -730,6 +730,9 @@ export default {
     },
        getInvoice(orderID, pureTotal, tax,note,address,name,phone) {
            console.log(note);
+           if(note === ''){
+               note = "no note";
+           }
       window.open(
         this.fullPath +
           "/admin/invoice/print/" +
