@@ -17,7 +17,7 @@
                         icon: 'https://www.kindpng.com/picc/m/169-1699400_svg-png-icon-free-android-notification-icon-png.png',
                         body: body,
                     });
-            $.playSound('alert.wav');
+            $.playSound('/public/alert.wav');
         },
             newRemoteOrders(){
                 CONFIG.DB.collection("orders")
