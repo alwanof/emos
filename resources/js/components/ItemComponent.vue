@@ -159,15 +159,7 @@
                                    :placeholder="local[lang+'.menu']['price']" required/>
 
                         </div>
-                         <div class="input-group mb-2">
-                            <div class="input-group-prepend">
-                                    <span class="input-group-text">
-                                        <i class="far fa-image"></i>
-                                    </span>
-                            </div>
-                            <input type="file" v-on:change="onFileChange" class="form-control"
-                                    required/>
-                        </div>
+                       
                         <div v-if="errors && errors.price" class="text-danger">{{ errors.price[0] }}</div>
                         <div class="input-group mb-2">
                             <div class="input-group-prepend">
@@ -249,7 +241,7 @@
             }
         },
         methods: {
-           
+
             getResults(page = 1) {
                 this.loading = true;
                 if (typeof page === "undefined") {
