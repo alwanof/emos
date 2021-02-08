@@ -159,7 +159,7 @@
                                    :placeholder="local[lang+'.menu']['price']" required/>
 
                         </div>
-                       
+
                         <div v-if="errors && errors.price" class="text-danger">{{ errors.price[0] }}</div>
                         <div class="input-group mb-2">
                             <div class="input-group-prepend">
