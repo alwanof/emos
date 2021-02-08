@@ -242,7 +242,7 @@
             }
         },
         methods: {
-           
+
             getResults(page = 1) {
                 this.loading = true;
                 if (typeof page === "undefined") {
