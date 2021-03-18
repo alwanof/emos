@@ -390,13 +390,14 @@
                     total:0
                 },
                 customer:{
-                    country:this.geo.country,
-                    city:this.geo.city,
-                    clientID:null,
-                    name:null,
-                    email:null,
-                    phone:null,
-                    address:null
+                    country: this.geo.country,
+                    city: this.geo.city,
+                    clientID: null,
+                    trend_id: this.param.trend_id ,
+                    name: this.param.name,
+                    email: this.param.email,
+                    phone: this.param.phone,
+                    address: this.param.address,
                 },
                 bell:false,
                 selectedItem: null,
@@ -594,12 +595,13 @@
                 order.total=this.total();
                 order.customer={
                     clientID:(this.customer.clientID)?this.customer.clientID:0,
-                    name:this.customer.name,
-                    email:this.customer.email,
-                    phone:this.customer.phone,
-                    country:this.customer.country,
-                    city:this.customer.city,
-                    address:this.customer.address
+                    trend_id: this.customer.trend_id ? this.customer.trend_id : 0,
+                    name: this.customer.name,
+                    email: this.customer.email,
+                    phone: this.customer.phone,
+                    country: this.customer.country,
+                    city: this.customer.city,
+                    address: this.customer.address,
 
                 }
                 order.user={
