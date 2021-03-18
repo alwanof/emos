@@ -25,10 +25,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9a9985b9-c697-4ece-b1fd-b7fff16943e7" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/themes/PwaRemoteComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/themes/PwaRemoteComponent.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -259,7 +256,7 @@
       <workItem from="1612783817558" duration="3299000" />
       <workItem from="1612792467848" duration="19000" />
       <workItem from="1612792516154" duration="9000" />
-      <workItem from="1616069730766" duration="2463000" />
+      <workItem from="1616069730766" duration="2737000" />
     </task>
     <task id="LOCAL-00001" summary="Update : 1.0.0v&#10;Description : &#10;1 - Change Qr Colors In Home page &#10;2 - Add Cancel Button To Remote Orders&#10;3 - Resolve The Language Problem in Table Menu Page">
       <created>1611054199916</created>
