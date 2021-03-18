@@ -1033,6 +1033,7 @@ export default {
       order.total = this.total();
       order.customer = {
         clientID: this.customer.clientID ? this.customer.clientID : 0,
+        trend_id: this.customer.trend_id ? this.customer.trend_id : 0,
         name: this.customer.name,
         email: this.customer.email,
         phone: this.customer.phone,
