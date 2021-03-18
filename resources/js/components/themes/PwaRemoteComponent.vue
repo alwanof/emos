@@ -832,6 +832,7 @@ export default {
         country: this.geo.country,
         city: this.geo.city,
         clientID: null,
+        trend_id: null,
         name: null,
         email: null,
         phone: null,
