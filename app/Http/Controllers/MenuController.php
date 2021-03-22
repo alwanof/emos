@@ -50,6 +50,7 @@ class MenuController extends Controller
             'clientID' => (isset($request->clientID)) ? $request->clientID : null,
             'name' => (isset($request->name)) ? $request->name : null,
             'trend_id' => (isset($request->trend_id)) ? $request->trend_id : null,
+            'hotel_id' => (isset($request->hotel_id)) ? $request->hotel_id : null,
             'email' => (isset($request->email)) ? $request->email : null,
             'phone' => (isset($request->phone)) ? $request->phone : null,
             'address' => (isset($request->address)) ? $request->address : null,
