@@ -833,6 +833,7 @@ export default {
         city: this.geo.city,
         clientID: null,
         trend_id: this.param.trend_id ,
+        hotel_id: this.param.hotel_id ,
         name: this.param.name,
         email: this.param.email,
         phone: this.param.phone,
@@ -1034,6 +1035,7 @@ export default {
       order.customer = {
         clientID: this.customer.clientID ? this.customer.clientID : 0,
         trend_id: this.customer.trend_id ? this.customer.trend_id : 0,
+        hotel_id: this.customer.hotel_id ? this.customer.hotel_id : 0,
         name: this.customer.name,
         email: this.customer.email,
         phone: this.customer.phone,
