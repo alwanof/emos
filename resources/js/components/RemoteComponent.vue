@@ -52,6 +52,7 @@
                      </li>
                          <li> <i class="fas fa-map-marker-alt"></i>
                       {{newOrder.customer.city}} / {{newOrder.customer.address}}
+                             <br>
                       {{newOrder.customer.hotel_name}} / {{newOrder.customer.room_no}}
                       </li>
 
