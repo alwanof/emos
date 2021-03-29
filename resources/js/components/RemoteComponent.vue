@@ -53,7 +53,7 @@
                          <li> <i class="fas fa-map-marker-alt"></i>
                       {{newOrder.customer.city}} / {{newOrder.customer.address}}
                              <br>
-                      {{newOrder.customer.hotel_name}} / {{newOrder.customer.room_no}}
+                      Hotel Name : {{newOrder.customer.hotel_name}} / Room No : {{newOrder.customer.room_no}}
                       </li>
 
                          <li v-if="newOrder.note"><i class="far fa-comment"></i>
