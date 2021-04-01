@@ -163,12 +163,12 @@ function coolNumber(num) {
 }
 
 const CONFIG = {
-    API_URL: "https://" + window.location.hostname + "/public/api/",
-    FULL_PATH: "https://" + window.location.hostname + "/public",
+    // API_URL: "https://" + window.location.hostname + "/public/api/",
+    // FULL_PATH: "https://" + window.location.hostname + "/public",
     //FULL_PATH: "http://" + window.location.hostname + "/emos/public",
     // API_URL: "http://" + window.location.hostname + "/emos/public/api/",
-    //     FULL_PATH: "http://" + window.location.hostname + ":8000",
-    // API_URL: "http://" + window.location.hostname + ":8000/api/",
+        FULL_PATH: "http://" + window.location.hostname + ":8000",
+    API_URL: "http://" + window.location.hostname + ":8000/api/",
     PATH: "/public",
     LANG: translations,
     DB: db,

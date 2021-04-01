@@ -45,8 +45,8 @@
                       </span>
                       <span class="badge badge-danger float-right">{{newOrder.total}}</span>
                     </a>
-                    <span class="product-description" :title="newOrder.note">
-                     <ul style="list-style: none;">
+                    <span class="product-description" style="white-space: inherit;" :title="newOrder.note">
+                     <ul style="list-style: none;white-space: inherit;">
                          <li> <i class="fas fa-phone-alt"></i>
                       {{newOrder.customer.phone}}
                      </li>

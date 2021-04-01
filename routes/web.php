@@ -20,6 +20,7 @@ Route::get('/', function () {
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 Route::get('/menu/{rest}/{table}', 'MenuController@index')->name('menu.index');
 Route::get('/menu/{rest}', 'MenuController@remote')->name('menu.remote');
+Route::post('/menu/contact', 'ContactController@send_message')->name('home.contact');
 /*Route::get('/emosqr/{restID}/{clientID}/{name}/{email}/{phone}/{country}/{city}/{address}', function (\Illuminate\Http\Request $request){
     return $request->clientID;
 })->name('menu.emosqr');*/

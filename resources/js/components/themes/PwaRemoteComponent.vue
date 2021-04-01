@@ -435,7 +435,7 @@
         </div>
         <div class="divider divider-margins mb-n2"></div>
         <div class="content">
-          <form class="contactForm">
+          <form class="contactForm" method="post" :action="path+'/menu/contact'">
             <fieldset>
               <div class="form-field form-name">
                 <label class="contactNameField color-theme" for="contactNameField">
@@ -468,7 +468,7 @@
               </div>
               <div class="form-button">
                 <input
-                  type="button"
+                  type="submit"
                   @click="notify"
                   class="btn bg-highlight text-uppercase font-900 btn-m btn-full rounded-sm shadow-xl contactSubmitButton"
                   value="Gönderme"
@@ -895,19 +895,14 @@ export default {
     notify() {
       const msg =
         "👋" +
-        this.tbl.name +
-        "🔔" +
+
         this.contact.name +
         "<" +
         this.contact.email +
         ">:" +
         this.contact.msg;
-      axios.get(
-        "https://api.telegram.org/bot1035645137:AAHWzg_1YzGUYD_XMZrz28tsMyzZSqq0a9Y/sendMessage?chat_id=@" +
-          this.rest.telegram +
-          "&text=" +
-          msg
-      );
+      axios.post(CONFIG.PATH+'/menu/contact',{"full_name":this.contact.name,"full_email":this.contact.email,
+      "phone_number":"","message_body":this.contact.msg,"subject":""}      );
       $("#menu-contact").hideMenu();
       $("#menu-success-1").showMenu();
     },
